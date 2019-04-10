@@ -7,6 +7,7 @@ import Main from './components/Main';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 import NotFound from './components/NotFound';
+import './styles/variables.scss'
 import './App.scss';
 
 

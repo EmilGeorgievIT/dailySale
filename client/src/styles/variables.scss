@@ -1,0 +1,28 @@
+/* ------------------------------------------------------------ *\
+	Variables
+\* ------------------------------------------------------------ */
+
+$font-family-sans-serif: 'Roboto', Helvetica, sans-serif;
+$font-family-serif: Times, 'Times New Roman', serif;
+
+$font-oswald: 'Oswald',sans-serif;
+
+$font-size-base: 14px;
+$line-height-base: 1.36;
+$color-pumpkin: #ff7814;
+$shell-max-width: 1140px;
+$shell-gutter: 10px;
+
+$responsive-xxs: 374px;
+$responsive-xs: 767px;
+$responsive-sm: 1023px;
+$responsive-md: 1200px;
+
+$mobile-small: '(max-width: #{$responsive-xxs}) ';
+$mobile: '(max-width: #{$responsive-xs}) ';
+$tablet-portrait: '(max-width: #{$responsive-sm}) ';
+$small-desktop: '(max-width: #{$responsive-md}) ';
+$retina: '(min-resolution: 2dppx) ';
+
+// Usage
+// @media #{$small-desktop}

@@ -1,9 +1,15 @@
+import 'bootstrap/scss/bootstrap.scss';
+import 'bootstrap/dist/js/bootstrap.js';
+import $ from 'jquery';
+ // eslint-disable-next-line
+import Popper from 'popper.js';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+// eslint-disable-next-line no-unused-vars
 import * as serviceWorker from './serviceWorker';
-import 'bootstrap/scss/bootstrap.scss';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
