@@ -1,0 +1,39 @@
+@import '../styles/variables.scss';
+
+/* ------------------------------------------------------------ *\
+	List
+\* ------------------------------------------------------------ */
+
+.list-categories {
+    & {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .list-group-item {
+        & {
+            display: flex;
+            align-items: center;
+            flex: 0 1 33.33%;
+            cursor: pointer;
+        }
+        .item-name {
+            margin-left: 5px;
+        }
+    }
+}
+@media #{$tablet-portrait} {
+    .list-categories {
+        .list-group-item {
+            flex: 0 1 50%;
+        }
+    }
+}
+
+@media #{$mobile} {
+    .list-categories {
+        .list-group-item {
+            flex: 0 1 100%;
+        }
+    }
+}

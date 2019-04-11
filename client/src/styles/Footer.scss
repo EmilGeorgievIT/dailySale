@@ -1,0 +1,14 @@
+@import '../styles/variables.scss';
+
+/* ------------------------------------------------------------ *\
+	Footer
+\* ------------------------------------------------------------ */
+
+.footer {
+    & {
+        padding: 1rem 0;
+        text-align: center;
+        background-color: #2b2b2b;
+        color: hsla(0,0%,100%,.9);
+    }
+}

@@ -33,7 +33,7 @@ class Navigation extends Component {
                             <li className="nav-item">
 
                                 <button type="button" to="/sign-up" className="btn btn-primary d-flex">
-                                    <i class="material-icons">add</i>
+                                    <i className="material-icons">add</i>
                                     
                                     <span>
                                         Place Ad
