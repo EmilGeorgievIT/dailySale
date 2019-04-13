@@ -1,6 +1,7 @@
 import React , { Component } from 'react';
 import '../../styles/Account.scss';
-import LoginForm from '../LoginForm';
+import LoginForm from '../auth/LoginForm';
+import RegisterForm from '../auth/RegisterForm';
 
 class Account extends Component {
     render() {
@@ -11,27 +12,25 @@ class Account extends Component {
                         <div className="tabs-account">
                             <ul className="nav justify-content-center nav-tabs" id="myTab" role="tablist">
                                 <li className="nav-item">
-                                    <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
-                                        Home
+                                    <a className="nav-link active" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">
+                                        Login
                                     </a>
                                 </li>
 
                                 <li className="nav-item">
-                                    <a className="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
-                                        Profile
+                                    <a className="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">
+                                        Register
                                     </a>
                                 </li>
                             </ul>
                             
                             <div className="tab-content" id="myTabContent">
-                                <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div className="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
                                     <LoginForm />
                                 </div>
                                 
-                                <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                    <p> 
-                                        
-                                    </p>
+                                <div className="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                                    <RegisterForm />
                                 </div>
                             </div>
                         </div>

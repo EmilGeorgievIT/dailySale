@@ -20,13 +20,13 @@ function validateUser(req, res) {
 module.exports = {
   signUp: (req, res) => {
     if (validateUser(req, res)) {
-      const { email, password, name } = req.body;
+      const { name, email, password, } = req.body;
       const salt = encryption.generateSalt();
       const hashedPassword = encryption.generateHashedPassword(salt, password);
       User.create({ 
+        name,
         email,
         hashedPassword,
-        name,
         salt
       }).then((user) => {
         res.status(201)

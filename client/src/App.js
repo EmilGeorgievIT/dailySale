@@ -5,7 +5,6 @@ import Footer from './components/shared/Footer';
 import Navigation from './components/shared/Navigation';
 import Main from './components/Main';
 import Account from './components/auth/Account';
-import SignUp from './components/auth/SignUp';
 import NotFound from './components/NotFound';
 import './styles/variables.scss'
 import './App.scss';
@@ -20,7 +19,6 @@ class App extends Component {
           <Navigation />
             <Switch>
               <Route exact path='/' component = { Main }/>
-              <Route exact path='/sign-up' component = { SignUp }/>
               <Route exact path='/account' component = { Account }/>
               <Route component = { NotFound } />
             </Switch>

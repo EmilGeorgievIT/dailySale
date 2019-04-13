@@ -1,20 +1,21 @@
-import React, { Component } from 'react';
-import AuthenticationService from '../services/authentication-service';
+import React , { Component } from 'react';
+import AuthenticationService from '../../services/authentication-service';
 import { Redirect } from 'react-router-dom';
 
-import '../styles/Account.scss';
+import '../../styles/Account.scss';
 
-export default class LoginForm extends Component {
+export default class RegisterForm extends Component {
     static service = new AuthenticationService();
 
     constructor(props) {
         super(props);
         
         this.state = {
+            name: '',
             email: '',
             password: '',
             error: '',
-            isLoggin: !!sessionStorage.getItem('token')
+            isRegiser: ''
         };
     }
     
@@ -28,16 +29,17 @@ export default class LoginForm extends Component {
     handleSumbit = async (event) => {
         event.preventDefault();
 
-        const { email, password } = this.state;
+        const { name, email, password } = this.state;
         
         const userData = {
+            name,
             email,
             password
         };
         
         try {
-            const credentials = await LoginForm.service.login(userData)
-            if(credentials.message !== 'logged') {
+            const credentials = await RegisterForm.service.register(userData)
+            if(credentials.message !== 'User created!') {
                 this.setState({
                     error: credentials.message
                 })
@@ -46,12 +48,8 @@ export default class LoginForm extends Component {
             console.log(credentials);
             
             this.setState({
-                isLoggin: true
-            })
-            
-            if(this.state.isLoggin) {
-                sessionStorage.setItem('token', credentials.token);
-            }
+                isRegiser: true
+            });
         } catch(error) {
             console.log(error);
             this.setState({
@@ -61,15 +59,21 @@ export default class LoginForm extends Component {
     }
 
     render() {
-        const { email, password, isLoggin, error } = this.state;
+        const { name, email, password, isRegiser, error } = this.state;
         
-        if(isLoggin) {
+        if(isRegiser) {
             return (
                 <Redirect to='/' />
             )
         }
         return(
-            <form className='form-login' onSubmit={this.handleSumbit}>
+            <form className='form-register form-login' onSubmit={this.handleSumbit}>
+                <div className="form-group">
+                    <label htmlFor="exampleInputName">Name</label>
+                    
+                    <input type="text" name='name' className="form-control" id="exampleInputName" aria-describedby="emailHelp" onChange={this.handleChange} value={name} placeholder="Enter your name"/>                    
+                </div>
+
                 <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Email address</label>
                     
