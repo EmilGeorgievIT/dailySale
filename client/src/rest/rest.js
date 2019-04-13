@@ -1,9 +1,16 @@
 function request(method) {
+    const getAuthHeader = () => {
+        return sessionStorage.getItem('token') ? 
+        { 'Authorization' : `Bearer sessionStorage.getItem('token')`} :
+        '';
+    }
     return async (url, data = {}, options = {}) => {
+        const authHeader = getAuthHeader();
         const response =  await fetch(url , {
             method,
             headers: {
-                'Content-Type' : 'application/json'
+                'Content-Type' : 'application/json',
+                ...authHeader
             },
             body: Object.keys(data).length ?
             JSON.stringify(data) : 
