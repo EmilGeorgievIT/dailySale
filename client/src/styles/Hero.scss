@@ -61,3 +61,18 @@
         }
     }
 }
+@media #{$mobile} {
+    .section-hero {
+        & {
+            padding: 2rem 0;
+        }
+    }
+    .search-deal {
+        & {
+            display: block;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        } 
+    }   
+}
