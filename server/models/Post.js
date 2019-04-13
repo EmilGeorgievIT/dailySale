@@ -6,7 +6,19 @@ const postSchema = new Schema({
     type: String,
     required: true
   },
-  content: {
+  location: {
+    type: String,
+    required: true
+  },
+  date: {
+    type: Number,
+    default: Date.now()
+  },
+  image: {
+    type: String,
+    required: true
+  },
+  description: {
     type: String,
     required: true
   },

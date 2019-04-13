@@ -19,7 +19,7 @@ class Navigation extends Component {
                     <div className="collapse navbar-collapse navigation-collapse" id="navbarNav">
                         <ul className="navbar-nav ">
                             <li className="nav-item">
-                                <Link className="nav-link" to="/sign-in">
+                                <Link className="nav-link" to="/account">
                                     <div className='circle'>
                                         <i className="material-icons">person</i>
                                     </div>

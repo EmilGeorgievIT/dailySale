@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const PostDetails = ({ title, content, _id}) => (
-    <div>
-        <h1>
+    <div className='post'>
+        <h3>
             { title }
-        </h1>
+        </h3>
         
         <p>
             { content }    

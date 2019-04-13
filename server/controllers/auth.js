@@ -47,18 +47,18 @@ module.exports = {
     User.findOne({ email: email })
       .then((user) => {
         if (!user) {
-          const error = new Error('A user with this email could not be found');
-          error.statusCode = 404;
-          res.json({
-            "message" : "User not found!"
-          })
-          throw error;
+            const error = new Error('A user with this email could not be found');
+            error.statusCode = 404;
+            res.json({
+                "message" : "User not found!"
+              })
+              throw error;
         }
 
         if(!user.authenticate(password)) {
           const error = new Error('A user with this email could not be found');
           error.statusCode = 404;
-          res.json({
+          res.status(404).json({
             "message" : "User not found!"
           })
           throw error;
@@ -82,7 +82,7 @@ module.exports = {
         if (!error.statusCode) {
           error.statusCode = 500;
         }
-        next(error);
+        next(error)
       })
   }
 }

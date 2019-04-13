@@ -7,7 +7,10 @@ class Main extends Component {
         return (
             <Fragment>
                 <Hero />
-                <Post />
+                
+                <main className='main'>
+                    <Post />
+                </main>
             </Fragment>
         )
     }

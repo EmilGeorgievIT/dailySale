@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Footer from './components/shared/Footer';
 import Navigation from './components/shared/Navigation';
 import Main from './components/Main';
-import SignIn from './components/auth/SignIn';
+import Account from './components/auth/Account';
 import SignUp from './components/auth/SignUp';
 import NotFound from './components/NotFound';
 import './styles/variables.scss'
@@ -21,7 +21,7 @@ class App extends Component {
             <Switch>
               <Route exact path='/' component = { Main }/>
               <Route exact path='/sign-up' component = { SignUp }/>
-              <Route exact path='/sign-in' component = { SignIn }/>
+              <Route exact path='/account' component = { Account }/>
               <Route component = { NotFound } />
             </Switch>
           <Footer />
