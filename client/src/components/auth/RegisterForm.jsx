@@ -41,7 +41,7 @@ export default class RegisterForm extends Component {
             const credentials = await RegisterForm.service.register(userData)
             if(credentials.message !== 'User created!') {
                 this.setState({
-                    error: credentials.message
+                    error: credentials.errors[0].msg
                 })
                 return;
             }
@@ -63,38 +63,40 @@ export default class RegisterForm extends Component {
         
         if(isRegiser) {
             return (
-                <Redirect to='/' />
+                <Redirect to='/login' />
             )
         }
         return(
-            <form className='form-register form-login' onSubmit={this.handleSumbit}>
-                <div className="form-group">
-                    <label htmlFor="exampleInputName">Name</label>
-                    
-                    <input type="text" name='name' className="form-control" id="exampleInputName" aria-describedby="emailHelp" onChange={this.handleChange} value={name} placeholder="Enter your name"/>                    
-                </div>
+            <div className="container">
+                <form className='form-auth form-login' onSubmit={this.handleSumbit}>
+                    <div className="form-group">
+                        <label htmlFor="exampleInputName">Name</label>
+                        
+                        <input type="text" name='name' className="form-control" id="exampleInputName" aria-describedby="emailHelp" onChange={this.handleChange} value={name} placeholder="Enter your name"/>                    
+                    </div>
 
-                <div className="form-group">
-                    <label htmlFor="exampleInputEmail1">Email address</label>
-                    
-                    <input type="email" name='email' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" onChange={this.handleChange} value={email} placeholder="Enter email"/>
-                    
-                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-                    
-                </div>
+                    <div className="form-group">
+                        <label htmlFor="exampleInputEmail1">Email address</label>
+                        
+                        <input type="email" name='email' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" onChange={this.handleChange} value={email} placeholder="Enter email"/>
+                        
+                        <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                        
+                    </div>
 
-                <div className="form-group">
-                    <label htmlFor="exampleInputPassword1">Password</label>
+                    <div className="form-group">
+                        <label htmlFor="exampleInputPassword1">Password</label>
+                        
+                        <input type="password" name='password' value={password} onChange={this.handleChange} className="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                    </div>
                     
-                    <input type="password" name='password' value={password} onChange={this.handleChange} className="form-control" id="exampleInputPassword1" placeholder="Password"/>
-                </div>
-                
-                <p className={error ? 'alert alert-danger' : ''}>
-                    { error ? error : '' }
-                </p>
-                
-                <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
+                    <p className={error ? 'alert alert-danger' : ''}>
+                        { error ? error : '' }
+                    </p>
+                    
+                    <button type="submit" className="btn btn-primary">Submit</button>
+                </form>
+            </div>
         );
     }
 }

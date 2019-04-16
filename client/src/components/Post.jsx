@@ -43,7 +43,6 @@ class Post extends Component {
         try {
             const posts = await Post.service.getPosts();
             this.setState({ posts });
-            console.log(posts);
         } catch (error) {
             console.log(error);
         }

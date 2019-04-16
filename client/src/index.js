@@ -1,7 +1,8 @@
 import 'bootstrap/scss/bootstrap.scss';
 import 'bootstrap/dist/js/bootstrap.js';
+// eslint-disable-next-line
 import $ from 'jquery';
- // eslint-disable-next-line
+// eslint-disable-next-line
 import Popper from 'popper.js';
 
 import React from 'react';

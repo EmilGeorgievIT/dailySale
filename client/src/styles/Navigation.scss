@@ -16,6 +16,17 @@
 		margin-left: auto;
 		align-items: center;
 	}
+	.dropdown-btn {
+		background-color: transparent;
+		border: 0;
+	}
+	.dropdown-btn:focus {
+		outline: 0;
+	}
+	.dropdown-item {
+		display: block;
+		text-decoration: none;
+	}
 	.circle {
 		display: flex;
 		justify-content: center;

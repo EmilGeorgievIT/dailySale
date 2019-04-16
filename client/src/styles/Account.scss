@@ -21,8 +21,10 @@
 	Form Login
 \* ------------------------------------------------------------ */
 
-.form-login {
+.form-auth {
     & {
+        max-width: 500px;
+        margin: 0 auto;
         padding: 3rem 0;
     }
 }

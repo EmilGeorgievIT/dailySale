@@ -2,9 +2,22 @@ import React , { Component } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../images/logo.png';
 import '../../styles/Navigation.scss';
+import { UserConsumer } from '../contexts/user-context';
 
 class Navigation extends Component {
-    render() { 
+    logOut = () => {
+        
+        const { updateUser } = this.props;
+        
+        updateUser({
+            isLogged: false
+        })
+        sessionStorage.clear();
+    }
+
+    render() {
+        const { isLogged } = this.props; 
+        
         return(
             <nav className="navigation navbar navbar-expand-lg">
                 <div className="container">
@@ -17,17 +30,33 @@ class Navigation extends Component {
                     </button>
 
                     <div className="collapse navbar-collapse navigation-collapse" id="navbarNav">
-                        <ul className="navbar-nav ">
+                        <ul className="navbar-nav">
                             <li className="nav-item">
-                                <Link className="nav-link" to="/account">
-                                    <div className='circle'>
-                                        <i className="material-icons">person</i>
+                                <div className="dropdown">
+                                    <button className="nav-link dropdown-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <div className='circle'>
+                                            <i className="material-icons">person</i>
+                                        </div>
+                                        
+                                        <span>
+                                            My profile
+                                        </span>
+                                    </button>
+                                
+                                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <Link className={isLogged ? 'dropdown-item sr-only' : 'dropdown-item'} to="login">
+                                            Login
+                                        </Link>
+                                        
+                                        <Link className={isLogged ? 'dropdown-item sr-only' : 'dropdown-item'} to='register'>
+                                            Register
+                                        </Link>
+
+                                        <Link className={!isLogged ? 'dropdown-item sr-only' : 'dropdown-item'} to='/' onClick={this.logOut}>
+                                            Logout
+                                        </Link>
                                     </div>
-                                    
-                                    <span>
-                                        My profile
-                                    </span>
-                                </Link>
+                                </div>
                             </li>
                         
                             <li className="nav-item">
@@ -50,4 +79,19 @@ class Navigation extends Component {
     }
 }
 
-export default Navigation;
+const NavigationWithConsumer = (props) => {
+  return (
+      <UserConsumer>
+          {
+              ({isLogged, updateUser}) => (
+                <Navigation 
+                  isLogged={isLogged}
+                  updateUser={updateUser}
+                />
+              )
+          }
+      </UserConsumer>
+  )
+};
+
+export default NavigationWithConsumer;
