@@ -6,7 +6,46 @@
     & {
         padding: 2rem 0;
     }
+    .slick-slider {
+        width: 100%;
+    }
     .section__head {
         padding-bottom: 2rem;
+    }
+}
+
+/* ------------------------------------------------------------ *\
+	Posts
+\* ------------------------------------------------------------ */
+
+.post {
+    & {
+        flex: 0 1 25%;
+        flex-wrap: wrap;
+        background-color: #fff;
+        box-shadow: 0 0 4px 0 rgba(0,0,0,.15);
+        margin: 0 10px;
+        min-height: 220px;
+        padding: 10px;
+        text-align: center;
+    }
+    .post__title {
+        margin-bottom: 0;
+    }
+    .post__image {
+        & {
+            position: relative;
+            max-width: 100px;
+            margin: 0 auto;
+            min-height: 100px;
+        }
+        img {
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
     }
 }

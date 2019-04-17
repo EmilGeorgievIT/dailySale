@@ -3,6 +3,8 @@ import Loading from './shared/Loading';
 import PostService from '../services/posts-service';
 import PostDetails from './PostDetails';
 import '../styles/Posts.scss';
+import Slider from "react-slick";
+
 
 class Post extends Component {
     state = {
@@ -17,6 +19,13 @@ class Post extends Component {
     if (isLoading) { 
         return <Loading />
     }
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+      };
     
     return (
         <section className='section-posts'>
@@ -28,11 +37,13 @@ class Post extends Component {
                 </div>
                 
                 <div className="section__bod d-flex">
-                    {
-                        posts.map(post => (
-                        <PostDetails key={post._id} {...post} />
-                        ))
-                    }
+                    <Slider {...settings}>
+                        {   
+                            posts.map(post => (
+                            <PostDetails key={post._id} {...post} />
+                            ))
+                        }
+                    </Slider>
                 </div>
             </div>
         </section>
