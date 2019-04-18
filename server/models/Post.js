@@ -22,6 +22,10 @@ const postSchema = new Schema({
     type: String,
     required: true
   },
+  price: {
+    type: String,
+    required: true
+  },
   creator: {
     type: Schema.Types.ObjectId,
     ref: 'User',

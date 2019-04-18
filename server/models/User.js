@@ -15,6 +15,18 @@ const userSchema = new Schema({
     type: Schema.Types.String,
     required: true
   },
+  phoneNumber: {
+    type: Schema.Types.String,
+    required: false
+  },
+  image: {
+    type: Schema.Types.String,
+    required: false
+  },
+  location: {
+    type: Schema.Types.String,
+    required: false
+  },
   salt: {
     type: Schema.Types.String,
     required: true
