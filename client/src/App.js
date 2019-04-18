@@ -1,15 +1,17 @@
+import './styles/variables.scss'
+import './App.scss';
+
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { UserProvider, defaultUserState } from './components/contexts/user-context';
 
 import Footer from './components/shared/Footer';
 import Navigation from './components/shared/Navigation';
 import Main from './components/Main';
 import NotFound from './components/NotFound';
-import './styles/variables.scss'
-import './App.scss';
 import LoginForm from './components/auth/LoginForm';
 import RegisterForm from './components/auth/RegisterForm';
-import { UserProvider, defaultUserState } from './components/contexts/user-context';
+import Profile from './components/Profile';
 
 class App extends Component {
   constructor(props){
@@ -39,6 +41,7 @@ class App extends Component {
                 <Route exact path='/' component = { Main }/>
                 <Route exact path='/register' component = { RegisterForm }/>
                 <Route exact path='/login' component = { LoginForm }/>
+                <Route exact path='/profile' component = { Profile }/>
                 <Route component = { NotFound } />
               </Switch>
             <Footer />

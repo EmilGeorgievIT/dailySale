@@ -43,6 +43,7 @@ class LoginForm extends Component {
                 return;
             }
             console.log(credentials);
+            sessionStorage.setItem('ds_chk_temp', credentials.userId);
             sessionStorage.setItem('token', credentials.token);
         
             updateUser({

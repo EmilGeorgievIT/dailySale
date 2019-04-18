@@ -55,6 +55,10 @@ class Navigation extends Component {
                                         <Link className={!isLogged ? 'dropdown-item sr-only' : 'dropdown-item'} to='/' onClick={this.logOut}>
                                             Logout
                                         </Link>
+
+                                        <Link className={!isLogged ? 'dropdown-item sr-only' : 'dropdown-item'} to='/profile' onClick={this.logOut}>
+                                            My Profile
+                                        </Link>
                                     </div>
                                 </div>
                             </li>
