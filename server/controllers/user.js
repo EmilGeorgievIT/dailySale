@@ -5,6 +5,8 @@ module.exports = {
         const userId = req.params.userId;
         User.findById(userId)
         .then((user) => {
+            const { posts } = user;
+
             res
             .status(200)
             .json(user)

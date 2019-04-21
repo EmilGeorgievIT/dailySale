@@ -56,7 +56,7 @@ class Navigation extends Component {
                                             Logout
                                         </Link>
 
-                                        <Link className={!isLogged ? 'dropdown-item sr-only' : 'dropdown-item'} to='/profile' onClick={this.logOut}>
+                                        <Link className={!isLogged ? 'dropdown-item sr-only' : 'dropdown-item'} to='/profile'>
                                             My Profile
                                         </Link>
                                     </div>

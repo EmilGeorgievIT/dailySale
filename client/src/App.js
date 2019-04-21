@@ -12,6 +12,7 @@ import NotFound from './components/NotFound';
 import LoginForm from './components/auth/LoginForm';
 import RegisterForm from './components/auth/RegisterForm';
 import Profile from './components/Profile';
+import PostDetails from './components/PostDetails';
 
 class App extends Component {
   constructor(props){
@@ -40,6 +41,7 @@ class App extends Component {
               <Switch>
                 <Route exact path='/' component = { Main }/>
                 <Route exact path='/register' component = { RegisterForm }/>
+                <Route exact path='/post/:id' component = { PostDetails }/>
                 <Route exact path='/login' component = { LoginForm }/>
                 <Route exact path='/profile' component = { Profile }/>
                 <Route component = { NotFound } />

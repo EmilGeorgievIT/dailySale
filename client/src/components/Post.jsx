@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import Loading from './shared/Loading';
 import PostService from '../services/posts-service';
-import PostDetails from './PostDetails';
+import Posts from './Posts';
 import '../styles/Posts.scss';
 import Slider from "react-slick";
 
 
 class Post extends Component {
+    static service = new PostService();
     state = {
         posts: [],
         isLoading: false
     }
-    static service = new PostService();
-
+    
     render() {
      const { posts, isLoading } = this.state;
     
@@ -40,7 +40,7 @@ class Post extends Component {
                     <Slider {...settings}>
                         {   
                             posts.map(post => (
-                            <PostDetails key={post._id} {...post} />
+                            <Posts key={post._id} {...post} />
                             ))
                         }
                     </Slider>

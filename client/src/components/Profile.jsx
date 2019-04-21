@@ -1,23 +1,62 @@
-import React, { Component } from 'react';
 import ProfileService from '../services/profile-service';
+import PostService from '../services/posts-service';
+import React, { Component } from 'react';
 import ProfileDetails from '../components/ProfileDetails';
+import { Redirect } from 'react-router-dom';
+import Posts from '../components/Posts';
 import '../styles/Profile.scss';
 
 export default class Profile extends Component {
     static service = new ProfileService();
+    static getPost = new PostService();
     
     constructor(props) {
         super(props);
         
         this.state = {
-            user: ''
+            user: '',
+            posts: ''
         }
     }
-
     
+   async componentDidMount() {
+        try {
+            const userId = sessionStorage.getItem('ds_chk_temp');
+            const user = await Profile.service.getUserDetails(userId)
+            .then((user) => {
+                this.setState({user});
+                let postsRes = [];
+                
+                const { posts } = user;
+                
+                 posts.map(async (item)  => {
+                    const post = await Profile.getPost.getPostById(item)
+                        .then((res) => {
+                            const postData = res;
+                            postsRes.push(postData);
+                        }).catch((error) => {
+                            console.log(error)
+                        })                    
+                    return postsRes;
+                })
+                    
+                setTimeout(()=> {
+                    this.setState({ posts: postsRes })
+                }, 1000)
+            })                
+        } catch(error) {
+                console.log(error);
+        };
+    }
+
     render() {
-        const { email, image, location, phoneNumber, posts, name } = this.state.user;
-        
+        const { email, image, location, phoneNumber, name } = this.state.user;
+
+        if(!sessionStorage.getItem('token')) {
+            return (
+                <Redirect to='/'/>
+            )
+        }
         return (
             <div className="profile">
                 <div className='container'>
@@ -26,7 +65,7 @@ export default class Profile extends Component {
                             <div className='profile__image'>
                                 <img src={`data:image/jpeg;base64,${image}`} alt=""/>
                             </div>
-
+                            
                             <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                 <a className="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">
                                     My Profile
@@ -57,8 +96,14 @@ export default class Profile extends Component {
                                     />
                                 </div>
 
-                                <div className="tab-pane fade" id="v-pills-ads" role="tabpanel" aria-labelledby="v-pills-ads-tab">
-                                    ...
+                                <div className="tab-pane tab-pane-ads fade d-flex flex-wrap" id="v-pills-ads" role="tabpanel" aria-labelledby="v-pills-ads-tab">
+                                    {   
+                                        this.state.posts ? 
+                                            this.state.posts.map((post) => (
+                                                <Posts className='ads' key={post._id} {...post} />
+                                                )
+                                            ) : 'No ads'
+                                    }
                                 </div>
 
                                 <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
@@ -74,19 +119,5 @@ export default class Profile extends Component {
                 </div>
             </div>
         );
-    }
-    
-    async componentDidMount() {
-        try {
-            const userId = sessionStorage.getItem('ds_chk_temp');
-            const user = await Profile.service.getUserDetails(userId);
-            
-            this.setState({user});
-            
-            console.log(this.state);
-
-        } catch(error) {
-            console.log(error);
-        };
     }
 }

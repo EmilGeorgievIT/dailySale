@@ -15,7 +15,7 @@ export default class RegisterForm extends Component {
             email: '',
             password: '',
             error: '',
-            isRegiser: ''
+            isRegister: ''
         };
     }
     
@@ -48,7 +48,7 @@ export default class RegisterForm extends Component {
             console.log(credentials);
             
             this.setState({
-                isRegiser: true
+                isRegister: true
             });
         } catch(error) {
             console.log(error);
@@ -59,9 +59,9 @@ export default class RegisterForm extends Component {
     }
 
     render() {
-        const { name, email, password, isRegiser, error } = this.state;
+        const { name, email, password, isRegister, error } = this.state;
         
-        if(isRegiser) {
+        if(isRegister) {
             return (
                 <Redirect to='/login' />
             )
