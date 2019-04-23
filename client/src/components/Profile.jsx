@@ -5,6 +5,7 @@ import ProfileDetails from '../components/ProfileDetails';
 import { Redirect } from 'react-router-dom';
 import Posts from '../components/Posts';
 import '../styles/Profile.scss';
+import Messages from './Messages';
 
 export default class Profile extends Component {
     static service = new ProfileService();
@@ -107,7 +108,7 @@ export default class Profile extends Component {
                                 </div>
 
                                 <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                                    ...
+                                    <Messages />
                                 </div>
                                 
                                 <div className="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
