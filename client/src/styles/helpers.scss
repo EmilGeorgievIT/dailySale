@@ -1,7 +1,21 @@
+@import './variables.scss';
+
 /* ------------------------------------------------------------ *\
 	Helpers
 \* ------------------------------------------------------------ */
 
+
+/*  background colors  */
+
+.bg-blue {
+	background: $blue;
+}
+
+/*  margin-bottom  */
+
+.mb-2 {
+	margin-bottom: 2rem;
+}
 /*  Hidden  */
 
 [hidden],
@@ -21,7 +35,7 @@
 
 /*Text Blue*/
 
-.text-blue { color: $base-color; }
+.text-blue { color: $blue; }
 
 /*Text aligned-right*/
 

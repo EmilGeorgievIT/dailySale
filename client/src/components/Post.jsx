@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Loading from './shared/Loading';
 import PostService from '../services/posts-service';
 import Posts from './Posts';
+import '../styles/Sections.scss';
 import '../styles/Posts.scss';
 import Slider from "react-slick";
 

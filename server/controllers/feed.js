@@ -17,7 +17,7 @@ function validatePost(req, res) {
 }
 
 module.exports = {
-  getPosts: (req, res) => {
+  getPosts: (req, res, next) => {
     // Retrieve all posts in JSON format
     Post.find()
       .then((posts) => {
@@ -109,12 +109,12 @@ module.exports = {
         next(error);
       });
   },
-  getPostById: (req, res) => {
+  getPostById: (req, res, next) => {
     const postId = req.params.postId;
-
+    
     Post.findById(postId)
-      .then((post) => {
-        res
+    .then((post) => {
+      res
           .status(200)
           .json(post)
       })

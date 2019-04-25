@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
+import Comment from '../components/Comment';
+import Price from '../components/shared/Price';
+import User from '../components/shared/User';
+
 import PostService from '../services/posts-service';
+import '../styles/Sections.scss';
+import '../styles/helpers.scss';
+import '../styles/Buttons.scss';
 
 export default class PostDetails extends Component {
     static service = new PostService();
@@ -8,12 +17,14 @@ export default class PostDetails extends Component {
         super(props)
         
         this.state = {
-            name: '',
+            title: '',
             image: '',
             location: '',
             date: '',
             price: '',
-            description: ''
+            phone: '',
+            description: '',
+            creator: ''
         }
     }
     async componentDidMount() {
@@ -28,51 +39,96 @@ export default class PostDetails extends Component {
     }
     
     render() {
-        const { name, image, price, description, location } = this.state;
+        const { title, image, price, description, date, location, phone, creator } = this.state;
         
         const postImage = {
             width: "100%",
             backgroundPosition: 'center center',
             backgroundRepaet: 'no-repeat',
+            position: 'absolute',
+            left: 0,
+            top: 0,
             backgroundSize: 'cover',
             height: "100%",
-            backgroundImage: "url( data:image/jpeg;base64," + { image } + ")"
+            backgroundImage: "url(" + `data:image/jpeg;base64,${image}` + ")"
         };
 
         return (
-            <div className="container">
-                <div className='post'>
-                    <div className="post__head">
-                        <div className={postImage} >
-                        </div>
-                    </div>
+            <section className="section-post-details">
+                <div className="container">
+                    <div className="section__inner">
+                        <div className="section__content">
+                            <div className='post-details'>
+                                <div className="post__head">
+                                    <div className="post__image">
+                                        <div style={postImage} >
+                                        </div>
+                                    </div>
+                                    
+                                    <h3 className='post__title'>
+                                        { title }
+                                    </h3>
 
-                    <div className="post__body">
-                        <div className="post__meta">
-                            <h5 className='post__title'>
-                                { name }
-                            </h5>
+                                    <div className="post__meta">
+                                        <div className='post__location'>
+                                            <strong>
+                                                Location:
+                                            </strong>
+                                            <span>
+                                                { location }
+                                            </span>
+                                        </div>
+
+                                        <div className="post__date">
+                                            <strong>
+                                                Added:
+                                            </strong>
+
+                                            {
+                                                <span> 
+                                                    { (new Date(date)).toLocaleDateString('en-US', 'short') }
+                                                </span> 
+                                            }                                        
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="post__body">
+                                    <div className="post__content">
+                                        <p>
+                                            { description }    
+                                        </p>
+                                    </div>
+                                </div>                                
+                            </div>
+
+                            <Comment phone={ phone }/>
+                        </div>
+                        
+                        <div className="section__aside">
+                            <Price price={price}/>
                             
-                            <p>
-                                { price ? `${price}$` : '' }
-                            </p>
-
-                            {/* <span>
-                                { (new Date(date)).toLocaleDateString('en-US', 'short') }
-                            </span> */}
-
+                            <Link to='/message' className='btn-wide bg-blue mb-2'>
+                                <i className="material-icons">send</i>
+                                
+                                <span className='btn-text'>
+                                    Send message
+                                </span>    
+                            </Link>
+                                        
+                            <Link to='/message' className='btn-wide bg-blue'>
+                                <i className="material-icons">phone</i>
+                                
+                                <span className='btn-text'>
+                                    { phone? phone: '089xxxxxxx' }
+                                </span>    
+                            </Link>
+                            
+                            <User creator={creator}/>
                         </div>
                     </div>
-                    
-                    <p>
-                        { location }
-                    </p>
-                    
-                    <p>
-                        { description }    
-                    </p>
                 </div>
-            </div>
+            </section>
         );
     }
 }
