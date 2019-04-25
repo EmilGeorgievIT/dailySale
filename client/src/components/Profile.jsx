@@ -43,7 +43,7 @@ export default class Profile extends Component {
                     
                 setTimeout(()=> {
                     this.setState({ posts: postsRes })
-                }, 1000)
+                }, 500)
             })                
         } catch(error) {
                 console.log(error);

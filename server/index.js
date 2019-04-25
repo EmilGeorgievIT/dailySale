@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const feedRoutes = require('./routes/feed');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
+const messageRoutes = require('./routes/message');
 
 require('./database/database')();
 const port = 3200;
@@ -17,6 +18,7 @@ app.use((req, res, next) => {
 });
 app.use('/feed', feedRoutes);
 app.use('/auth', authRoutes);
+app.use('/mail', messageRoutes);
 app.use('/profile', userRoutes);
 
 // General error handling
