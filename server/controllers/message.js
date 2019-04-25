@@ -75,22 +75,61 @@ module.exports = {
         })
     },
     editMessage: (req, res) => {
-
+        if (validatePost(req, res)) {
+            const messageId = req.params.messageId;
+            const message = req.body;
+      
+            Message.findById(messageId)
+              .then((m) => {
+                if (!m) {
+                  const error = new Error('Message not found');
+                  error.statusCode = 404;
+                  throw error;
+                }
+      
+                if (m.creator.toString() !== req.userId) {
+                  const error = new Error('Unauthorized');
+                  error.statusCode = 403;
+                  throw error;
+                }
+      
+                m.title = message.title;
+                m.description = message.description;
+      
+                return m.save();
+              })
+              .then((m) => {
+                if (m) {
+                  res.status(200).json({
+                    message: 'Post updated!',
+                    post: m
+                  })
+                }
+              })
+              .catch((error) => {
+                if (!error.statusCode) {
+                  error.statusCode = 500;
+                }
+        
+                next(error);
+              });
+          }
     },
     deleteMessage: (req, res, next) => {
         const messageId = req.params.messageId;
-        
+        let creator;
         Message.findById(messageId)
-        .then(() => {
+        .then((message) => {
             // if(!message) {
             //     const error = new Error("Message not found !");
             //     error.statusCode = 404;
             //     throw error;
             // }
+            creator = message.creator.toString();
             return Message.findByIdAndDelete(messageId);
         })
         .then(() => {
-            return User.findById(req.userId)
+            return User.findById(creator)
         })
         .then((user) => {
             user.messages.pull(messageId);

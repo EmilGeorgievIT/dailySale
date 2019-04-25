@@ -29,13 +29,21 @@ export default class PostDetails extends Component {
     
     render() {
         const { name, image, price, description, location } = this.state;
+        
+        const postImage = {
+            width: "100%",
+            backgroundPosition: 'center center',
+            backgroundRepaet: 'no-repeat',
+            backgroundSize: 'cover',
+            height: "100%",
+            backgroundImage: "url( data:image/jpeg;base64," + { image } + ")"
+        };
 
         return (
             <div className="container">
                 <div className='post'>
                     <div className="post__head">
-                        <div className="post__image">
-                            <img src={`data:image/jpeg;base64,${image}`} alt=""/>
+                        <div className={postImage} >
                         </div>
                     </div>
 

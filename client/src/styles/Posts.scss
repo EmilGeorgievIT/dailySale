@@ -25,27 +25,18 @@
         background-color: #fff;
         box-shadow: 0 0 4px 0 rgba(0,0,0,.15);
         margin: 0 10px;
-        min-height: 220px;
-        padding: 10px;
+        min-height: 150px;
+        max-width: 190px;
+        padding: 0;
         text-align: center;
     }
-    .post__title {
-        margin-bottom: 0;
+    .post__head {
+        position: relative;
+        min-height: 100px;
+        margin-bottom: 10px;
     }
-    .post__image {
-        & {
-            position: relative;
-            max-width: 100px;
-            margin: 0 auto;
-            min-height: 100px;
-        }
-        img {
-            display: block;
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-        }
+    .post__title {
+        color: blue;
+        margin-bottom: 0;
     }
 }
