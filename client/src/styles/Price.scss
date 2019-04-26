@@ -9,9 +9,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        max-width: 350px;
         margin: 0 auto 20px;
-        height: 80px;
+        height: 60px;
         background: $white;
         position: relative;
         -moz-border-radius: 10px;
@@ -22,7 +21,7 @@
         content: "";
         position: absolute;
         right: 100%;
-        top: 26px;
+        top: 18px;
         width: 0;
         height: 0;
         border-top: 13px solid transparent;

@@ -33,9 +33,17 @@
     }
     .section__aside {
         position: absolute;
+        bottom: 0;
         top: 0;
         left: 65%;
-        height: 500px;
+        padding: 20px 0;
+        height: 600px;
         right: 0;
+    }
+    .section__aside.fixed{
+        position: fixed;
+        overflow: visible;
+        max-width: 410px;
+        left: 63%;
     }
 }

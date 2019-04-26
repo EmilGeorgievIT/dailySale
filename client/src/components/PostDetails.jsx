@@ -24,10 +24,13 @@ export default class PostDetails extends Component {
             price: '',
             phone: '',
             description: '',
-            creator: ''
+            creator: '',
+            isTop: false
         }
     }
     async componentDidMount() {
+        window.addEventListener('scroll', this.handleScroll);
+
         try {
             let postId = this.props.match.params.id;
             const post = await PostDetails.service.getPostById(postId);
@@ -37,7 +40,22 @@ export default class PostDetails extends Component {
             console.log(error);
         }
     }
-    
+    handleScroll = (event) => {
+        const el = document.getElementsByClassName('footer');
+        const elOffsetTop = el[0].offsetTop;
+
+        console.log(window.scrollY);
+        const isTop = window.scrollY >= 165 && window.scrollY <= elOffsetTop - window.innerHeight;
+        
+        if (isTop !== this.state.isTop) {
+            this.setState({ isTop })
+        }
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
+    }
+
     render() {
         const { title, image, price, description, date, location, phone, creator } = this.state;
         
@@ -105,7 +123,7 @@ export default class PostDetails extends Component {
                             <Comment phone={ phone }/>
                         </div>
                         
-                        <div className="section__aside">
+                        <div className={this.state.isTop ? 'section__aside fixed' : 'section__aside'}>
                             <Price price={price}/>
                             
                             <Link to='/message' className='btn-wide bg-blue mb-2'>
