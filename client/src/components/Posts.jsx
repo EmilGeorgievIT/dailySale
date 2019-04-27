@@ -21,7 +21,7 @@ class Posts extends Component {
 
         return(
             <div className='post'>
-                <Link to={`post/${_id}`}>
+                <Link to={`/post/${_id}`}>
                     <div className="post__head">
                         <div style={postImage}>
                         </div>

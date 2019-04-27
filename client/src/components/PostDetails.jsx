@@ -44,7 +44,6 @@ export default class PostDetails extends Component {
         const el = document.getElementsByClassName('footer');
         const elOffsetTop = el[0].offsetTop;
 
-        console.log(window.scrollY);
         const isTop = window.scrollY >= 165 && window.scrollY <= elOffsetTop - window.innerHeight;
         
         if (isTop !== this.state.isTop) {

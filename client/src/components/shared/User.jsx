@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import ProfileService from '../../services/profile-service';
 import '../../styles/Boxes.scss';
 
@@ -81,15 +82,11 @@ export default class User extends Component {
                     <div className="box__content">
                         { name }
                     </div>
-                    
-                    <p>
-                        { this.state.transform }
-                    </p>
 
                     <div className="box__actions">
-                        <button className='btn btn-outline-primary btn-block'>
+                        <Link to={`/user/ads/${this.state.creator}`} className='btn btn-outline-primary btn-block'>
                             Ads on user
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </div>
