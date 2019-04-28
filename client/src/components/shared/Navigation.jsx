@@ -44,11 +44,11 @@ class Navigation extends Component {
                                     </button>
                                 
                                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <Link className={isLogged ? 'dropdown-item sr-only' : 'dropdown-item'} to="login">
+                                        <Link className={isLogged ? 'dropdown-item sr-only' : 'dropdown-item'} to="/login">
                                             Login
                                         </Link>
                                         
-                                        <Link className={isLogged ? 'dropdown-item sr-only' : 'dropdown-item'} to='register'>
+                                        <Link className={isLogged ? 'dropdown-item sr-only' : 'dropdown-item'} to='/register'>
                                             Register
                                         </Link>
 

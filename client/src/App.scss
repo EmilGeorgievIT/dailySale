@@ -119,3 +119,11 @@ nav ol { list-style: none outside none; }
 		min-height: calc(100vh - 109px);
 	}
 }
+
+@media #{$mobile} {
+	.main { 
+		& {
+			min-height: auto;
+		}
+	}	
+}

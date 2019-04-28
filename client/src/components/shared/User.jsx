@@ -37,7 +37,6 @@ export default class User extends Component {
                 .then((user) => {
                     this.setState({user});
                 })
-                console.log(this.props);
             }, 300);
         } catch(error) {
                 console.log(error);

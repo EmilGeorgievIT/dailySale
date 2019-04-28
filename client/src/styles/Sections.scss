@@ -48,3 +48,28 @@
         left: 63%;
     }
 }
+
+/* ------------------------------------------------------------ *\
+	Section Post Details Mobile
+\* ------------------------------------------------------------ */
+
+@media #{$mobile} {
+    .section-post-details {
+        .section__content {
+            max-width: 100%;
+            .post__head-mobile {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+        .section__aside, .section__aside.fixed {
+            position: static;
+            max-width: 100%;
+            height: auto;
+        }
+        .section__aside .price {
+            display: none;
+        }
+    }
+}

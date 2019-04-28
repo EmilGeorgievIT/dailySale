@@ -82,9 +82,15 @@ export default class PostDetails extends Component {
                                         </div>
                                     </div>
                                     
-                                    <h3 className='post__title'>
-                                        { title }
-                                    </h3>
+                                    <div className="post__head-mobile">
+                                        <h3 className='post__title'>
+                                            { title }
+                                        </h3>
+
+                                        <span className='post__price-mobile visible-sm-inline visible-xs-inline'>
+                                            { price ? `${price}$` : '' }
+                                        </span>
+                                    </div>
 
                                     <div className="post__meta">
                                         <div className='post__location'>
