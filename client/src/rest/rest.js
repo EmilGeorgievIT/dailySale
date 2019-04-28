@@ -1,7 +1,7 @@
 function request(method) {
     const getAuthHeader = () => {
         return sessionStorage.getItem('token') ? 
-        { 'Authorization' : `Bearer sessionStorage.getItem('token')`} :
+        { 'Authorization' : `Bearer ${sessionStorage.getItem('token')}`} :
         '';
     }
     return async (url, data = {}, options = {}) => {

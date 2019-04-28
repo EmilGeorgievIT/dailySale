@@ -64,7 +64,7 @@ export default class Profile extends Component {
                     <div className="row">
                         <div className="col-12 col-sm-4">
                             <div className='profile__image'>
-                                <img src={`data:image/jpeg;base64,${image}`} alt=""/>
+                                <img src={image} alt=""/>
                             </div>
                             
                             <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">

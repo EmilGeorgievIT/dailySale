@@ -65,13 +65,13 @@ class Navigation extends Component {
                         
                             <li className="nav-item">
 
-                                <button type="button" to="/sign-up" className="btn btn-primary d-flex">
+                                <Link type="button" to="/create/ad" className="btn btn-primary d-flex">
                                     <i className="material-icons">add</i>
                                     
                                     <span>
                                         Place Ad
                                     </span>
-                                </button>
+                                </Link>
 
                                 {/* <Link className="nav-link" to="/sign-up">Sign Up</Link> */}
                             </li>

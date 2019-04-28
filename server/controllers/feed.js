@@ -37,10 +37,10 @@ module.exports = {
     // Validate post using express-validator
     // Return 422 with errors array if something went wrong
     if (validatePost(req, res)) {
-      const { title, location, description, image, price } = req.body;
+      const { title, category, email, condition, phoneNumber, location, description, image, price } = req.body;
 
       // Create the post in DB and return 201 status code with a message and the post itself with the creator
-      const post = new Post({ title, location, description, image, price, creator: req.userId });
+      const post = new Post({ title, location, description, category, email, condition, phoneNumber, image, price, creator: req.userId });
       let creator;
 
       post.save()

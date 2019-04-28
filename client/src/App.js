@@ -15,6 +15,7 @@ import Profile from './components/Profile';
 import PostDetails from './components/PostDetails';
 import Messages from './components/Messages';
 import UserAds from './components/shared/UserAds';
+import CreateAd from './components/CreateAd';
 
 class App extends Component {
   constructor(props){
@@ -47,6 +48,7 @@ class App extends Component {
                   <Route exact path='/post/:id' component = { PostDetails }/>
                   <Route exact path='/login' component = { LoginForm }/>
                   <Route exact path='/messages' component = { Messages }/>
+                  <Route exact path='/create/ad' component = { CreateAd }/>
                   <Route exact path='/profile' component = { Profile }/>
                   <Route exact path='/user/ads/:userId' component = { UserAds }/>
                   <Route component = { NotFound } />

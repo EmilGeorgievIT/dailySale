@@ -73,3 +73,18 @@
         }
     }
 }
+
+/* ------------------------------------------------------------ *\
+	Section Create Ad
+\* ------------------------------------------------------------ */
+
+.section-create-ad {
+    & {
+        padding: 2rem 0;
+        max-width: 600px;
+        margin: 0 auto;        
+    }
+    .section__head {
+        margin-bottom: 2rem;
+    }
+}

@@ -6,6 +6,10 @@ const postSchema = new Schema({
     type: String,
     required: true
   },
+  category: {
+    type: String,
+    required: true
+  },
   location: {
     type: String,
     required: true
@@ -19,6 +23,18 @@ const postSchema = new Schema({
     required: true
   },
   description: {
+    type: String,
+    required: true
+  },
+  phoneNumber: {
+    type: String,
+    required: true
+  },
+  condition: {
+    type: String,
+    required: true
+  },
+  email: {
     type: String,
     required: true
   },

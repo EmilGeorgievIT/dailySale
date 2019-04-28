@@ -16,7 +16,7 @@ class PostsList extends Component {
             top: 0,
             backgroundSize: 'cover',
             height: "100%",
-            backgroundImage: "url(" + `data:image/jpeg;base64,${image}` + ")"
+            backgroundImage: "url(" + image + ")"
         };
 
         return(
