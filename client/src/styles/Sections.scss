@@ -36,12 +36,13 @@
         bottom: 0;
         top: 0;
         left: 65%;
-        padding: 20px 0;
+        padding: 0 20px;
         height: 600px;
         right: 0;
     }
     .section__aside.fixed{
         position: fixed;
+        padding: 20px;
         overflow: visible;
         max-width: 410px;
         left: 63%;

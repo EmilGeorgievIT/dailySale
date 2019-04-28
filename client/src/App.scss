@@ -115,6 +115,7 @@ nav ol { list-style: none outside none; }
 
 .main { 
 	& {
-		background-color: #E9E9E9;
+		background-color: $gray;
+		min-height: calc(100vh - 109px);
 	}
 }

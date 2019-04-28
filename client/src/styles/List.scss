@@ -37,3 +37,35 @@
         }
     }
 }
+
+/* ------------------------------------------------------------ *\
+	Posts List
+\* ------------------------------------------------------------ */
+
+.post-list {
+    & {
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+    }
+    .post__head {
+        position: relative;
+        min-height: 100px;
+        flex: 1;
+    }
+    .post__body {
+        flex: 2;
+        padding: 10px;
+    }
+    .post__price {
+        font-size: 20px;
+        font-weight: 500;
+    }
+    .post__meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    .post__inner {
+        display: flex;
+    }
+}

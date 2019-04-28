@@ -18,7 +18,7 @@ function validateUser(req, res) {
 }
 
 module.exports = {
-  signUp: (req, res) => {
+  signUp: (req, res, next) => {
     if (validateUser(req, res)) {
       const { name, email, password, } = req.body;
       const salt = encryption.generateSalt();
@@ -41,7 +41,7 @@ module.exports = {
       });
     }
   },
-  signIn: (req, res) => {
+  signIn: (req, res, next) => {
     const { email, password } = req.body;
 
     User.findOne({ email: email })

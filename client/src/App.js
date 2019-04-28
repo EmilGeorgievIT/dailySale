@@ -40,16 +40,18 @@ class App extends Component {
         <Fragment>
           <UserProvider value={user} >
             <Navigation />
-              <Switch>
-                <Route exact path='/' component = { Main }/>
-                <Route exact path='/register' component = { RegisterForm }/>
-                <Route exact path='/post/:id' component = { PostDetails }/>
-                <Route exact path='/login' component = { LoginForm }/>
-                <Route exact path='/messages' component = { Messages }/>
-                <Route exact path='/profile' component = { Profile }/>
-                <Route exact path='/user/ads/:userId' component = { UserAds }/>
-                <Route component = { NotFound } />
-              </Switch>
+              <main className='main'>
+                <Switch>
+                  <Route exact path='/' component = { Main }/>
+                  <Route exact path='/register' component = { RegisterForm }/>
+                  <Route exact path='/post/:id' component = { PostDetails }/>
+                  <Route exact path='/login' component = { LoginForm }/>
+                  <Route exact path='/messages' component = { Messages }/>
+                  <Route exact path='/profile' component = { Profile }/>
+                  <Route exact path='/user/ads/:userId' component = { UserAds }/>
+                  <Route component = { NotFound } />
+                </Switch>
+              </main>
             <Footer />
           </UserProvider>
         </Fragment>

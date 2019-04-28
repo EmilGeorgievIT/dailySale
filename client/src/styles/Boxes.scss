@@ -15,7 +15,7 @@
         background-repeat: no-repeat;
         background-size: cover;
         padding: 10px 0;
-        min-height: 150px; 
+        min-height: 120px; 
     }
     .box__location {
         & {
@@ -24,34 +24,34 @@
             justify-content: center;
             align-items: center;
             background-color: $white;
-            padding: 10px;
-            max-width: 200px;
+            padding: 7px;
+            max-width: 180px;
             color: $base-color;
             margin: 0 auto;
         }
         &:before {
             content: '';
             position: absolute;
-            left: calc(50% - 20px);
+            left: calc(50% - 10px);
             top: 100%;
             width: 0;
             height: 0;
-            border-left: 20px solid transparent;
-            border-right: 20px solid transparent;
-            border-top: 20px solid $white;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 15px solid $white;
         }
     }
     .box__image {
         position: relative;
-        width: 150px;
-        height: 150px;
+        width: 120px;
+        height: 120px;
         margin: 0 auto;
-        margin-top: -75px;
+        margin-top: -60px;
         border: 10px solid $white;
         border-radius: 50%;
      }
     .box__body {
-        padding: 20px 15px;
+        padding: 20px 30px;
     }
     .box__content {
         text-align: center;

@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import User from './User';
-import Posts from './../Posts';
+import PostsList from './../PostsList';
 import ProfileService from '../../services/profile-service';
 import PostService from '../../services/posts-service';
 
@@ -80,7 +80,7 @@ export default class UserAds extends Component {
                         {   
                             this.state.posts ? 
                                 this.state.posts.map((post) => (
-                                    <Posts className='ads' key={post._id} {...post} />
+                                    <PostsList className='ads' key={post._id} {...post} />
                                     )
                                 ) : 'No ads'
                         }
