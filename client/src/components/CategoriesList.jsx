@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../styles/List.scss';
+import { Link } from 'react-router-dom';
 
 export default class CategoriesList extends Component {
     constructor() {
@@ -40,15 +41,16 @@ export default class CategoriesList extends Component {
                     {
                         this.state.items.map((item,index) => 
                             <li key={index} className={this.state.activeItem === index ? 'list-group-item active': 'list-group-item'}
-                            onClick={this.addActiveItem.bind(this, index)}
-                            >
-                                <i className="material-icons">
-                                    { item.icon }
-                                </i>
+                            onClick={this.addActiveItem.bind(this, index)}>
+                                <Link to={ `/category/${item.name.replace(' & ', 'and').toLowerCase()}` }>
+                                    <i className="material-icons">
+                                        { item.icon }
+                                    </i>
 
-                                <span className='item-name'>
-                                { item.name }
-                                </span>
+                                    <span className='item-name'>
+                                    { item.name }
+                                    </span>                            
+                                </Link>
                             </li>
                         )   
                     }

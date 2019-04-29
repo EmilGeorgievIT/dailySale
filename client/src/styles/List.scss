@@ -12,10 +12,13 @@
     }
     .list-group-item {
         & {
-            display: flex;
-            align-items: center;
             flex: 0 1 33.33%;
             cursor: pointer;
+        }
+        a {
+            display: flex;
+            align-items: center;
+            
         }
         .item-name {
             margin-left: 5px;

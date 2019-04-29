@@ -22,7 +22,7 @@ export default class PostDetails extends Component {
             location: '',
             date: '',
             price: '',
-            phone: '',
+            phoneNumber: '',
             description: '',
             creator: '',
             isTop: false
@@ -56,7 +56,7 @@ export default class PostDetails extends Component {
     }
 
     render() {
-        const { title, image, price, description, date, location, phone, creator } = this.state;
+        const { title, image, price, description, date, location, phoneNumber, creator } = this.state;
         
         const postImage = {
             width: "100%",
@@ -125,7 +125,7 @@ export default class PostDetails extends Component {
                                 </div>                                
                             </div>
 
-                            <Comment phone={ phone }/>
+                            <Comment phoneNumber={ phoneNumber }/>
                         </div>
                         
                         <div className={this.state.isTop ? 'section__aside fixed' : 'section__aside'}>
@@ -143,7 +143,7 @@ export default class PostDetails extends Component {
                                 <i className="material-icons">phone</i>
                                 
                                 <span className='btn-text'>
-                                    { phone? phone: '089xxxxxxx' }
+                                    { phoneNumber? phoneNumber: '089xxxxxxx' }
                                 </span>    
                             </Link>
                             

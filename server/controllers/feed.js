@@ -33,7 +33,7 @@ module.exports = {
         next(error);
       });
   },
-  createPost: (req, res) => {
+  createPost: (req, res, next) => {
     // Validate post using express-validator
     // Return 422 with errors array if something went wrong
     if (validatePost(req, res)) {
@@ -109,6 +109,20 @@ module.exports = {
         next(error);
       });
   },
+  findPostByCategory: (req, res, next) => {
+    const postName = req.params.categoryName;
+    Post.find({category: postName})
+    .then((post) => {
+      res
+      .status(200)
+      .json(post)
+    })
+    .catch(error => {
+      console.log(erorr);
+      
+      next(error);
+    })
+  },
   getPostById: (req, res, next) => {
     const postId = req.params.postId;
     
@@ -126,7 +140,7 @@ module.exports = {
         next(error);  
       });
   },
-  updatePost: (req, res) => {
+  updatePost: (req, res, next) => {
     // Validate post using express-validator
     // Return 422 with errors array if something went wrong
     if (validatePost(req, res)) {

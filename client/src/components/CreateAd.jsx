@@ -103,6 +103,11 @@ export default class CreateAd extends Component {
             [target.name] : target.value
         });
     }
+    changeCategory =({target}) => {
+        this.setState({
+            [target.name] : target.value.replace(' & ', 'and').toLowerCase()
+        });
+    }
   render() {
     const { items, submited } = this.state; 
 
@@ -138,7 +143,7 @@ export default class CreateAd extends Component {
                         <div className="form-group col">
                             <label htmlFor="category-select">Category</label>
                             
-                            <select id='category-select' name='category' onChange={this.handleChange} className="custom-select">
+                            <select id='category-select' name='category' onChange={this.changeCategory} className="custom-select">
                                 {
                                     items.map((item, index) =>
                                         <option key={index}>

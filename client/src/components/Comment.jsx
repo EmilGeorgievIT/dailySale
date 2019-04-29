@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/Comment.scss';
 
-const Comment = ({phone}) => (
+const Comment = ({phoneNumber}) => (
     <div className='comment'>
         <div className="comment__head">
             <h4 className="comment__title">
@@ -9,7 +9,7 @@ const Comment = ({phone}) => (
             </h4>
             
             <div className="comment__meta">
-                <a href={ `tel: ${phone}`}>
+                <a href={ `tel: ${phoneNumber}`}>
                     <div className="circle">
                         <i className="material-icons ico-phone">
                             phone
@@ -17,7 +17,7 @@ const Comment = ({phone}) => (
                     </div>
 
                     <strong className='phone'>
-                        { phone }
+                        { phoneNumber }
                     </strong>
                 </a>
             </div>
