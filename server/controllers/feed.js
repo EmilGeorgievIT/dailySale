@@ -119,30 +119,34 @@ module.exports = {
     })
     .catch(error => {
       console.log(error);
-      
       next(error);
     })
   },
   findPost: (req, res, next) => {
     // const { title, location } = req.body;
     const pageSize = 10;
-    const title = req.query.title || '';
-    const location = req.query.location || '';
+    const title = req.body.title || '';
+    const location = req.body.location || '';
     const filterQuery = {
       title: new RegExp(title, 'i'),
       location: new RegExp(location, 'i')
     }
-    Post.find(filterQuery)
-    .then((post) => {
-      res
-      .status(200)
-      .json(post)
-    })
-    .catch(error => {
-      console.log(error);
-      
-      next(error);
-    })
+    if(location.length > 0 || title.length > 0) {
+      Post.find(filterQuery)
+      .then((post) => {
+        res
+        .status(200)
+        .json(post)
+      })
+      .catch(error => {
+        console.log(error);
+        next(error);
+      })
+    } else {
+      res.status(404).json({
+        message: 'No posts found !'
+      })
+    }
   },
   getPostById: (req, res, next) => {
     const postId = req.params.postId;

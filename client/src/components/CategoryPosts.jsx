@@ -35,6 +35,13 @@ export default class CategoryPosts extends Component {
             console.log(error);
         }
     }
+    getResults = (data) => {
+        if(data.length > 0) {
+            this.setState({
+                posts: [...data]
+            })
+        }
+    }
 
   render() {
     const { posts } = this.state;
@@ -58,10 +65,15 @@ export default class CategoryPosts extends Component {
         <section className="section-category">
             <div className='container'>
                 <div className="section__head">
-                    <SearchForm />
+                    <SearchForm results={this.getResults}/>
                 </div>
                 
                 <div className="section__body">
+                    <h3 className='mb-4 h3'>
+                        {
+                            `Found ${posts.length} ads`
+                        }
+                    </h3>
                     {
                         posts.map((post) => 
                             <PostsList className='ads' key={post._id} {...post} />

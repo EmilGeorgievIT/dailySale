@@ -1,14 +1,14 @@
 import React, { Component, Fragment} from 'react';
-// import SearchService from '../services/search-service';
+import SearchService from '../services/search-service';
 
 export default class SearchForm extends Component {
-    // static service = new SearchService();
+    static service = new SearchService();
     
     constructor(props) {
         super(props);
 
         this.state = {
-            search: '',
+            title: '',
             location: ''
         }
     }
@@ -20,14 +20,13 @@ export default class SearchForm extends Component {
     
     onSubmit = async (event) => {
         event.preventDefault();
-        // try {
-        //     const posts = await this.service.getPosts();
-        //     console.log(posts);
-        // } catch(error) {
-        //     console.log(error);        
-        // }
 
-        console.log(this.state);
+        try {
+            const posts = await SearchForm.service.findPosts(this.state);
+            this.props.results(posts);
+        } catch(error) {
+            console.log(error);        
+        }
     }
     render() {
         const { search, location } = this.state;
@@ -38,7 +37,7 @@ export default class SearchForm extends Component {
                         <div className="form-group">
                             <i className="material-icons">search</i>
                             
-                            <input type="text" className="form-control" onChange={this.getValue} name='search' value={search} id="search" placeholder="Search DailyDeal" />
+                            <input type="text" className="form-control" onChange={this.getValue} name='title' value={search} id="title" placeholder="Search DailyDeal" />
                         </div>
 
                         <div className="form-group">
