@@ -118,7 +118,28 @@ module.exports = {
       .json(post)
     })
     .catch(error => {
-      console.log(erorr);
+      console.log(error);
+      
+      next(error);
+    })
+  },
+  findPost: (req, res, next) => {
+    // const { title, location } = req.body;
+    const pageSize = 10;
+    const title = req.query.title || '';
+    const location = req.query.location || '';
+    const filterQuery = {
+      title: new RegExp(title, 'i'),
+      location: new RegExp(location, 'i')
+    }
+    Post.find(filterQuery)
+    .then((post) => {
+      res
+      .status(200)
+      .json(post)
+    })
+    .catch(error => {
+      console.log(error);
       
       next(error);
     })

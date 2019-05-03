@@ -16,6 +16,7 @@ import PostDetails from './components/PostDetails';
 import Messages from './components/Messages';
 import UserAds from './components/shared/UserAds';
 import CreateAd from './components/CreateAd';
+import CategoryPosts from './components/CategoryPosts';
 
 class App extends Component {
   constructor(props){
@@ -50,6 +51,7 @@ class App extends Component {
                   <Route exact path='/messages' component = { Messages }/>
                   <Route exact path='/create/ad' component = { CreateAd }/>
                   <Route exact path='/profile' component = { Profile }/>
+                  <Route exact path='/category/:categoryName' component = { CategoryPosts }/>
                   <Route exact path='/user/ads/:userId' component = { UserAds }/>
                   <Route component = { NotFound } />
                 </Switch>
