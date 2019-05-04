@@ -1,0 +1,69 @@
+@import '../styles/variables.scss';
+
+/* ------------------------------------------------------------ *\
+	Box User
+\* ------------------------------------------------------------ */
+
+.box-user {
+    & {
+        margin: 2rem 0;
+        background-color: $white;
+    }
+    .box__head {
+        background-image: url('../images/map-placeholder.jpg');
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 10px 0;
+        min-height: 120px; 
+    }
+    .box__location {
+        & {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: $white;
+            padding: 7px;
+            max-width: 180px;
+            color: $base-color;
+            margin: 0 auto;
+        }
+        &:before {
+            content: '';
+            position: absolute;
+            left: calc(50% - 10px);
+            top: 100%;
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 15px solid $white;
+        }
+    }
+    .box__image {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        margin: 0 auto;
+        margin-top: -60px;
+        border: 10px solid $white;
+        border-radius: 50%;
+     }
+    .box__body {
+        padding: 20px 30px;
+    }
+    .box__content {
+        text-align: center;
+        font-weight: 500;
+        font-size: 20px;
+        color: $blue;
+    }
+    .box__actions {
+        margin-top: 20px;
+        text-align: center;
+    }
+    .ico-location {
+        margin-right: 10px;
+    }
+} 

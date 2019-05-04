@@ -1,0 +1,30 @@
+@import '../styles/variables.scss';
+
+/* ------------------------------------------------------------ *\
+	Buttons
+\* ------------------------------------------------------------ */
+
+.btn-wide {
+    & {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $white;
+        width: 100%;
+        padding: 0 20px;
+        line-height: 50px;
+        text-align: center; 
+        margin: 0 auto;
+        transition: .4s;
+        border: 0;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+    .btn-text {
+        margin-left: 5px;
+    }
+    &:hover {
+        opacity: .8;
+        color: $white;
+    }
+}

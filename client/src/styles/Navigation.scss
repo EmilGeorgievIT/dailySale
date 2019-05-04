@@ -1,0 +1,54 @@
+@import '../styles/variables.scss';
+
+/* ------------------------------------------------------------ *\
+	Logo
+\* ------------------------------------------------------------ */
+
+.logo { max-width: 80px; height: auto; }
+
+/* ------------------------------------------------------------ *\
+	Logo
+\* ------------------------------------------------------------ */
+
+.navigation {
+	& {
+		margin-bottom: 10px;
+		background: $white;
+	}
+	.navbar-nav {
+		margin-left: auto;
+		align-items: center;
+	}
+	.dropdown-btn {
+		background-color: transparent;
+		border: 0;
+	}
+	.dropdown-btn:focus {
+		outline: 0;
+	}
+	.dropdown-item {
+		display: block;
+		text-decoration: none;
+	}
+	.circle {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 40px;
+		height: 40px;
+		margin-right: 5px;
+		text-align: center;
+		border-radius: 50%;
+		background: #EFEFEF;
+	}
+	.nav-link {
+		& {
+			display: flex;
+			align-items: center;
+			text-decoration: none;
+		}
+	}
+	.navbar-toggler{
+		background-color: #EFEFEF;
+	}
+ }

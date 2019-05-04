@@ -1,0 +1,87 @@
+@import '../styles/variables.scss';
+
+/* ------------------------------------------------------------ *\
+	List
+\* ------------------------------------------------------------ */
+
+.list-categories {
+    & {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .list-group-item {
+        & {
+            flex: 0 1 33.33%;
+            cursor: pointer;
+        }
+        a {
+            display: flex;
+            align-items: center;
+            
+        }
+        .item-name {
+            margin-left: 5px;
+        }
+    }
+}
+@media #{$tablet-portrait} {
+    .list-categories {
+        .list-group-item {
+            flex: 0 1 50%;
+        }
+    }
+}
+
+@media #{$mobile} {
+    .list-categories {
+        .list-group-item {
+            flex: 0 1 100%;
+        }
+    }
+}
+
+/* ------------------------------------------------------------ *\
+	Posts List
+\* ------------------------------------------------------------ */
+
+.post-list {
+    & {
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+    }
+    .post__head {
+        position: relative;
+        min-height: 100px;
+        flex: 1;
+    }
+    .post__body {
+        flex: 2;
+        padding: 10px;
+    }
+    .post__price {
+        font-size: 20px;
+        font-weight: 500;
+    }
+    .post__meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    .post__inner {
+        display: flex;
+    }
+}
+
+/* ------------------------------------------------------------ *\
+    List Mobile Apps
+\* ------------------------------------------------------------ */
+
+
+.list-mobile-apps {
+    li a {
+        img {
+            max-width: 150px;
+        }
+    }
+}

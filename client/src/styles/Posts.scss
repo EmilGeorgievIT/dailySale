@@ -1,0 +1,58 @@
+@import '../styles/variables.scss';
+
+/* ------------------------------------------------------------ *\
+	Posts
+\* ------------------------------------------------------------ */
+
+.post {
+    & {
+        flex: 0 1 25%;
+        flex-wrap: wrap;
+        background-color: #fff;
+        box-shadow: 0 0 4px 0 rgba(0,0,0,.15);
+        margin: 0 10px;
+        min-height: 150px;
+        max-width: 190px;
+        padding: 0;
+        text-align: center;
+    }
+    .post__head {
+        position: relative;
+        min-height: 100px;
+        margin-bottom: 10px;
+    }
+    .post__title {
+        color: $blue;
+        margin-bottom: 0;
+    }
+}
+
+/* ------------------------------------------------------------ *\
+	Post Details
+\* ------------------------------------------------------------ */
+
+.post-details {
+    .post__image {
+        position: relative;
+        min-height: 300px;
+    }
+    .post__head {
+        padding: 10px;
+        border-bottom: 10px solid $gray;
+    }
+    .post__body {
+        border-bottom: 10px solid $gray;
+    }
+    .post__title {
+        margin: 10px 0;
+    }
+    .post__content {
+        padding: 10px;
+        text-align: justify;
+    }
+    .post__meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

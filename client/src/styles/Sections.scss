@@ -1,0 +1,115 @@
+@import '../styles/variables.scss';
+
+/* ------------------------------------------------------------ *\
+	Section Posts
+\* ------------------------------------------------------------ */
+
+.section-posts {
+    & {
+        padding: 2rem 0;
+    }
+    .slick-slider {
+        width: 100%;
+    }
+    .section__head {
+        padding-bottom: 2rem;
+    }
+}
+
+/* ------------------------------------------------------------ *\
+	Section Post Details
+\* ------------------------------------------------------------ */
+
+.section-post-details {
+    & {
+        padding: 50px 0;
+        min-height: calc(100vh - 109px);
+    }
+    .section__inner {
+        position: relative;
+    }
+    .section__content {
+        background-color: $white;
+        max-width: calc(65% - 50px);
+    }
+    .section__aside {
+        position: absolute;
+        bottom: 0;
+        top: 0;
+        left: 65%;
+        padding: 0 20px;
+        height: 600px;
+        right: 0;
+    }
+    .section__aside.fixed{
+        position: fixed;
+        padding: 20px;
+        overflow: visible;
+        max-width: 410px;
+        left: 63%;
+    }
+}
+
+/* ------------------------------------------------------------ *\
+	Section Post Details Mobile
+\* ------------------------------------------------------------ */
+
+@media #{$mobile} {
+    .section-post-details {
+        .section__content {
+            max-width: 100%;
+            .post__head-mobile {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+        .section__aside, .section__aside.fixed {
+            position: static;
+            max-width: 100%;
+            height: auto;
+        }
+        .section__aside .price {
+            display: none;
+        }
+    }
+}
+
+/* ------------------------------------------------------------ *\
+	Section Create Ad
+\* ------------------------------------------------------------ */
+
+.section-create-ad {
+    & {
+        padding: 2rem 0;
+        max-width: 600px;
+        margin: 0 auto;        
+    }
+    .section__head {
+        margin-bottom: 2rem;
+    }
+}
+
+/* ------------------------------------------------------------ *\
+    Section Category
+\* ------------------------------------------------------------ */
+
+.section-category {
+    & {
+        padding: 1rem 0; 
+    }    
+    .section__body {
+        padding: 2rem 0;
+    }
+}
+
+/* ------------------------------------------------------------ *\
+	Section Results
+\* ------------------------------------------------------------ */
+
+.section-results {
+    & {
+        padding: 1rem 0;
+        margin: 0 2rem;
+    }
+}
