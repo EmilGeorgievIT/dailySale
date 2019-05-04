@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import '../../styles/Footer.scss';
+import '../../styles/List.scss';
 import { Link } from 'react-router-dom';
 import logo from '../../images/logo-white.png';
 import appleStore from '../../images/apple-store.svg';
-import googleStore from '../../images/google-store.svg';
+import googleStore from '../../images/google-store.png';
 import facebook from '../../images/ico-facebook.svg';
 import twitter from '../../images/ico-twitter.svg'; 
 
@@ -69,7 +70,7 @@ class Footer extends Component {
                                     Mobile apps
                                 </h4>
 
-                                <ul className="list list-mobile-apps d-flex justify-content-center">
+                                <ul className="list list-mobile-apps d-flex align-items-center justify-content-center">
                                     <li>
                                         <a href="https://www.apple.com/ie/ios/app-store/">
                                             <img src={appleStore} alt="apple-store"/>

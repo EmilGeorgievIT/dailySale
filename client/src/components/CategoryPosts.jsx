@@ -50,7 +50,7 @@ export default class CategoryPosts extends Component {
         return (
             <div className="jumbotron jumbotron-fluid">
                 <div className="container">
-                    <h1 className="display-4 text-center mb-4">There is no posts in this category</h1>
+                    <h1 className="display-4 text-center mb-4">There are no posts in this category</h1>
                     
                     <div className='jumbotron-actions text-center'>
                         <Link className='btn btn-danger text-center' to='/'>
