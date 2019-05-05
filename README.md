@@ -3,11 +3,11 @@
 
 # Stack of technologies
 
-*Bullet list
-Mongo DB;
-Express JS;
-Angular JS;
-Node JS;
+
+`Mongo DB`;
+`Express JS`;
+`React JS`;
+`Node JS`;
 
 # Running of project
 
