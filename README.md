@@ -4,7 +4,7 @@
 # Stack of technologies
 * [Mongo DB](https://www.mongodb.org/);
 * [Express JS](http://expressjs.com/);
-* [Reacr JS](https://reactjs.org/);
+* [React JS](https://reactjs.org/);
 * [Node JS](https://nodejs.org/);
 
 
