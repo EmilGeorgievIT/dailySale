@@ -5,11 +5,8 @@
 
 
 `Mongo DB`
-
 `Express JS`
-
 `React JS`
-
 `Node JS`
 
 # Running of project
