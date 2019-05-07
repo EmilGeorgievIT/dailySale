@@ -4,7 +4,7 @@
 	Logo
 \* ------------------------------------------------------------ */
 
-.logo { max-width: 80px; height: auto; }
+.logo { max-width: 60px; height: auto; }
 
 /* ------------------------------------------------------------ *\
 	Logo
@@ -12,8 +12,14 @@
 
 .navigation {
 	& {
-		margin-bottom: 10px;
-		background: $white;
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 100;
+		width: 100%;
+		padding: 0.2rem 1rem;
+		background: rgba(0,0,0,.3);
+		// box-shadow: 0 1px 10px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.13);
 	}
 	.navbar-nav {
 		margin-left: auto;
@@ -46,6 +52,7 @@
 			display: flex;
 			align-items: center;
 			text-decoration: none;
+			color: $white;
 		}
 	}
 	.navbar-toggler{

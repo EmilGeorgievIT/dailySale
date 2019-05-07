@@ -1,6 +1,6 @@
 import React , { Component } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../images/logo.png';
+import logo from '../../images/logo-white.png';
 import '../../styles/Navigation.scss';
 import { UserConsumer } from '../contexts/user-context';
 

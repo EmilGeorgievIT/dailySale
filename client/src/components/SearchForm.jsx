@@ -48,7 +48,7 @@ export default class SearchForm extends Component {
                         
                         <div className="form-action">
                         
-                            <button onClick={this.onSubmit} type="submit" className="btn btn-success btn-submit">
+                            <button onClick={this.onSubmit} type="submit" className="btn btn-danger btn-submit">
                                 <i className="material-icons">send</i>
                                 
                                 <span>
