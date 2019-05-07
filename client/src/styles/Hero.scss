@@ -7,11 +7,21 @@
 .section-hero {
     & {
         position: relative;
-        padding: 6rem 0 6rem;
-        background-image: url('../images/banner1.jpg');
-        background-position: center 10%;
+        padding: 7rem 0 8rem;
+        background-image: url('../images/banner.jpg');
+        background-position: center 50%;
         background-repeat: no-repeat;
         background-size: cover;
+    }
+    .section__head {
+        position: relative;
+    }
+    .section__title {
+        display: block;
+        font-size: 2rem;
+        font-weight: 500;
+        color: $white;
+        text-align: center;
     }
     &:before {
         content: '';
@@ -35,13 +45,26 @@
         align-items: center;
         margin: 0 auto;
         width: 100%;
+        margin-top: 2rem;
     }
+    .category-select {
+        flex: 2;
+        border: 0;
+        height: calc(1.5em + 1.5rem + 2px);
+        border-radius: 0;
+    }
+    .form__line ~ .form__line {
+        border-left: 1px solid rgba(121, 24, 242, 0.5);
+     }
     .form-group {
         position: relative;
         flex: 2;
-        margin: 0 15px;
-        
+        margin-bottom: 0;
+
         .form-control {
+            border: 0;
+            height: calc(1.5em + 1.5rem + 2px);
+            border-radius: 0;
             padding: 0.375rem 0.75rem 0.375rem 2.5rem;
         }
         .material-icons {
@@ -57,7 +80,6 @@
         & {
             position: relative;
             flex: 1;
-            margin: 0 15px;
         }
         .btn-submit {
             & {
@@ -65,6 +87,9 @@
                 align-items: center;
                 justify-content: center;
                 width: 100%;
+                padding: .815rem 0.75rem;
+                border: 0;
+                border-radius: 0;
             }
             .material-icons {
                 margin: 0 5px;
@@ -75,15 +100,19 @@
 @media #{$mobile} {
     .section-hero {
         & {
-            padding: 2rem 0;
+            padding: 5rem 0 2rem;
         }
     }
     .search-deal {
         & {
             display: block;
         }
-        .form-group {
-            margin-bottom: 1rem;
-        } 
+        .form__line ~ .form__line {
+            border-left: 0;
+            border-top: 1px solid rgba(121, 24, 242, 0.5);
+        }
+        // .form-group {
+        //     margin-bottom: 1rem;
+        // } 
     }   
 }

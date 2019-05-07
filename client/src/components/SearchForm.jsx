@@ -34,21 +34,29 @@ export default class SearchForm extends Component {
         return(
             <Fragment>
                     <form className='search-deal'>
-                        <div className="form-group">
+                        <div className="form-group form__line">
                             <i className="material-icons">search</i>
                             
                             <input type="text" className="form-control" onChange={this.getValue} name='title' value={search} id="title" placeholder="Search DailyDeal" />
                         </div>
 
-                        <div className="form-group">
+                        <div className="form-group form__line">
                             <i className="material-icons">location_on</i>
                             
                             <input type="text" className="form-control" onChange={this.getValue} value={location} name='location' id="location" placeholder={this.props.location} />
                         </div>
                         
-                        <div className="form-action">
+                        <select className="custom-select category-select form__line">
+                            <option defaultValue>Category</option>
+                            {
+                                this.props.items.map((item, index) => (
+                                    <option key={index} value={item.name}>{item.name}</option>
+                                ))
+                            }
+                        </select>
                         
-                            <button onClick={this.onSubmit} type="submit" className="btn btn-danger btn-submit">
+                        <div className="form-action">
+                            <button onClick={this.onSubmit} type="submit" className="btn btn-primary btn-submit">
                                 <i className="material-icons">send</i>
                                 
                                 <span>

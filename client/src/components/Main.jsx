@@ -5,13 +5,31 @@ import '../styles/Hero.scss';
 import '../styles/Sections.scss';
 import SearchForm from './SearchForm';
 import CategoriesList from './CategoriesList';
+import Typed from 'react-typed';
 
 class Main extends Component {
     constructor(props) {
         super(props);
         
         this.state = {
-            posts: []
+            posts: [],
+            items: [
+                { name: 'House & DIY' , icon: 'home' },
+                { name: 'Animals', icon: 'pets' },
+                { name: 'Electronics', icon: 'phonelink' } ,
+                { name: 'Sports & Hobbies', icon: 'accessibility_new' },
+                { name: 'Clothes & Lifestyle', icon: 'face'},
+                { name: 'Farming', icon: 'spa'},
+                { name: 'Baby & Kinds', icon: 'child_care'},
+                { name: 'Cars & Motor', icon: 'drive_eta'},
+                { name: 'Business', icon: 'business'},
+                { name: 'Holidays & Tickets', icon: 'beach_access'},
+                { name: 'Lost & Found', icon: 'sentiment_dissatisfied'},
+                { name: 'Music & Education', icon: 'music_note'},
+                { name: 'Other', icon: 'more'},
+                { name: 'Property', icon: 'store'},
+                { name: 'Work', icon: 'work'},
+            ]
         }
     }
     showResults = (data) => {
@@ -29,11 +47,21 @@ class Main extends Component {
                 <div className='section-hero'>
                     <div className="container">
                         <div className="section__head">
-                            <SearchForm results={this.showResults} location='Ireland'/>
+                        <Typed  className='section__title'
+                            strings={[
+                                'Search for ads',
+                                'Post your ads',
+                                'Find all you need']}
+                                typeSpeed={100}
+                                backSpeed={70} 
+                                loop >
+                            </Typed>
+
+                            <SearchForm items={this.state.items} results={this.showResults} location='Ireland'/>
                         </div>
                         
                         <div className="section__body">
-                            <CategoriesList />
+                            <CategoriesList items={this.state.items} />
                         </div>
                     </div>
                 </div>

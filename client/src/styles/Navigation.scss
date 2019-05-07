@@ -21,6 +21,12 @@
 		background: rgba(0,0,0,.3);
 		// box-shadow: 0 1px 10px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.13);
 	}
+	.nav-item {
+		.btn {
+			color: $white;
+			border: 0;
+		}
+	}
 	.navbar-nav {
 		margin-left: auto;
 		align-items: center;
@@ -28,6 +34,9 @@
 	.dropdown-btn {
 		background-color: transparent;
 		border: 0;
+		.material-icons {
+			font-size: 2rem;
+		}
 	}
 	.dropdown-btn:focus {
 		outline: 0;
@@ -35,17 +44,6 @@
 	.dropdown-item {
 		display: block;
 		text-decoration: none;
-	}
-	.circle {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 40px;
-		height: 40px;
-		margin-right: 5px;
-		text-align: center;
-		border-radius: 50%;
-		background: #EFEFEF;
 	}
 	.nav-link {
 		& {
@@ -58,4 +56,9 @@
 	.navbar-toggler{
 		background-color: #EFEFEF;
 	}
+ }
+
+ @media #{$mobile} {
+	 
+	.logo { max-width: 45px; }
  }

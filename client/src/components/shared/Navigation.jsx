@@ -32,15 +32,51 @@ class Navigation extends Component {
                     <div className="collapse navbar-collapse navigation-collapse" id="navbarNav">
                         <ul className="navbar-nav">
                             <li className="nav-item">
+                                <Link to="/" className="btn btn-outline-primary">
+                                    <span>
+                                        Home
+                                    </span>
+                                </Link>
+                            </li>
+                            
+                            <li className="nav-item">
+                                <Link to="/about" className="btn btn-outline-primary">
+                                    <span>
+                                        About Us
+                                    </span>
+                                </Link>
+                            </li>
+
+                            <li className="nav-item">
+                                <Link to="/about" className="btn btn-outline-primary">
+                                    <span>
+                                        Contact Us
+                                    </span>
+                                </Link>
+                            </li>
+                        
+                            <li className="nav-item">
+
+                                <Link to="/create/ad" className="btn btn-outline-primary d-flex">
+                                    {/* <i className="material-icons">add</i> */}
+                                    
+                                    <span>
+                                        Place Ad
+                                    </span>
+                                </Link>
+
+                                {/* <Link className="nav-link" to="/sign-up">Sign Up</Link> */}
+                            </li>
+
+                            <li className="nav-item">
                                 <div className="dropdown">
                                     <button className="nav-link dropdown-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <div className='circle'>
-                                            <i className="material-icons">person</i>
-                                        </div>
+                                        <i className="material-icons">account_circle</i>
                                         
                                         <span>
                                             My profile
                                         </span>
+
                                     </button>
                                 
                                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -61,19 +97,6 @@ class Navigation extends Component {
                                         </Link>
                                     </div>
                                 </div>
-                            </li>
-                        
-                            <li className="nav-item">
-
-                                <Link type="button" to="/create/ad" className="btn btn-primary d-flex">
-                                    <i className="material-icons">add</i>
-                                    
-                                    <span>
-                                        Place Ad
-                                    </span>
-                                </Link>
-
-                                {/* <Link className="nav-link" to="/sign-up">Sign Up</Link> */}
                             </li>
                         </ul>
                     </div>

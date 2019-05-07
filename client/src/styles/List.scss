@@ -12,6 +12,7 @@
     }
     .list-group-item {
         & {
+            border-radius: 0;
             flex: 0 1 33.33%;
             cursor: pointer;
         }
