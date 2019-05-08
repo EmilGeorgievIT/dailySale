@@ -24,8 +24,8 @@ class Post extends Component {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 5,
-        slidesToScroll: 5,
+        slidesToShow: 4,
+        slidesToScroll: 4,
         responsive: [
             {
               breakpoint: 1024,
@@ -58,9 +58,9 @@ class Post extends Component {
         <section className='section-posts'>
             <div className='container'>
                 <div className="section__head">
-                    <h4 className="section__title">
-                        Promo Ad
-                    </h4>    
+                    <h1 className="section__title text-center">
+                        Latest Ads
+                    </h1>    
                 </div>
                 
                 <div className="section__bod d-flex">

@@ -6,7 +6,7 @@
 
 body {
 	min-width: 320px;
-	background: $gray;
+	background: $base-background;
 	font-family: $font-family-sans-serif;
 	font-size: $font-size-base;
 	line-height: $line-height-base;
@@ -31,10 +31,10 @@ h4,
 h5,
 h6 { margin-bottom: $line-height-base / 2; }
 
-h1 { font-size: 57px; font-family: $font-oswald }
-h2 { font-size: 35px; font-family: $font-oswald; text-transform: uppercase; }
+h1 { font-size: 36px; font-family: $font-oswald }
+h2 { font-size: 32px; font-family: $font-oswald; text-transform: uppercase; }
 h3 { font-size: 26px; font-family: $font-oswald }
-h4 { font-size: 21px; font-weight: bold; font-family: $font-oswald }
+h4 { font-size: 24px; font-weight: bold; font-family: $font-oswald }
 h5 { font-size: 14px; }
 h6 { font-size: 12px; }
 

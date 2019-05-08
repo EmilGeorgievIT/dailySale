@@ -10,20 +10,84 @@
         flex-wrap: wrap;
         background-color: #fff;
         box-shadow: 0 0 4px 0 rgba(0,0,0,.15);
-        margin: 0 10px;
+        margin: 10px;
         min-height: 150px;
-        max-width: 190px;
+        max-width: 275px;
         padding: 0;
-        text-align: center;
+        text-align: left;
+        overflow: hidden;
+    }
+    &:hover {
+        .post__head {
+            transform: scale(1);
+        }    
     }
     .post__head {
         position: relative;
-        min-height: 100px;
-        margin-bottom: 10px;
+        height: 164px;
+        overflow: hidden;
+        transition: .4s;
+        transform: scale(1.1);
+    }
+    .post__actions {
+        position: absolute;
+        display: flex;
+        justify-content: flex-end;
+        bottom: 0;
+        right: 0;
+        padding: 10px 20px;
+        width: 100%;
+
+        .material-icons {
+            font-size: 18px;
+            color: $white;
+        }
+        .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 25px;
+            height: 25px;
+            background-color: $blue;
+            border-radius: 50%;
+            margin: 0 5px;    
+        }
+        .icon-red {
+            background-color: $red;
+         }
+    }
+    .post__meta-inner {
+        & {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: .5rem 0;
+        }
+        .post__meta-location {
+            display: flex;
+            align-items: center;
+            .material-icons {
+                font-size: 16px;
+            }
+        }
+        .post__meta-price {
+            margin-left: 10px;
+        }
+        p {
+            margin-bottom: 0;
+        }
     }
     .post__title {
-        color: $blue;
+        font-size: 18px;
+        color: #605e7e;
+        font-weight: normal;
         margin-bottom: 0;
+    }
+    .post__body {
+        padding: 15px;
+    }
+    .post__description {
+        padding: 0 5px;
     }
 }
 
