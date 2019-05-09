@@ -7,7 +7,7 @@
 .section-hero {
     & {
         position: relative;
-        padding: 6rem 0 6rem;
+        padding: 8rem 0 6rem;
         background-image: url('../images/banner.jpg');
         background-position: center 50%;
         background-repeat: no-repeat;
@@ -15,25 +15,31 @@
     }
     .section__head {
         position: relative;
+        color: $white;
+        text-align: center;
+
+        p {
+            font-size: 16px;
+        }
     }
     .section__title {
         display: block;
-        font-size: 36px;
+        font-size: 40px;
         font-weight: 500;
         color: $white;
         text-align: center;
     }
-    // &:before {
-    //     content: '';
-    //     position: absolute;
-    //     width: 100%;
-    //     height: 100%;
-    //     top: 0;
-    //     right: 0;
-    //     left: 0;
-    //     z-index: 0;
-    //     background: linear-gradient(-225deg, rgba(72, 1, 255, 0.7) 0%, rgba(121, 24, 242, 0.7) 48%, rgba(172, 50, 228, 0.7) 100%);
-    // }
+    &:before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 0;
+        background: linear-gradient(225deg, rgba(70, 43, 220, 0.8) 0%, rgba(181, 62, 189, 0.8) 40%, rgba(243, 125, 7, 0.7) 100%);
+    }
 }
 .search-deal {
     & {

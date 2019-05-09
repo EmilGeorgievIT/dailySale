@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import Post from './Post';
+import PostFeature from './PostFeature';
 import PostsList from './PostsList';
 import '../styles/Hero.scss';
 import '../styles/Sections.scss';
@@ -47,15 +48,19 @@ class Main extends Component {
                 <div className='section-hero'>
                     <div className="container">
                         <div className="section__head">
-                        <Typed  className='section__title'
-                            strings={[
-                                'Search for ads',
-                                'Post your ads',
-                                'Find all you need']}
+                            <Typed  className='section__title'
+                                strings={[
+                                    'Search for ads',
+                                    'Post your ads',
+                                    'Find all you need']}
                                 typeSpeed={100}
                                 backSpeed={70} 
                                 loop >
                             </Typed>
+
+                            <p>
+                                Sell ​​what you do not need or buy what you need in one place for free
+                            </p>
 
                             <SearchForm items={this.state.items} results={this.showResults} location='Ireland'/>
                         </div>
@@ -68,7 +73,8 @@ class Main extends Component {
                 
                 <main className='main'>
                     <Post />
-                    
+                    <PostFeature />
+
                     <div className='section-results'>
                         <div className="container">
                             <h3 className='mb-4 h3'>

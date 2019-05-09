@@ -6,7 +6,7 @@
 
 .section-posts {
     & {
-        padding: 2rem 0;
+        padding: 4rem 0;
     }
     .slick-slider {
         width: 100%;
@@ -112,4 +112,14 @@
         padding: 1rem 0;
         margin: 0 2rem;
     }
+}
+
+/* ------------------------------------------------------------ *\
+	Section Featured Posts
+\* ------------------------------------------------------------ */
+
+.section-featured-posts {
+    & {
+        background-color: #f1eee7;
+    } 
 }
