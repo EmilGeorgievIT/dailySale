@@ -19,11 +19,12 @@ class PostsFeatured extends Component {
             { name: 'other', icon: 'more'},
             { name: 'property', icon: 'store'},
             { name: 'work', icon: 'work'},
-        ]
+        ],
+        views: 1,
     });
 
     render() {
-        const { _id, image, price, title, location, description, category } = this.props;
+        const { _id, image, price, date, title, location, description, category, phoneNumber } = this.props;
         
         const postImage = {
             width: "100%",
@@ -38,44 +39,66 @@ class PostsFeatured extends Component {
         };
 
         return(
-            <div className='post'>
+            <div className='post post--featured'>
                 <Link to={`/post/${_id}`}>
                     <div className="post__head">
                         <div style={postImage}>
-                            <div className="post__actions">
-                                <div className="icon  icon-red post__category">
-                                    <i className="material-icons">home</i>
-                                </div>
+                            <div className="post__overlay">
+                                <p className="post__category">
+                                    {category}
+                                </p>
                                 
-                                <div className="icon post__favorite">
-                                    <i className="material-icons">favorite</i>
-                                </div>
+                                <p className="post__price">
+                                    ${price}
+                                </p>
                             </div>
                         </div>
                     </div>
 
                     <div className="post__body">
-                        <div className="post__meta">
-                            <h4 className='post__title'>
-                            {  title && title.length > 20 ? title.slice(0, 20) + '...' : title }
-                            </h4>
-                            
-                            <div className="post__meta-inner">
-                                <p className='post__meta-location'>
-                                    <i className="material-icons">
-                                        location_on
-                                    </i>
+                        <h4 className='post__title'>
+                        {  title && title.length > 20 ? title.slice(0, 20) + '...' : title }
+                        </h4>
+                        
+                        <div className="post__content">
+                            <div className="post__meta">
+                                <div className="post__meta-inner">
+                                    <p className='post__meta-views'>
+                                        <i class="icon material-icons">visibility</i>
+                                        
+                                        {this.state.views} Views
+                                    </p>
 
-                                    { location }
-                                </p>
+                                    <p className='post__meta-location'>
+                                        <i className="icon material-icons">
+                                            location_on
+                                        </i>
 
-                                <p className='post__meta-price'>
-                                    { price ? `${price}$` : '' }
-                                </p>
-                            </div>
-                            
-                            <div className="post__description">
-                                {  description && description.length > 30 ? description.slice(0, 30) + '...' : description }
+                                        { location }
+                                    </p>
+                                    
+                                </div>
+
+                                <div className="post__meta-inner">
+                                    <p className='post__meta-date'>
+                                        <i class="icon material-icons">date_range</i>
+                                        
+                                        { (new Date(date)).toLocaleDateString('en-US', 'short') }
+                                    </p>
+
+                                    <p className='post__meta-phone'>
+                                        <i className="icon material-icons">
+                                            phone
+                                        </i>
+
+                                        { phoneNumber }
+                                    </p>
+                                    
+                                </div>
+                                
+                                <div className="post__description">
+                                    {  description && description.length > 50 ? description.slice(0, 50) + '...' : description }
+                                </div>
                             </div>
                         </div>
                     </div>          

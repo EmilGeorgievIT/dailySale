@@ -71,3 +71,16 @@ blockquote:last-child { margin-bottom: 0; }
 @media #{$mobile} {
 	h2 { font-size: 25px; line-height: 0.8; }
 }
+
+/* ------------------------------------------------------------ *\
+	Slider
+\* ------------------------------------------------------------ */
+
+.slick-prev, .slick-next {
+	height: 50px;
+	width: 50px;
+}
+.slick-prev:before, .slick-next:before {
+	font-size: 50px;
+	opacity: 1;
+}

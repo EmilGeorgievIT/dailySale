@@ -73,23 +73,27 @@ class Main extends Component {
                 
                 <main className='main'>
                     <Post />
+                    
                     <PostFeature />
-
-                    <div className='section-results'>
-                        <div className="container">
-                            <h3 className='mb-4 h3'>
+                    
+                    {
+                        posts.length ?
+                        <div className='section-results'>
+                            <div className="container">
+                                <h3 className='mb-4 h3'>
+                                    {
+                                        posts.length ? `Found ${posts.length} ads` : ''
+                                    }
+                                </h3>
+                                
                                 {
-                                    posts.length ? `Found ${posts.length} ads` : ''
+                                    posts ? posts.map((item) => 
+                                        <PostsList key= {item._id}  {...item}/>
+                                    ) : ''
                                 }
-                            </h3>
-                            
-                            {
-                                posts ? posts.map((item) => 
-                                    <PostsList key= {item._id}  {...item}/>
-                                ) : ''
-                            }
-                        </div>
-                    </div>
+                            </div>
+                        </div> : ''
+                    }
                 </main>
             </Fragment>
         )

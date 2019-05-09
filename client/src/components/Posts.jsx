@@ -60,27 +60,29 @@ class Posts extends Component {
                     </div>
 
                     <div className="post__body">
-                        <div className="post__meta">
-                            <h4 className='post__title'>
-                            {  title && title.length > 20 ? title.slice(0, 20) + '...' : title }
-                            </h4>
-                            
-                            <div className="post__meta-inner">
-                                <p className='post__meta-location'>
-                                    <i className="material-icons">
-                                        location_on
-                                    </i>
+                        <h4 className='post__title'>
+                        {  title && title.length > 20 ? title.slice(0, 20) + '...' : title }
+                        </h4>
+                        
+                        <div className="post__content">
+                            <div className="post__meta">    
+                                <div className="post__meta-inner">
+                                    <p className='post__meta-location'>
+                                        <i className="material-icons">
+                                            location_on
+                                        </i>
 
-                                    { location }
-                                </p>
+                                        { location }
+                                    </p>
 
-                                <p className='post__meta-price'>
-                                    { price ? `${price}$` : '' }
-                                </p>
-                            </div>
-                            
-                            <div className="post__description">
-                                {  description && description.length > 30 ? description.slice(0, 30) + '...' : description }
+                                    <p className='post__meta-price'>
+                                        { price ? `${price}$` : '' }
+                                    </p>
+                                </div>
+                                
+                                <div className="post__description">
+                                    {  description && description.length > 30 ? description.slice(0, 30) + '...' : description }
+                                </div>
                             </div>
                         </div>
                     </div>          

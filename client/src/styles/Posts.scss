@@ -27,7 +27,7 @@
         height: 164px;
         overflow: hidden;
         transition: .4s;
-        transform: scale(1.1);
+        transform: scale(0.9);
     }
     .post__actions {
         position: absolute;
@@ -60,18 +60,23 @@
         & {
             display: flex;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: space-between;
             padding: .5rem 0;
+            font-size: 13px;
+        }
+        .material-icons {
+            font-size: 16px;
+            margin-right: 5px;
         }
         .post__meta-location {
             display: flex;
+            flex: 70%;
+            max-width: 70%;
             align-items: center;
-            .material-icons {
-                font-size: 16px;
-            }
         }
         .post__meta-price {
-            margin-left: 10px;
+            flex: 30%;
+            max-width: 30%;
         }
         p {
             margin-bottom: 0;
@@ -80,14 +85,61 @@
     .post__title {
         font-size: 18px;
         color: #605e7e;
+        border-bottom: 1px solid #e8ebf3;
+        padding: 10px 15px;
         font-weight: normal;
-        margin-bottom: 0;
+        margin: 0 15px 0;
     }
-    .post__body {
-        padding: 28px 22px;
+    .post__content {
+        padding: 10px 22px;
     }
     .post__description {
-        padding: 0 5px;
+        padding: 5px 5px 0;
+    }
+    &--featured {
+        .post__meta-inner {
+            padding: .4rem 0;
+        }
+        .post__overlay {
+            position: absolute;
+            display: flex;
+            justify-content: space-between;
+            bottom: 0;
+            right: 0;
+            padding: 10px 20px;
+            width: 100%;
+        }
+        .post__price {
+            padding: 5px;
+            background-color: $orange;
+            border-radius: 5px;
+            color: $white;
+            margin-bottom: 0;
+            font-weight: 500;
+        }
+        .post__category {
+            padding: 5px;
+            background-color: rgba(0,0,0, .5);
+            border-radius: 5px;
+            color: $white;
+            margin-bottom: 0;
+            font-weight: 500;
+        }
+        .post__meta-views, .post__meta-phone, .post__meta-date {
+            display: flex;
+            align-items: center;
+            flex: 50%;
+            max-width: 50%;
+            margin-bottom: 0;
+        }
+        .post__meta-date {
+            flex: 43%;
+            max-width: 43%;
+        }
+        .post__meta-phone {
+            flex: 57%;
+            max-width: 57%;
+        }
     }
 }
 
