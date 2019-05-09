@@ -1,10 +1,15 @@
 import React , { Component } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../images/logo-white.png';
+import logoSticky from '../../images/logo.png';
 import '../../styles/Navigation.scss';
 import { UserConsumer } from '../contexts/user-context';
 
 class Navigation extends Component {
+    state = {
+        isTop: false
+    }
+
     logOut = () => {
         
         const { updateUser } = this.props;
@@ -12,17 +17,32 @@ class Navigation extends Component {
         updateUser({
             isLogged: false
         })
+
         sessionStorage.clear();
     }
-
+    handleScroll = (event) => {
+        const el = document.getElementsByClassName('navigation');
+        const isTop = window.scrollY >= 78;
+		console.log("TCL: Navigation -> handleScroll -> isTop", event)
+        
+        if (isTop !== this.state.isTop) {
+            this.setState({ isTop })
+        }
+    }
+    componentDidMount() {
+        window.addEventListener('scroll', this.handleScroll);
+    }
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
+    }
     render() {
         const { isLogged } = this.props; 
         
         return(
-            <nav className="navigation navbar navbar-expand-lg">
+            <nav className={this.state.isTop ? 'navigation navbar navbar-expand-lg fixed' : 'navigation navbar navbar-expand-lg'}>
                 <div className="container">
                     <Link className="navbar-brand" to="/">
-                        <img src={logo} className='logo' alt="logo"/>
+                        <img src={this.state.isTop ? logoSticky : logo} className='logo' alt="logo"/>
                     </Link>
                     
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,14 +63,6 @@ class Navigation extends Component {
                                 <Link to="/about" className="btn btn-outline-primary">
                                     <span>
                                         About Us
-                                    </span>
-                                </Link>
-                            </li>
-
-                            <li className="nav-item">
-                                <Link to="/about" className="btn btn-outline-primary">
-                                    <span>
-                                        Contact Us
                                     </span>
                                 </Link>
                             </li>

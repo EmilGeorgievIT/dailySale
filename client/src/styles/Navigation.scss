@@ -19,7 +19,28 @@
 		width: 100%;
 		padding: 0.2rem 1rem;
 		background-color: rgba(0,0,0,.4);
+		transition: top .4s;
 		// box-shadow: 0 1px 10px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.13);
+		&.fixed {
+			position: fixed;
+			background: $white;
+			box-shadow: 2px 3px 4.7px 0.3px rgba(0,0,0,0.24);
+
+			.nav-item {				
+				.btn {
+					color: $black;
+					border: 0;
+				}
+			}
+			.nav-item:hover {
+				.btn{
+					color: $white;
+				}	
+			}
+			.dropdown-btn {
+				color: $black;
+			}
+		}
 	}
 	.nav-item {
 		margin: 0 5px;
