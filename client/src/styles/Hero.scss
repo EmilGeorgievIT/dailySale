@@ -7,6 +7,7 @@
 .section-hero {
     & {
         position: relative;
+        margin-top: -79px;
         padding: 8rem 0 6rem;
         background-image: url('../images/banner.jpg');
         background-position: center 50%;
@@ -49,6 +50,7 @@
         margin: 0 auto;
         width: 100%;
         margin: 2rem 0 2rem;
+        box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
     }
     .category-select {
         flex: 2;

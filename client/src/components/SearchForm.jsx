@@ -43,7 +43,7 @@ export default class SearchForm extends Component {
                         <div className="form-group form__line">
                             <i className="material-icons">location_on</i>
                             
-                            <input type="text" className="form-control" onChange={this.getValue} value={location} name='location' id="location" placeholder={this.props.location} />
+                            <input type="text" className="form-control" onChange={this.getValue} value={location} name='location' id="location" placeholder='Ireland' />
                         </div>
                         
                         <select className="custom-select category-select form__line">

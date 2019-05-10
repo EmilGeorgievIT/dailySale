@@ -23,11 +23,7 @@ class Footer extends Component {
                                 
                                 <div className="footer__entry">
                                     <p>
-                                        DailySale is web platform for posting ads for free.All what you need to do is to add you ad.  
-                                    </p>
-
-                                    <p>
-                                        Find what you need or sell that you don't need in one platform for free. 
+                                        Here you can find interesting ads and easily contact the seller. If you want to buy something - you can find attractive offers at lower prices in the store. If you want to sell something - you can add an ad easily and for free and sell just about anything you want. Buy and sell at DailySale! 
                                     </p>
                                 </div>
                             </div>
@@ -79,7 +75,7 @@ class Footer extends Component {
                                 <ul className="list list-contacts">
                                     <li>
                                         <a href="https://www.google.com/maps/place/DNG+Phibsboro+Estate+Agents/@53.3625151,-6.274653,17z/data=!3m1!4b1!4m5!3m4!1s0x48670dd621ccca75:0xe6a1b46fcedf7daa!8m2!3d53.3625119!4d-6.2724643">
-                                            <i class="material-icons">location_on</i>
+                                            <i className="material-icons">location_on</i>
                                             
                                             <span>
                                                 Ireland, Dublin 7
@@ -89,7 +85,7 @@ class Footer extends Component {
 
                                     <li>
                                         <a href="mailto:emil_georgiev_it@abv.bg">
-                                            <i class="material-icons">email</i>
+                                            <i className="material-icons">email</i>
 
                                             <span>
                                                 emil_georgiev_it@abv.bg
@@ -99,7 +95,7 @@ class Footer extends Component {
 
                                     <li>
                                          <a href="tel:+353833617736">
-                                            <i class="material-icons">phone</i>
+                                            <i className="material-icons">phone</i>
 
                                             <span>
                                                 (353) 83 361 7736
@@ -161,9 +157,10 @@ class Footer extends Component {
                         <p className='copyright'>
                             Copyright &copy; { new Date().getFullYear() } 
                             
-                            Developed by 
                             
-                            <a href="https://emilgeorgiev.000webhostapp.com/">
+                            <a className='credentials' href="https://emilgeorgiev.000webhostapp.com/">
+                                Developed by 
+                                
                                 Emil Georgiev
                             </a>  
                              

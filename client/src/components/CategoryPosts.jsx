@@ -13,6 +13,23 @@ export default class CategoryPosts extends Component {
 
         this.state = {
             posts: [],
+            items: [
+                { name: 'House & DIY' , icon: 'home' },
+                { name: 'Animals', icon: 'pets' },
+                { name: 'Electronics', icon: 'phonelink' } ,
+                { name: 'Sports & Hobbies', icon: 'accessibility_new' },
+                { name: 'Clothes & Lifestyle', icon: 'face'},
+                { name: 'Farming', icon: 'spa'},
+                { name: 'Baby & Kinds', icon: 'child_care'},
+                { name: 'Cars & Motor', icon: 'drive_eta'},
+                { name: 'Business', icon: 'business'},
+                { name: 'Holidays & Tickets', icon: 'beach_access'},
+                { name: 'Lost & Found', icon: 'sentiment_dissatisfied'},
+                { name: 'Music & Education', icon: 'music_note'},
+                { name: 'Other', icon: 'more'},
+                { name: 'Property', icon: 'store'},
+                { name: 'Work', icon: 'work'},
+            ]
         }
     }
     async componentDidMount() {
@@ -65,7 +82,7 @@ export default class CategoryPosts extends Component {
         <section className="section-category">
             <div className='container'>
                 <div className="section__head">
-                    <SearchForm results={this.getResults}/>
+                    <SearchForm items={this.state.items} results={this.getResults}/>
                 </div>
                 
                 <div className="section__body">
@@ -74,6 +91,7 @@ export default class CategoryPosts extends Component {
                             `Found ${posts.length} ads`
                         }
                     </h3>
+                    
                     {
                         posts.map((post) => 
                             <PostsList className='ads' key={post._id} {...post} />

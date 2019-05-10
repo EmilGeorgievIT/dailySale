@@ -38,6 +38,7 @@ class Main extends Component {
             this.setState({
                 posts: [...data]
             })
+            debugger;
         }
     }
     render() {

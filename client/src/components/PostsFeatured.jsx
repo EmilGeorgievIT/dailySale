@@ -64,7 +64,7 @@ class PostsFeatured extends Component {
                             <div className="post__meta">
                                 <div className="post__meta-inner">
                                     <p className='post__meta-views'>
-                                        <i class="icon material-icons">visibility</i>
+                                        <i className="icon material-icons">visibility</i>
                                         
                                         {this.state.views} Views
                                     </p>
@@ -81,7 +81,7 @@ class PostsFeatured extends Component {
 
                                 <div className="post__meta-inner">
                                     <p className='post__meta-date'>
-                                        <i class="icon material-icons">date_range</i>
+                                        <i className="icon material-icons">date_range</i>
                                         
                                         { (new Date(date)).toLocaleDateString('en-US', 'short') }
                                     </p>

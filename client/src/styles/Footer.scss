@@ -15,7 +15,7 @@
     .footer__title {
         & {
             position: relative;
-            margin-bottom: .8rem;
+            margin-bottom: 1rem;
             padding-bottom: .6rem;
         }
         &:before {
@@ -27,7 +27,9 @@
             height: 2px;
             width: 30px;
         }
-
+    }
+    .credentials {
+        margin: 0 5px;
     }
     .footer__content {
         padding: 2rem 0;
