@@ -8,7 +8,7 @@
     & {
         padding: 1rem 0;
         font-size: 14px;
-        text-align: center;
+        text-align: left;
         background-color: $onyx;
         color: hsla(0,0%,100%,.9);
     }
@@ -19,9 +19,9 @@
         display: block;
         transition: .4s;
     }
-    a:hover {
-        transform: scale(1.05)
-    }
+    // a:hover {
+    //     transform: scale(1.05)
+    // }
     .logo-footer {
         display: block;
         padding-bottom: .8rem;

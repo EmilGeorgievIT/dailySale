@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import '../../styles/Footer.scss';
 import '../../styles/List.scss';
 import { Link } from 'react-router-dom';
-import logo from '../../images/logo-white.png';
-import appleStore from '../../images/apple-store.svg';
-import googleStore from '../../images/google-store.png';
-import facebook from '../../images/ico-facebook.svg';
-import twitter from '../../images/ico-twitter.svg'; 
+import Subscribe from './Subscribe';
 
 class Footer extends Component {
     render() { 
@@ -15,74 +11,106 @@ class Footer extends Component {
                 <div className="container">
                     <div className="footer__content">
                         <div className="row align-items-center">
-                            <div className="col col-md-4 col-sm-12 col-12">
-                                <Link className='logo-footer' to="/">
-                                    <img src={logo} width='100' height='100' alt="logo"/>
-                                </Link>
-
-                                <h5>
-                                    Social Network
+                            <div className="col col-md-3 col-sm-12 col-12">
+                                <h5 className="footer__title">
+                                    About
                                 </h5>
                                 
-                                <ul className="list socials d-flex justify-content-center">
+                                <div className="footer__entry">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit amet numquam iure provident voluptate essequasi, veritatis totam voluptas nostrum.Lorem ipsum dolor sit amet, consectetur 
+                                    </p>
+                                    
+                                    <p>
+                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum .
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="col col-md-3 col-sm-12 col-12">
+                                <h5 className="footer__title">
+                                    Our Service
+                                </h5>
+                                
+                                <ul className="list list-links">
                                     <li>
-                                        <a href="https://www.facebook.com/">
-                                            <img src={facebook} alt="facebook" width='25' height='25'/>
-                                        </a>
+                                        <Link to='team'>
+                                            Our Team
+                                        </Link>
                                     </li>
 
-                                    <li>    
-                                        <a href="https://www.twitter.com/">
-                                            <img src={twitter} alt="twitter" width='25' height='25'/>
-                                        </a>
+                                    <li>
+                                        <Link to='team'>
+                                            Contact Us
+                                        </Link>
+                                    </li>
+
+                                    <li>
+                                        <Link to='team'>
+                                            About
+                                        </Link>
+                                    </li>
+
+
+                                    <li>
+                                        <Link to='team'>
+                                            Services
+                                        </Link>
+                                    </li>
+
+                                    <li>
+                                        <Link to='team'>
+                                            Terms and Condition
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>
 
-                            <div className="col col-md-4 col-sm-12 col-12">
-                                <h4>
-                                    About Us
-                                </h4>
-                                
-                                <ul className="list footer__nav">
+                            <div className="col col-md-3 col-sm-12 col-12">
+                                <h5 className="footer__title">
+                                    Contact
+                                </h5>
+
+                                <ul className="list list-contacts">
                                     <li>
-                                        <Link className="navbar-brand" to="/help">
-                                            Help
+                                        <Link to='team'>
+                                            Our Team
                                         </Link>
                                     </li>
 
                                     <li>
-                                        <Link className="navbar-brand" to="/contacts">
+                                        <Link to='team'>
                                             Contact Us
                                         </Link>
                                     </li>
-                                    
+
                                     <li>
-                                        <Link className="navbar-brand" to="/contacts">
-                                            How it works
+                                        <Link to='team'>
+                                            About
+                                        </Link>
+                                    </li>
+
+
+                                    <li>
+                                        <Link to='team'>
+                                            Services
+                                        </Link>
+                                    </li>
+
+                                    <li>
+                                        <Link to='team'>
+                                            Terms and Condition
                                         </Link>
                                     </li>
                                 </ul>
                             </div>
                             
-                            <div className="col col-md-4 col-sm-12 col-12">
-                                <h4>
-                                    Mobile apps
-                                </h4>
+                            <div className="col col-md-3 col-sm-12 col-12">
+                                <h5 className="footer__title">
+                                    Subscribe
+                                </h5>
 
-                                <ul className="list list-mobile-apps d-flex align-items-center justify-content-center">
-                                    <li>
-                                        <a href="https://www.apple.com/ie/ios/app-store/">
-                                            <img src={appleStore} alt="apple-store"/>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="https://store.google.com/">
-                                            <img src={googleStore} alt="google-store"/>
-                                        </a>
-                                    </li>
-                                </ul>
+                                <Subscribe />
                             </div>
                         </div>
                     </div>
