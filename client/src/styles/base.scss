@@ -21,6 +21,7 @@ a {
 	&:hover,
 	&[href^="tel"] {
 		text-decoration: none;
+		color: inherit;
 	}
 }
 

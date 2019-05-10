@@ -48,7 +48,7 @@ export default class User extends Component {
         const styleImage = {
             width: "100%",
             backgroundPosition: 'center center',
-            backgroundRepaet: 'no-repeat',
+            backgroundRepeat: 'no-repeat',
             position: 'absolute',
             borderRadius: '50%',
             left: 0,

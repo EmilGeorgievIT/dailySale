@@ -86,3 +86,42 @@
         }
     }
 }
+
+
+/* ------------------------------------------------------------ *\
+    List Contacts
+\* ------------------------------------------------------------ */
+
+.list-contacts {
+    li a {
+        & {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+        .material-icons {
+            margin-right: 5px;
+        } 
+    }
+}
+
+/* ------------------------------------------------------------ *\
+    List Socials
+\* ------------------------------------------------------------ */
+
+.list-socials {
+    & {
+        padding: .5rem 0;
+    }
+    a {
+        transition: .4s;
+        
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+    
+    li { 
+        margin: 0 5px;
+    }
+}
