@@ -26,4 +26,4 @@ $ npm start
 # Interface
 
 Home
-![HOME](./client/src/images/dailySale.png)
+![HOME](./client/src/images/homepage.png)
