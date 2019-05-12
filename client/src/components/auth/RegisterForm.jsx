@@ -1,11 +1,12 @@
 import React , { Component } from 'react';
-import AuthenticationService from '../../services/authentication-service';
-import { Redirect } from 'react-router-dom';
-
+// import AuthenticationService from '../../services/authentication-service';
+// import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { registerUser } from '../../actions/authActions';
 import '../../styles/Account.scss';
 
-export default class RegisterForm extends Component {
-    static service = new AuthenticationService();
+class RegisterForm extends Component {
+    // static service = new AuthenticationService();
 
     constructor(props) {
         super(props);
@@ -26,7 +27,7 @@ export default class RegisterForm extends Component {
     }
 
 
-    handleSumbit = async (event) => {
+    handleSubmit = async (event) => {
         event.preventDefault();
 
         const { name, email, password } = this.state;
@@ -37,38 +38,47 @@ export default class RegisterForm extends Component {
             password
         };
         
-        try {
-            const credentials = await RegisterForm.service.register(userData)
-            if(credentials.message !== 'User created!') {
-                this.setState({
-                    error: credentials.errors[0].msg
-                })
-                return;
-            }
-            console.log(credentials);
+        this.props.registerUser(userData);
+
+        // try {
+        //     const credentials = await RegisterForm.service.register(userData)
+        //     if(credentials.message !== 'User created!') {
+        //         this.setState({
+        //             error: credentials.errors[0].msg
+        //         })
+        //         return;
+        //     }
+        //     console.log(credentials);
             
-            this.setState({
-                isRegister: true
-            });
-        } catch(error) {
-            console.log(error);
-            this.setState({
-                error: error.message
-            })
+        //     this.setState({
+        //         isRegister: true
+        //     });
+        // } catch(error) {
+        //     console.log(error);
+        //     this.setState({
+        //         error: error.message
+        //     })
+        // }
+    }
+    
+    static getDerivedStateFromProps(nextProps, prevState){
+        if(nextProps.error !== prevState.error){
+          this.setState({ error: nextProps.error});
         }
+        else return null;
     }
 
     render() {
-        const { name, email, password, isRegister, error } = this.state;
+        const { name, email, password, error } = this.state;
         
-        if(isRegister) {
-            return (
-                <Redirect to='/login' />
-            )
-        }
+        // if(isRegister) {
+        //     return (
+        //         <Redirect to='/login' />
+        //     )
+        // }
         return(
             <div className="container">
-                <form className='form-auth form-login' onSubmit={this.handleSumbit}>
+                <form className='form-auth form-login' onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="exampleInputName">Name</label>
                         
@@ -100,3 +110,11 @@ export default class RegisterForm extends Component {
         );
     }
 }
+
+
+const mapToState = (state) => ({
+    auth: state.auth,
+    error: state.error
+})
+
+export default connect(mapToState, { registerUser })(RegisterForm);

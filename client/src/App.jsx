@@ -18,6 +18,9 @@ import UserAds from './components/shared/UserAds';
 import CreateAd from './components/CreateAd';
 import CategoryPosts from './components/CategoryPosts';
 
+import { Provider } from 'react-redux'
+import store from './store';
+
 class App extends Component {
   constructor(props){
     super(props);
@@ -38,28 +41,30 @@ class App extends Component {
     
     return (
       <div className="App">
-      <Router>
-        <Fragment>
-          <UserProvider value={user} >
-            <Navigation />
-              <main className='main'>
-                <Switch>
-                  <Route exact path='/' component = { Main }/>
-                  <Route exact path='/register' component = { RegisterForm }/>
-                  <Route exact path='/post/:id' component = { PostDetails }/>
-                  <Route exact path='/login' component = { LoginForm }/>
-                  <Route exact path='/messages' component = { Messages }/>
-                  <Route exact path='/create/ad' component = { CreateAd }/>
-                  <Route exact path='/profile' component = { Profile }/>
-                  <Route exact path='/category/:categoryName' component = { CategoryPosts }/>
-                  <Route exact path='/user/ads/:userId' component = { UserAds }/>
-                  <Route component = { NotFound } />
-                </Switch>
-              </main>
-            <Footer />
-          </UserProvider>
-        </Fragment>
-      </Router>
+        <Provider store={store}>
+          <Router>
+            <Fragment>
+              <UserProvider value={user} >
+                <Navigation />
+                  <main className='main'>
+                    <Switch>
+                      <Route exact path='/' component = { Main }/>
+                      <Route exact path='/register' component = { RegisterForm }/>
+                      <Route exact path='/post/:id' component = { PostDetails }/>
+                      <Route exact path='/login' component = { LoginForm }/>
+                      <Route exact path='/messages' component = { Messages }/>
+                      <Route exact path='/create/ad' component = { CreateAd }/>
+                      <Route exact path='/profile' component = { Profile }/>
+                      <Route exact path='/category/:categoryName' component = { CategoryPosts }/>
+                      <Route exact path='/user/ads/:userId' component = { UserAds }/>
+                      <Route component = { NotFound } />
+                    </Switch>
+                  </main>
+                <Footer />
+              </UserProvider>
+            </Fragment>
+          </Router>
+        </Provider>
       </div>
     );
   }

@@ -73,11 +73,7 @@ class Main extends Component {
                 </div>
                 
                 <main className='main'>
-                    <Post />
-                    
-                    <PostFeature />
-                    
-                    {
+                {
                         posts.length ?
                         <div className='section-results'>
                             <div className="container">
@@ -95,6 +91,10 @@ class Main extends Component {
                             </div>
                         </div> : ''
                     }
+                    
+                    <Post />
+                    
+                    <PostFeature />
                 </main>
             </Fragment>
         )
