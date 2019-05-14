@@ -61,12 +61,12 @@ class RegisterForm extends Component {
         // }
     }
     
-    static getDerivedStateFromProps(nextProps, prevState){
-        if(nextProps.error !== prevState.error){
-          this.setState({ error: nextProps.error});
-        }
-        else return null;
-    }
+    // static getDerivedStateFromProps(nextProps, prevState){
+    //     if(nextProps.error !== prevState.error){
+    //         this.setState({ error: nextProps.error});
+    //     }
+    //     else return null;
+    // }
 
     render() {
         const { name, email, password, error } = this.state;
