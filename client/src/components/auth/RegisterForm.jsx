@@ -1,24 +1,22 @@
 import React , { Component } from 'react';
-// import AuthenticationService from '../../services/authentication-service';
-// import { Redirect } from 'react-router-dom';
+import { withRouter } from  'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
 import '../../styles/Account.scss';
 
 class RegisterForm extends Component {
-    // static service = new AuthenticationService();
-
+       
     constructor(props) {
         super(props);
-        
+
         this.state = {
             name: '',
             email: '',
             password: '',
-            error: '',
-            isRegister: ''
+            isRegister: '',
+            error: {}
         };
-    }
+    } 
     
     handleChange = ({target}) => {
         this.setState({
@@ -37,84 +35,69 @@ class RegisterForm extends Component {
             email,
             password
         };
-        
-        this.props.registerUser(userData);
+        console.log(this.state);
 
-        // try {
-        //     const credentials = await RegisterForm.service.register(userData)
-        //     if(credentials.message !== 'User created!') {
-        //         this.setState({
-        //             error: credentials.errors[0].msg
-        //         })
-        //         return;
-        //     }
-        //     console.log(credentials);
-            
-        //     this.setState({
-        //         isRegister: true
-        //     });
-        // } catch(error) {
-        //     console.log(error);
-        //     this.setState({
-        //         error: error.message
-        //     })
-        // }
+        this.props.registerUser(userData, this.props.history);
     }
     
-    // static getDerivedStateFromProps(nextProps, prevState){
-    //     if(nextProps.error !== prevState.error){
-    //         this.setState({ error: nextProps.error});
-    //     }
-    //     else return null;
-    // }
+    static getDerivedStateFromProps(props, state){
+        if (props.error !== state.error) {
+            console.log(props.error);
+            return {
+                error: props.error
+            };
+        }
 
+        else return null;
+    }
     render() {
-        const { name, email, password, error } = this.state;
+        const { name, email, password } = this.state;
         
-        // if(isRegister) {
-        //     return (
-        //         <Redirect to='/login' />
-        //     )
-        // }
+        if (this.props.auth.isAuthenticated) {
+            this.props.history.push('/');
+        }
+        
         return(
-            <div className="container">
-                <form className='form-auth form-login' onSubmit={this.handleSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="exampleInputName">Name</label>
+            <div className="section-auth">
+                <div className="container">
+                    <form className='form-auth form-login' onSubmit={this.handleSubmit}>
+                        <div className="form-group">
+                            <label htmlFor="exampleInputName">Name</label>
+                            
+                            <input type="text" name='name' className="form-control" id="exampleInputName" aria-describedby="emailHelp" onChange={this.handleChange} value={name} placeholder="Enter your name"/>                    
+                        </div>
                         
-                        <input type="text" name='name' className="form-control" id="exampleInputName" aria-describedby="emailHelp" onChange={this.handleChange} value={name} placeholder="Enter your name"/>                    
-                    </div>
+                        <div className="form-group">
+                            <label htmlFor="exampleInputEmail1">Email address</label>
+                            
+                            <input type="email" name='email' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" onChange={this.handleChange} value={email} placeholder="Enter email"/>
+                            
+                            <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                            
+                        </div>
 
-                    <div className="form-group">
-                        <label htmlFor="exampleInputEmail1">Email address</label>
+                        <div className="form-group">
+                            <label htmlFor="exampleInputPassword1">Password</label>
+                            
+                            <input type="password" name='password' value={password} onChange={this.handleChange} className="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                        </div>
                         
-                        <input type="email" name='email' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" onChange={this.handleChange} value={email} placeholder="Enter email"/>
-                        
-                        <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-                        
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="exampleInputPassword1">Password</label>
-                        
-                        <input type="password" name='password' value={password} onChange={this.handleChange} className="form-control" id="exampleInputPassword1" placeholder="Password"/>
-                    </div>
-                    
-                    <p className={error ? 'alert alert-danger' : ''}>
-                        { error ? error : '' }
-                    </p>
-                    
-                    <button type="submit" className="btn btn-primary">Submit</button>
-                </form>
+                        {/* <p className={error ? 'alert alert-danger' : ''}>
+                            { error ? error : '' }
+                        </p>
+                        */}
+                        <button type="submit" className="btn btn-primary">Submit</button>
+                    </form>
+                </div>
             </div>
         );
     }
 }
 
 
-const mapToState = (state) => ({
+const mapToState = state => ({
     auth: state.auth,
     error: state.error
 })
 
-export default connect(mapToState, { registerUser })(RegisterForm);
+export default connect(mapToState, { registerUser })(withRouter(RegisterForm));

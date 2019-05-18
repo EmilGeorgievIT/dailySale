@@ -3,7 +3,6 @@ import './App.scss';
 
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { UserProvider, defaultUserState } from './components/contexts/user-context';
 
 import Footer from './components/shared/Footer';
 import Navigation from './components/shared/Navigation';
@@ -18,23 +17,36 @@ import UserAds from './components/shared/UserAds';
 import CreateAd from './components/CreateAd';
 import CategoryPosts from './components/CategoryPosts';
 
+
 import { Provider } from 'react-redux'
 import store from './store';
+import jwt_decode from 'jwt-decode';
+import { setCurrentUser, logOutUser } from './actions/authActions';
+
+
+if(localStorage.token) {
+  const decode = jwt_decode(localStorage.token);
+  
+  store.dispatch(setCurrentUser(decode));
+
+  const currentTime = Date.now() / 1000;
+
+  if(decode.exp < currentTime) {
+    store.dispatch(logOutUser());
+
+    window.location.href = '/login';
+  }
+}
 
 class App extends Component {
   constructor(props){
     super(props);
     
     this.state = {
-      user: {
-        ...defaultUserState,
-        updateUser: this.updateUser
-      }
+      user: ''
     }
   }
-  updateUser = (user) => {
-    this.setState({ user });
-  };
+
 
   render() {
     const { user } = this.state
@@ -44,7 +56,6 @@ class App extends Component {
         <Provider store={store}>
           <Router>
             <Fragment>
-              <UserProvider value={user} >
                 <Navigation />
                   <main className='main'>
                     <Switch>
@@ -61,7 +72,6 @@ class App extends Component {
                     </Switch>
                   </main>
                 <Footer />
-              </UserProvider>
             </Fragment>
           </Router>
         </Provider>

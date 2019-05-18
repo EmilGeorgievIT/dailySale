@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import logo from '../../images/logo-white.png';
 import logoSticky from '../../images/logo.png';
 import '../../styles/Navigation.scss';
-import { UserConsumer } from '../contexts/user-context';
+import { connect } from 'react-redux';
+import { loginUser, logOutUser } from '../../actions/authActions';
 
 class Navigation extends Component {
     state = {
@@ -11,15 +12,9 @@ class Navigation extends Component {
     }
 
     logOut = () => {
-        
-        const { updateUser } = this.props;
-        
-        updateUser({
-            isLogged: false
-        })
-
-        sessionStorage.clear();
+        this.props.logOutUser();
     }
+
     handleScroll = (event) => {
         const el = document.getElementsByClassName('navigation');
         const isTop = window.scrollY >= 78;
@@ -35,7 +30,7 @@ class Navigation extends Component {
         window.removeEventListener('scroll', this.handleScroll);
     }
     render() {
-        const { isLogged } = this.props; 
+        const { isAuthenticated, user } = this.props.auth; 
         
         return(
             <nav className={this.state.isTop ? 'navigation navbar navbar-expand-lg fixed' : 'navigation navbar navbar-expand-lg'}>
@@ -91,19 +86,19 @@ class Navigation extends Component {
                                     </button>
                                 
                                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <Link className={isLogged ? 'dropdown-item sr-only' : 'dropdown-item'} to="/login">
+                                        <Link className={isAuthenticated ? 'dropdown-item sr-only' : 'dropdown-item'} to="/login">
                                             Login
                                         </Link>
                                         
-                                        <Link className={isLogged ? 'dropdown-item sr-only' : 'dropdown-item'} to='/register'>
+                                        <Link className={isAuthenticated ? 'dropdown-item sr-only' : 'dropdown-item'} to='/register'>
                                             Register
                                         </Link>
 
-                                        <Link className={!isLogged ? 'dropdown-item sr-only' : 'dropdown-item'} to='/' onClick={this.logOut}>
+                                        <Link className={!isAuthenticated ? 'dropdown-item sr-only' : 'dropdown-item'} to='/' onClick={this.logOut}>
                                             Logout
                                         </Link>
 
-                                        <Link className={!isLogged ? 'dropdown-item sr-only' : 'dropdown-item'} to='/profile'>
+                                        <Link className={!isAuthenticated ? 'dropdown-item sr-only' : 'dropdown-item'} to='/profile'>
                                             My Profile
                                         </Link>
                                     </div>
@@ -116,20 +111,9 @@ class Navigation extends Component {
         );
     }
 }
+const mapStateToPops = (state) => ({
+    auth: state.auth,
+    error: state.error
+});
 
-const NavigationWithConsumer = (props) => {
-  return (
-      <UserConsumer>
-          {
-              ({isLogged, updateUser}) => (
-                <Navigation 
-                  isLogged={isLogged}
-                  updateUser={updateUser}
-                />
-              )
-          }
-      </UserConsumer>
-  )
-};
-
-export default NavigationWithConsumer;
+export default connect(mapStateToPops, { loginUser, logOutUser })(Navigation);

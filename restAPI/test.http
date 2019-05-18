@@ -1,1 +1,6 @@
-GET http://localhost:3200/feed/post/category/musicandeducation
+http://localhost:3200/auth/signin
+
+{
+    email: "gosho@abv.bg",
+    password: "test1234"
+}

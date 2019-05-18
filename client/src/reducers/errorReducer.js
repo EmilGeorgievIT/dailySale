@@ -1,8 +1,8 @@
 import { GET_ERRORS } from '../actions/Types';
 
-const initState = {};
+const initalState = {};
 
-export default function(state = initState, action) {
+export default function(state = initalState, action) {
     switch(action.type) {
         case GET_ERRORS: 
             return action.payload;
