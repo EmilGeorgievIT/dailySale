@@ -24,7 +24,7 @@ import jwt_decode from 'jwt-decode';
 import { setCurrentUser, logOutUser } from './actions/authActions';
 
 
-if(localStorage.token) {
+if(localStorage.token !== undefined) {
   const decode = jwt_decode(localStorage.token);
   
   store.dispatch(setCurrentUser(decode));

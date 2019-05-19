@@ -6,8 +6,10 @@ import { Redirect } from 'react-router-dom';
 import Posts from '../components/Posts';
 import '../styles/Profile.scss';
 import Messages from './Messages';
+import { connect } from 'react-redux';
+import { loginUser } from '../actions/authActions';
 
-export default class Profile extends Component {
+class Profile extends Component {
     static service = new ProfileService();
     static getPost = new PostService();
     
@@ -22,7 +24,7 @@ export default class Profile extends Component {
     
    async componentDidMount() {
         try {
-            const userId = sessionStorage.getItem('ds_chk_temp');
+            const userId = localStorage.getItem('ds_chk_temp');
             const user = await Profile.service.getUserDetails(userId)
             .then((user) => {
                 this.setState({user});
@@ -53,7 +55,7 @@ export default class Profile extends Component {
     render() {
         const { email, image, location, phoneNumber, name } = this.state.user;
 
-        if(!sessionStorage.getItem('token')) {
+        if(!this.props.auth.isAuthenticated) {
             return (
                 <Redirect to='/'/>
             )
@@ -122,3 +124,9 @@ export default class Profile extends Component {
         );
     }
 }
+
+const mapStateToProps = (state) => ({
+    auth: state.auth
+});
+
+export default connect(mapStateToProps, { loginUser })(Profile);

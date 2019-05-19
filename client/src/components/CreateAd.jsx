@@ -3,8 +3,11 @@ import '../styles/Sections.scss';
 import '../styles/Forms.scss';
 import PostService from '../services/posts-service';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { loginUser } from '../actions/authActions';
 
-export default class CreateAd extends Component {
+
+class CreateAd extends Component {
     static service = new PostService();
 
     state = {
@@ -25,7 +28,7 @@ export default class CreateAd extends Component {
             { name: 'Property', icon: 'store'},
             { name: 'Work', icon: 'work'},
         ],
-        submited: false,
+        submitted: false,
         title: '',
         category: '',
         price: '',
@@ -36,7 +39,7 @@ export default class CreateAd extends Component {
         email: '',
         image: ''
     }
-    hadleSumbit = (event) => {
+    handleSubmit = (event) => {
         event.preventDefault();
 
         const { 
@@ -69,7 +72,7 @@ export default class CreateAd extends Component {
             res
                 .then(data => {
                     this.setState({
-                        submited: true
+                        submitted: true
                     })
                     console.log(data);
                 })
@@ -109,13 +112,20 @@ export default class CreateAd extends Component {
         });
     }
   render() {
-    const { items, submited } = this.state; 
+    const { items, submitted } = this.state; 
 
-    if(submited) {
+    if(!this.props.auth.isAuthenticated) {
+        return(
+            <Redirect to='/login' />
+        )
+    }
+
+    if(submitted) {
         return(
             <Redirect to='/' />
         )
     }
+
     return (
       <div className='section-create-ad'>
           <div className="container">
@@ -126,7 +136,7 @@ export default class CreateAd extends Component {
             </div>
             
             <div className="section__body">
-                <form className='form-add' onSubmit={this.hadleSumbit}>
+                <form className='form-add' onSubmit={this.handleSubmit}>
                     <div className="form-row">
                         <div className="form-group col">
                             <label htmlFor="title">Title</label>
@@ -228,3 +238,9 @@ export default class CreateAd extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+    auth: state.auth
+});
+
+export default connect(mapStateToProps, { loginUser })(CreateAd);

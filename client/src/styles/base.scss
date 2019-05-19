@@ -11,6 +11,7 @@ body {
 	font-size: $font-size-base;
 	line-height: $line-height-base;
 	color: $base-color;
+	overflow-x: hidden;
 }
 
 a {

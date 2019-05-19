@@ -17,7 +17,7 @@ function validateUser(req, res) {
 }
 
 module.exports = {
-  signUp: (req, res, next) => {
+  signUp: (req, res) => {
     if (validateUser(req, res)) {
       const { name, email, password, } = req.body;
       const salt = encryption.generateSalt();
@@ -36,11 +36,11 @@ module.exports = {
           error.statusCode = 500;
         }
 
-        next(error);
+        // next(error);
       });
     }
   },
-  signIn: (req, res, next) => {
+  signIn: (req, res) => {
     const { email, password } = req.body;
 
     User.findOne({ email: email })
@@ -81,7 +81,7 @@ module.exports = {
         if (!error.statusCode) {
           error.statusCode = 500;
         }
-        next(error)
+        // next(error)
       })
   }
 }
