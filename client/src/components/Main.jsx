@@ -2,11 +2,11 @@ import React, { Component, Fragment } from 'react';
 import Post from './Post';
 import PostFeature from './PostFeature';
 import PostsList from './PostsList';
-import '../styles/Hero.scss';
+// import '../styles/Hero.scss';
 import '../styles/Sections.scss';
 import SearchForm from './SearchForm';
 import CategoriesList from './CategoriesList';
-import Typed from 'react-typed';
+import { Intro } from './shared/Intro';
 
 class Main extends Component {
     constructor(props) {
@@ -46,32 +46,14 @@ class Main extends Component {
 
         return (
             <Fragment>
-                <div className='section-hero'>
-                    <div className="container">
-                        <div className="section__head">
-                            <Typed  className='section__title'
-                                strings={[
-                                    'Search for ads',
-                                    'Post your ads',
-                                    'Find all you need']}
-                                typeSpeed={100}
-                                backSpeed={70} 
-                                loop >
-                            </Typed>
+               <Intro title='Sell or buy in one place for free' subTitle='Sell ​​what you do not need or buy what you need in one place for free'> 
+                    <SearchForm items={this.state.items} results={this.showResults} location='Ireland'/>
 
-                            <p>
-                                Sell ​​what you do not need or buy what you need in one place for free
-                            </p>
-
-                            <SearchForm items={this.state.items} results={this.showResults} location='Ireland'/>
-                        </div>
-                        
-                        <div className="section__body">
-                            <CategoriesList items={this.state.items} />
-                        </div>
+                    <div className="section__body">
+                        <CategoriesList items={this.state.items} />
                     </div>
-                </div>
-                
+               </Intro>
+
                 <main className='main'>
                 {
                         posts.length ?
