@@ -71,7 +71,8 @@ blockquote:last-child { margin-bottom: 0; }
 /* Mobile */
 
 @media #{$mobile} {
-	h2 { font-size: 25px; line-height: 0.8; }
+	h1 { font-size: 24px; }
+	h2 { font-size: 22px; line-height: 0.8; }
 }
 
 /* ------------------------------------------------------------ *\

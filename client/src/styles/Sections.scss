@@ -120,7 +120,7 @@
 
 .section-featured-posts {
     & {
-        background-color: #f1eee7;
+        background-color: #f1eef7;
     } 
 }
 
@@ -143,7 +143,6 @@
         position: relative;
         margin-top: -79px;
         padding: 8rem 0 6rem;
-        background-image: url('../images/banner.jpg');
         background-position: center 50%;
         background-repeat: no-repeat;
         background-size: cover;
@@ -183,14 +182,11 @@
         & {
             padding: 5rem 0 2rem;
         }
+        .section__title {
+            font-size: 24px;
+        }
+        .section__subtitle {
+            font-size: 14px;
+        }
     }
-    .search-deal {
-        & {
-            display: block;
-        }
-        .form__line ~ .form__line {
-            border-left: 0;
-            border-top: 1px solid rgba(121, 24, 242, 0.5);
-        }
-    }   
 }

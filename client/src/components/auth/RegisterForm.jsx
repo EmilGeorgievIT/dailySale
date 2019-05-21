@@ -1,8 +1,14 @@
-import React , { Component } from 'react';
+import React , { Component, Fragment } from 'react';
 import { withRouter } from  'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
 import '../../styles/Account.scss';
+import { Link } from 'react-router-dom';
+import { Intro } from '../shared/Intro';
+import bannerImage from '../../images/banner2.jpg'
+import facebookIcon from '../../images/facebook.svg';
+import twitterIcon from '../../images/twitter.svg';
+import linkedInIcon from '../../images/linkedin.svg';
 
 class RegisterForm extends Component {
        
@@ -57,39 +63,94 @@ class RegisterForm extends Component {
             this.props.history.push('/');
         }
         
-        return(
-            <div className="section-auth">
-                <div className="container">
-                    <form className='form-auth form-login' onSubmit={this.handleSubmit}>
-                        <div className="form-group">
-                            <label htmlFor="exampleInputName">Name</label>
-                            
-                            <input type="text" name='name' className="form-control" id="exampleInputName" aria-describedby="emailHelp" onChange={this.handleChange} value={name} placeholder="Enter your name"/>                    
-                        </div>
-                        
-                        <div className="form-group">
-                            <label htmlFor="exampleInputEmail1">Email address</label>
-                            
-                            <input type="email" name='email' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" onChange={this.handleChange} value={email} placeholder="Enter email"/>
-                            
-                            <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-                            
-                        </div>
+        const imageBackground = {
+            backgroundImage: `url(${bannerImage})`
+        };
 
-                        <div className="form-group">
-                            <label htmlFor="exampleInputPassword1">Password</label>
+        return(
+            <Fragment>
+                <Intro 
+                    title='Register'
+                    image={imageBackground}
+                />
+                
+                <div className="section-auth">
+                    <div className="container">
+                        <form className='form-auth form-login' onSubmit={this.handleSubmit}>
+                            <div className="form__head">
+                                <h4 className='form__title text-center'>
+                                    Register
+                                </h4>
+                            </div>
                             
-                            <input type="password" name='password' value={password} onChange={this.handleChange} className="form-control" id="exampleInputPassword1" placeholder="Password"/>
-                        </div>
-                        
-                        {/* <p className={error ? 'alert alert-danger' : ''}>
-                            { error ? error : '' }
-                        </p>
-                        */}
-                        <button type="submit" className="btn btn-primary">Submit</button>
-                    </form>
+                            <div className="form__body">
+                                <div className="form-group">
+                                    <label htmlFor="exampleInputName">Name</label>
+                                    
+                                    <input type="text" name='name' className="form-control" id="exampleInputName" aria-describedby="emailHelp" onChange={this.handleChange} value={name} placeholder="Enter your name"/>                    
+                                </div>
+                                
+                                <div className="form-group">
+                                    <label htmlFor="exampleInputEmail1">Email address</label>
+                                    
+                                    <input type="email" name='email' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" onChange={this.handleChange} value={email} placeholder="Enter email"/>
+                                    
+                                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                                    
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="exampleInputPassword1">Password</label>
+                                    
+                                    <input type="password" name='password' value={password} onChange={this.handleChange} className="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                                </div>
+                                
+                                {/* <p className={error ? 'alert alert-danger' : ''}>
+                                    { error ? error : '' }
+                                </p>
+                                */}
+
+                                <div className="form__actions">
+                                    <button type="submit" className="btn btn-block btn-primary">Submit</button>
+                                    
+                                    <ul className="list-login-links">
+                                        <li>
+                                            Already have an account ? 
+                                            <Link className='space' to='login'>
+                                                Sign In
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <div className="form__socials">
+                                    <div className='divider text-center'></div>
+
+                                    <ul className="list-socials d-flex justify-content-center">
+                                        <li>
+                                            <a href="www.facebook.com">
+                                                <img src={ facebookIcon } width='30' height='30' alt="facebook-login"/>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="www.twitter.com">
+                                                <img src={ twitterIcon } width='30' height='30' alt="twitter-login"/>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="www.linkedin.com">
+                                                <img src={ linkedInIcon } width='30' height='30' alt="linkedin-login"/>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            </Fragment>
         );
     }
 }

@@ -2,11 +2,12 @@ import React, { Component, Fragment } from 'react';
 import Post from './Post';
 import PostFeature from './PostFeature';
 import PostsList from './PostsList';
-// import '../styles/Hero.scss';
+import '../styles/Hero.scss';
 import '../styles/Sections.scss';
 import SearchForm from './SearchForm';
 import CategoriesList from './CategoriesList';
 import { Intro } from './shared/Intro';
+import homeBackground from '../images/banner.jpg';
 
 class Main extends Component {
     constructor(props) {
@@ -38,15 +39,22 @@ class Main extends Component {
             this.setState({
                 posts: [...data]
             })
-            debugger;
         }
     }
     render() {
         const posts = this.state.posts;
+        
+        const imageBackground = {
+            backgroundImage: `url(${homeBackground})`
+        };
 
         return (
             <Fragment>
-               <Intro title='Sell or buy in one place for free' subTitle='Sell ​​what you do not need or buy what you need in one place for free'> 
+               <Intro 
+                title='Sell or buy in one place for free' 
+                subTitle='Sell ​​what you do not need or buy what you need in one place for free'
+                image= {imageBackground}
+                > 
                     <SearchForm items={this.state.items} results={this.showResults} location='Ireland'/>
 
                     <div className="section__body">
