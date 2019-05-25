@@ -2,7 +2,7 @@ import { get, put } from '../rest/rest';
 
 export default class ProfileService {
     constructor() {
-        this.baseUrl = 'http://localhost:3200/profile/details/';
+        this.baseUrl = 'http://192.168.137.1:3200/profile/details/';
     }
 
     getUserDetails(userId) {  

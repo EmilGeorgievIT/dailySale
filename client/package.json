@@ -23,10 +23,12 @@
     "slick-carousel": "^1.8.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "npm run remove:www && react-scripts start",
+    "build": "npm run remove:www && react-scripts build",
+    "build:cordova": "npm run remove:www && react-scripts build && node __script.js && move build www",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "npm run remove:www && react-scripts eject",
+    "remove:www": "if exist www rd /s /q www"
   },
   "eslintConfig": {
     "extends": "react-app"

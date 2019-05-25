@@ -2,8 +2,8 @@ import { get, post } from '../rest/rest';
 
 class SearchService {
     constructor() {
-        this.baseUrl = 'http://localhost:3200/feed/posts';
-        this.searchUrl = 'http://localhost:3200/feed/post/find';
+        this.baseUrl = 'http://192.168.137.1:3200/feed/posts';
+        this.searchUrl = 'http://192.168.137.1:3200/feed/post/find';
     }
     findPosts(obj) {
         return post(this.searchUrl , obj);
