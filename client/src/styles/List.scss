@@ -152,3 +152,18 @@
         list-style: none;
     }
 }
+
+/* ------------------------------------------------------------ *\
+    List Terms
+\* ------------------------------------------------------------ */
+
+.list-terms {
+    li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .material-icons {
+        margin-right: 4px; 
+    }
+}

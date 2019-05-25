@@ -15,7 +15,7 @@ class Footer extends Component {
             <footer className='footer'>
                 <div className="container">
                     <div className="footer__content">
-                        <div className="row align-items-center">
+                        <div className="row align-items-top">
                             <div className="col-12 col-sm-12 col-md-3">
                                 <h5 className="footer__title">
                                     About
@@ -28,7 +28,7 @@ class Footer extends Component {
                                 </div>
                             </div>
 
-                            <div className="col-12 col-sm-12 col-md-3">
+                            <div className="col-12 col-sm-12 col-md-2">
                                 <h5 className="footer__title">
                                     Our Service
                                 </h5>
@@ -125,7 +125,7 @@ class Footer extends Component {
                                 </ul>
                             </div>
                             
-                            <div className="col-12 col-md-3 col-sm-12">
+                            <div className="col-12 col-md-4 col-sm-12">
                                 <h5 className="footer__title">
                                     Subscribe
                                 </h5>
