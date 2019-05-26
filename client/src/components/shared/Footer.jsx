@@ -41,7 +41,7 @@ class Footer extends Component {
                                     </li>
 
                                     <li>
-                                        <Link to='team'>
+                                        <Link to='/contacts'>
                                             Contact Us
                                         </Link>
                                     </li>
