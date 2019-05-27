@@ -3,6 +3,7 @@ import { withRouter } from  'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
 import '../../styles/Account.scss';
+import '../../styles/Forms.scss';
 import { Link } from 'react-router-dom';
 import { Intro } from '../shared/Intro';
 import bannerImage from '../../images/banner2.jpg'

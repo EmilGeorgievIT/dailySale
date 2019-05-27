@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import '../../styles/Account.scss';
 import '../../styles/Sections.scss';
 import '../../styles/List.scss';
+import '../../styles/Forms.scss';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/authActions';
 import { Intro } from '../shared/Intro';

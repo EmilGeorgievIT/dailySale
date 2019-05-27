@@ -1,6 +1,51 @@
 @import '../styles/variables.scss';
 
 /* ------------------------------------------------------------ *\
+	Box Contacts
+\* ------------------------------------------------------------ */
+
+.box-contacts {
+    & {
+        padding: 2rem;
+        color: $white;
+        background-color: $red;
+    }
+    &--blue {
+        background-color: $blue;
+    }
+    &--orange {
+        background-color: $orange;
+    }
+    .box__content {
+        display: flex; 
+        align-items: center; 
+    }
+    .material-icons {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid white;
+        border-radius: 50%;
+    }
+    .box__entry {
+        & {
+            margin-left: 10px;
+        }
+        h5 {
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 0;
+        }
+        p {
+            color: rgba(255,255,255,.5);
+            font-size: 15px;
+        }
+    }
+}
+
+/* ------------------------------------------------------------ *\
 	Box User
 \* ------------------------------------------------------------ */
 
