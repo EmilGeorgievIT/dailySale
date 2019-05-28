@@ -3,6 +3,7 @@ import { Intro } from '../components/shared/Intro';
 import backgroundImage from '../images/banner2.jpg';
 import '../styles/Sections.scss';
 import HowItWorks from './HowItWorks';
+import Promo from './Promo';
 
 class About extends Component {
     constructor(props) {
@@ -45,7 +46,9 @@ class About extends Component {
                         </div>
                     </div>
                 </section>
+
                 <HowItWorks/>
+                <Promo />
             </Fragment>
         );
     }
