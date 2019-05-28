@@ -17,6 +17,7 @@ import UserAds from './components/shared/UserAds';
 import CreateAd from './components/CreateAd';
 import CategoryPosts from './components/CategoryPosts';
 import ContactUs from './components/ConcatUs';
+import About from './components/About';
 
 
 import { Provider } from 'react-redux'
@@ -65,6 +66,7 @@ class App extends Component {
                       <Route exact path='/post/:id' component = { PostDetails }/>
                       <Route exact path='/login' component = { LoginForm }/>
                       <Route exact path='/messages' component = { Messages }/>
+                      <Route exact path='/about' component = { About }/>
                       <Route exact path='/contacts' component = { ContactUs }/>
                       <Route exact path='/create/ad' component = { CreateAd }/>
                       <Route exact path='/profile' component = { Profile }/>
