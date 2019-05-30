@@ -66,7 +66,7 @@ export default class ProfileDetails extends Component {
                 </div>
                     
                 <button type="submit" className="btn btn-primary">
-                    Save
+                    Update Profile
                 </button>
             </form>
         );

@@ -75,7 +75,7 @@ class Profile extends Component {
                 <div className="profile">
                     <div className='container'>
                         <div className="row">
-                            <div className="col-12 col-sm-4">
+                            <div className="col-12 col-sm-3">
                                 <div className="profile__aside">
                                     <div className="card">
                                         <div className="card-header">
@@ -94,18 +94,29 @@ class Profile extends Component {
                                         
                                         <div className="nav flex-column nav-pills nav-profile" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                             <a className="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">
-                                                My Profile
+                                                <i className="material-icons">person</i> Edit Profile
                                             </a>
                                         
                                             <a className="nav-link" id="v-pills-ads-tab" data-toggle="pill" href="#v-pills-ads" role="tab" aria-controls="v-pills-ads" aria-selected="false">
+                                                <i className="material-icons">business</i>
                                                 My Ads
+                                            </a>
+
+                                            <a className="nav-link" id="v-pills-ads-tab" data-toggle="pill" href="#v-pills-favorite" role="tab" aria-controls="v-pills-favorite" aria-selected="false">
+                                                <i className="material-icons">favorite</i>
+                                                
+                                                My Favorite
                                             </a>
                                         
                                             <a className="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">
+                                                <i class="material-icons">message</i>
+                                                
                                                 My Messages
                                             </a>
                                             
                                             <a className="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">
+                                                <i class="material-icons">settings</i>
+                                                
                                                 Settings
                                             </a>
                                         </div>
@@ -113,7 +124,7 @@ class Profile extends Component {
                                 </div>
                             </div>
 
-                            <div className="col-12 col-sm-8">
+                            <div className="col-12 col-sm-9">
                                 <div className="profile__content ">
                                     <div className="tab-content card" id="v-pills-tabContent">
                                         <div className="card-header">
@@ -122,31 +133,53 @@ class Profile extends Component {
                                             </h3>
                                         </div>
 
-                                        <div className="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                                            <ProfileDetails 
-                                            email={email}
-                                            location={location}
-                                            phoneNumber={phoneNumber}
-                                            name= {name}
-                                            />
-                                        </div>
+                                        <div className="card-body">
+                                            <div className="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                                <ProfileDetails 
+                                                email={email}
+                                                location={location}
+                                                phoneNumber={phoneNumber}
+                                                name= {name}
+                                                />
+                                            </div>
 
-                                        <div className="tab-pane tab-pane-ads fade d-flex flex-wrap" id="v-pills-ads" role="tabpanel" aria-labelledby="v-pills-ads-tab">
-                                            {   
-                                                this.state.posts ? 
-                                                    this.state.posts.map((post) => (
-                                                        <Posts className='ads' key={post._id} {...post} />
-                                                        )
-                                                    ) : 'No ads'
-                                            }
-                                        </div>
+                                            <div className="tab-pane tab-pane-ads fade justify-content-between d-flex flex-wrap" id="v-pills-ads" role="tabpanel" aria-labelledby="v-pills-ads-tab">
+                                                {   
+                                                    this.state.posts ? 
+                                                        this.state.posts.map((post) => (
+                                                            <Posts className='ads' key={post._id} {...post} />
+                                                            )
+                                                        ) : 'No ads'
+                                                }
+                                            </div>
 
-                                        <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                                            <Messages />
-                                        </div>
-                                        
-                                        <div className="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                                            ...
+                                            <div className="tab-pane tab-pane-ads fade justify-content-between d-flex flex-wrap" id="v-pills-favorite" role="tabpanel" aria-labelledby="v-pills-favorite-tab">
+                                                {   
+                                                    this.state.posts ? 
+                                                        this.state.posts.map((post) => (
+                                                            <Posts className='ads' key={post._id} {...post} />
+                                                            )
+                                                        ) : 'No ads'
+                                                }
+                                            </div>
+
+                                            <div className="tab-pane tab-pane-ads fade justify-content-between d-flex flex-wrap" id="v-pills-ads" role="tabpanel" aria-labelledby="v-pills-ads-tab">
+                                                {   
+                                                    this.state.posts ? 
+                                                        this.state.posts.map((post) => (
+                                                            <Posts className='ads' key={post._id} {...post} />
+                                                            )
+                                                        ) : 'No ads'
+                                                }
+                                            </div>
+
+                                            <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                                                <Messages />
+                                            </div>
+                                            
+                                            <div className="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                                                ...
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

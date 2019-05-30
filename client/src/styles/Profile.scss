@@ -25,6 +25,9 @@
     }
     .profile__content {
         background-color: $white;
+        .card-body {
+            display: block;
+        }
     }
 }
 
@@ -34,7 +37,19 @@
 
 .tab-pane-ads {
     .post {
-        flex: 0 1 25%;
+        flex: 0 1 30%;
         margin: 0 10px 20px;
+    }
+}
+
+@media #{$mobile} {
+    .tab-pane-ads {
+        & {
+            justify-content: center !important;
+        }
+        .post {
+            flex: 0 1 100%;
+            margin: 0 10px 20px;
+        }
     }
 }
