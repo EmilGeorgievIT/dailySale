@@ -68,7 +68,7 @@ table:last-child,
 blockquote:last-child { margin-bottom: 0; }
 
 .fade:not(.show) {
-	height: 0;
+	display: none !important;
 }
 
 /* Mobile */

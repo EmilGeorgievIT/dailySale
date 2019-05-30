@@ -109,13 +109,13 @@ class Profile extends Component {
                                             </a>
                                         
                                             <a className="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">
-                                                <i class="material-icons">message</i>
+                                                <i className="material-icons">message</i>
                                                 
                                                 My Messages
                                             </a>
                                             
                                             <a className="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">
-                                                <i class="material-icons">settings</i>
+                                                <i className="material-icons">settings</i>
                                                 
                                                 Settings
                                             </a>
