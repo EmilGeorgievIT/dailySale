@@ -86,3 +86,24 @@
 	 
 	.logo { max-width: 45px; }
  }
+
+ /* ------------------------------------------------------------ *\
+	Nav Profile
+\* ------------------------------------------------------------ */
+
+.nav-profile {
+	.nav-link:first-child {
+		border-top: 1px solid #e8ebf3;
+	}
+	.nav-link {
+		background-color: transparent;
+		border-bottom: 1px solid #e8ebf3;
+		padding: .75rem 1.25rem;
+		border-radius: 0;
+	}
+	.nav-link.active {
+		background-color: rgba(241, 238, 247, 0.6);
+		border-right: 2px solid $red;
+		color: $red;
+	}
+}

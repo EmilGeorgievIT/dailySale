@@ -1,3 +1,6 @@
+@import '../styles/variables.scss';
+
+
 /* ------------------------------------------------------------ *\
 	Profile
 \* ------------------------------------------------------------ */
@@ -5,6 +8,23 @@
 .profile {
     & {
         padding: 2rem 0;
+    }
+    .profile__image {
+        padding: 1rem 0;
+        text-align: center;;
+        margin: 0 auto;
+
+        img {
+            border-radius: 50%;
+            width: 5rem;
+            height: 5rem;
+        }
+    }
+    .profile__aside {
+        background-color: $white;
+    }
+    .profile__content {
+        background-color: $white;
     }
 }
 
