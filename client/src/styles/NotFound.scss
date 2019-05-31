@@ -3,12 +3,15 @@
     404 page
 =======================*/
 
+.jumbotron {
+    margin-bottom: 0;
+} 
 
 .page_404 {
     & {
-        padding:40px 0;
+        padding: 40px 0;
         background:#fff;
-    } 
+    }
     img  { 
         width:100%;
     }

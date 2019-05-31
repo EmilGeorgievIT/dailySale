@@ -62,16 +62,16 @@ export default class PostDetails extends Component {
             console.log(error);
         }
     }
-    handleScroll = (event) => {
-        const el = document.getElementsByClassName('footer');
-        const elOffsetTop = el[0].offsetTop;
+    // handleScroll = (event) => {
+    //     const el = document.getElementsByClassName('footer');
+    //     const elOffsetTop = el[0].offsetTop;
 
-        const isTop = window.scrollY >= 165 && window.scrollY <= elOffsetTop - window.innerHeight;
+    //     const isTop = window.scrollY >= 165 && window.scrollY <= elOffsetTop - window.innerHeight;
         
-        if (isTop !== this.state.isTop) {
-            this.setState({ isTop })
-        }
-    }
+    //     if (isTop !== this.state.isTop) {
+    //         this.setState({ isTop })
+    //     }
+    // }
 
     componentWillUnmount() {
         window.removeEventListener('scroll', this.handleScroll);
