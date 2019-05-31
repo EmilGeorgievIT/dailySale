@@ -154,6 +154,9 @@
         background-repeat: no-repeat;
         background-size: cover;
     }
+    .container--small {
+        max-width: 960px;
+    }
     .section__head {
         position: relative;
         color: $white;

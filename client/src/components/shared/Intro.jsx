@@ -4,7 +4,7 @@ import '../../styles/Hero.scss';
 
 export const Intro = ({title, subTitle, image, children}) => (
     <div className='section-hero' style={image}>
-        <div className="container">
+        <div className="container container--small">
             <div className="section__head">
                 <h1 className='section__title'>
                     {title}
