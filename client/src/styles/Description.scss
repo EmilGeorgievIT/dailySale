@@ -1,0 +1,25 @@
+@import '../styles/variables.scss';
+
+/* ------------------------------------------------------------ *\
+	Description
+\* ------------------------------------------------------------ */
+
+.description {
+    & {
+
+    }
+    .list-links {
+        & {
+            list-style: none;
+        }
+        li .btn {
+            display: flex;
+            align-items: center;
+            color: $white;
+            font-size: 14px;
+        }
+        li ~ li  {
+            margin-left: 10px;
+        }
+    }
+}

@@ -6,6 +6,7 @@ import { Intro } from '../components/shared/Intro'
 import SearchForm from '../components/SearchForm';
 import PostsList from '../components/PostsList';
 import Gallery from '../components/post/Gallery';
+import Description from '../components/post/Description';
 
 import PostService from '../services/posts-service';
 import '../styles/Sections.scss';
@@ -139,6 +140,9 @@ export default class PostDetails extends Component {
                                         views='3'
                                         price={price}
                                         favorite='3'
+                                    />
+                                    <Description 
+                                        description={description}
                                     />
                                 </div> 
                             </div>  
