@@ -16,6 +16,7 @@
 .section-posts {
     & {
         padding: 4rem 0;
+        background-color: $white;
     }
     .slick-slider {
         width: 100%;
@@ -149,7 +150,7 @@
     & {
         position: relative;
         margin-top: -79px;
-        padding: 8rem 0 6rem;
+        padding: 7rem 0 5rem;
         background-position: center 50%;
         background-repeat: no-repeat;
         background-size: cover;
@@ -257,5 +258,16 @@
     }
     .section__actions {
         margin-top: 2rem;
+    }
+}
+
+
+/* ------------------------------------------------------------ *\
+	Section Post View
+\* ------------------------------------------------------------ */
+
+.section-post-view {
+    & {
+        padding: 3rem 0;
     }
 }

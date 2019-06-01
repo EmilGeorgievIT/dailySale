@@ -1,0 +1,58 @@
+@import '../styles/variables.scss';
+
+/* ------------------------------------------------------------ *\
+	Gallery
+\* ------------------------------------------------------------ */
+
+.gallery {
+    & {
+        padding: 1.5rem;
+        border: 1px solid #eaeef9;
+        border-radius: 5px;
+        box-shadow: 0 0 40px 0 rgba(234,238,249,.5);
+    }
+    .gallery__image {
+        position: relative;
+    }
+    .gallery__price {
+        position: absolute;
+        top: 10px;
+        text-align: center;
+        left: 0;
+        font-size: 30px;
+        padding: 3px 8px;
+        color: $white;
+        background-color: $blue;
+    }
+    .gallery__price:before {
+        & {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: -24px;
+            width: 0;
+            height: 0;
+            border-top: 24px solid transparent;
+            border-bottom: 24px solid transparent;   
+            border-left: 24px solid $blue;
+        }        
+    }
+    .list-meta {
+        & {
+            list-style: none;
+            padding: 1rem 0;
+        }
+        li {
+            display: flex;
+            align-items: center;
+
+            .material-icons {
+                margin-right: 5px;
+            }
+        }
+        li ~ li { 
+            margin-left: 10px;
+        }
+    }
+}

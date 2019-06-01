@@ -63,7 +63,7 @@ class Main extends Component {
                </Intro>
 
                 <main className='main'>
-                {
+                    {
                         posts.length ?
                         <div className='section-results'>
                             <div className="container">

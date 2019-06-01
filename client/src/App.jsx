@@ -11,7 +11,7 @@ import NotFound from './components/NotFound';
 import LoginForm from './components/auth/LoginForm';
 import RegisterForm from './components/auth/RegisterForm';
 import Profile from './components/Profile';
-import PostDetails from './components/PostDetails';
+import PostDetailsMain from './components/PostDetailsMain';
 import Messages from './components/Messages';
 import UserAds from './components/shared/UserAds';
 import CreateAd from './components/CreateAd';
@@ -63,7 +63,7 @@ class App extends Component {
                     <Switch>
                       <Route exact path='/' component = { Main }/>
                       <Route exact path='/register' component = { RegisterForm }/>
-                      <Route exact path='/post/:id' component = { PostDetails }/>
+                      <Route exact path='/post/:id' component = { PostDetailsMain }/>
                       <Route exact path='/login' component = { LoginForm }/>
                       <Route exact path='/messages' component = { Messages }/>
                       <Route exact path='/about' component = { About }/>

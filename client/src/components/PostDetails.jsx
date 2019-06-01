@@ -4,9 +4,9 @@ import banner from '../images/banner.jpg';
 
 import { Intro } from '../components/shared/Intro'
 import SearchForm from '../components/SearchForm';
-import Comment from '../components/Comment';
-import Price from '../components/shared/Price';
-import User from '../components/shared/User';
+import Comment from './post/Comment';
+import Price from './post/Price';
+import User from './post/User';
 import PostsList from '../components/PostsList';
 
 import PostService from '../services/posts-service';
@@ -209,6 +209,7 @@ export default class PostDetails extends Component {
                         </div>
                     </div>
                 </section>                
+            
             </Fragment>
         );
     }

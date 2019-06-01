@@ -3,7 +3,7 @@ import '../../styles/Sections.scss';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import User from './User';
+import User from '../post/User';
 import PostsList from './../PostsList';
 import ProfileService from '../../services/profile-service';
 import PostService from '../../services/posts-service';
