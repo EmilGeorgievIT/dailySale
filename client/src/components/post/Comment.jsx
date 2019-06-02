@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/Comment.scss';
+import '../../styles/Comment.scss';
 
 const Comment = ({phoneNumber}) => (
     <div className='comment'>

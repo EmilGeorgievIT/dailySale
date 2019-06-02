@@ -8,6 +8,8 @@ import PostsList from '../components/PostsList';
 import Gallery from '../components/post/Gallery';
 import Description from '../components/post/Description';
 import Rating from '../components/post/Rating';
+import Comment from '../components/post/Comment';
+import UserProfile from '../components/post/UserProfile';
 
 import PostService from '../services/posts-service';
 import '../styles/Sections.scss';
@@ -98,11 +100,12 @@ export default class PostDetails extends Component {
         const { title, image, category, price, description, date, location, phoneNumber, rating, creator, posts } = this.state;
         
         const postImage = {
-            width: "720px",
+            width: "100%",
             backgroundPosition: 'center center',
             backgroundRepaet: 'no-repeat',
             backgroundSize: 'cover',
-            height: "431px",
+            minHeight: "431px",
+            height: '100%',
             backgroundImage: "url(" + image + ")"
         };
 
@@ -157,12 +160,20 @@ export default class PostDetails extends Component {
                                     <Rating 
                                     rating={rating}
                                     />
+                                    <Comment />
                                 </div> 
                             </div>  
                            
                            <div className="col-xl-4 col-lg-4 col-md-12">
                                 <div className="section__aside">
-                                    
+                                    <UserProfile 
+                                        image=''
+                                        name='' 
+                                        joined=''
+                                        email=''
+                                        phone='' 
+                                        website=''
+                                    />
                                 </div>
                            </div>
                         </div>
