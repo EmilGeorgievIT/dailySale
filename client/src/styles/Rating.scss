@@ -1,0 +1,40 @@
+@import '../styles/variables.scss';
+
+/* ------------------------------------------------------------ *\
+	Rating
+\* ------------------------------------------------------------ */
+.rating {
+    & {
+
+    }
+    .star {
+        display: flex;
+        align-items: center;
+        flex: 0 1 5%;
+        max-width: 5%;
+        
+        .material-icons {
+            color: #ffa22b;
+        }
+    }
+    .progress {
+        flex: 0 1 95%;
+        max-width: 95%;
+    }
+
+    .list-rating {
+        & {
+            list-style: none;
+        }
+        li {
+            & {
+                display: flex;
+                align-items: center;
+                margin-bottom: 10px;
+            }
+            p {
+                margin-bottom: 0;
+            }
+        }
+    }
+}

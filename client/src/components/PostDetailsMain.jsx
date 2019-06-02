@@ -7,6 +7,7 @@ import SearchForm from '../components/SearchForm';
 import PostsList from '../components/PostsList';
 import Gallery from '../components/post/Gallery';
 import Description from '../components/post/Description';
+import Rating from '../components/post/Rating';
 
 import PostService from '../services/posts-service';
 import '../styles/Sections.scss';
@@ -31,6 +32,14 @@ export default class PostDetails extends Component {
             creator: '',
             isTop: false,
             posts: [],
+            rating: {
+                "5" : 353,
+                "4" : 153,
+                "3" : 1353,
+                "2" : 53,
+                "1": 1,
+                "id": ''
+            },
             items: [
                 { name: 'House & DIY' , icon: 'home' },
                 { name: 'Animals', icon: 'pets' },
@@ -86,7 +95,7 @@ export default class PostDetails extends Component {
     }
 
     render() {
-        const { title, image, category, price, description, date, location, phoneNumber, creator, posts } = this.state;
+        const { title, image, category, price, description, date, location, phoneNumber, rating, creator, posts } = this.state;
         
         const postImage = {
             width: "720px",
@@ -143,6 +152,10 @@ export default class PostDetails extends Component {
                                     />
                                     <Description 
                                         description={description}
+                                    />
+
+                                    <Rating 
+                                    rating={rating}
                                     />
                                 </div> 
                             </div>  
