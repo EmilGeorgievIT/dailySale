@@ -5,18 +5,53 @@
 \* ------------------------------------------------------------ */
 
 .user-profile {
-    & {
-
-    }
     .user__title {
         font-weight: 500;
         text-align: center;
     }
     .btn {
+        display: flex;
+        align-items: center;
         font-size: .814rem;
+        .material-icons {
+            font-size: 20px;
+            margin-right: 5px;
+        }
+    }
+    .btn-success {
+        margin: 0 auto;
+    }
+    .btn ~ .btn {
+        margin-left: 5px;
     }
     .user__body ~ .user__body {
         border: 1px solid #e8ebf3;
+    }
+    .list-socials {
+        padding: 0;
+    }
+    .list-contact {
+        & {
+            list-style: none;
+        }
+        li {
+            & {
+                display: flex;
+                align-items: center;
+                margin-bottom: .5rem;
+            }
+            .material-icons {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 30px;
+                height: 30px;
+                background-color: $silver;
+                border-radius: 50%;
+                margin-right: 5px;
+                font-size: 18px;
+            }
+        }
     }
     .user__image {
         width: 5rem;

@@ -83,9 +83,9 @@ class UserProfile extends Component {
                     </div>
     
                     <div className="card-body user__body">
-                        <h4 className='contact-title'>
+                        <h5 className='card-title contact-title mb-2'>
                             Contact Info
-                        </h4>
+                        </h5>
                         
                         <ul className="list-contact">
                             <li>
@@ -141,7 +141,7 @@ class UserProfile extends Component {
                     </div>
     
                     <div className="card-footer">
-                        <div className="user-actions">
+                        <div className="user-actions d-flex">
                             <button className='btn btn-primary'>
                                 <i className="material-icons">
                                     send    
@@ -152,7 +152,7 @@ class UserProfile extends Component {
         
                             <button className='btn btn-success'>
                                 <i className="material-icons">
-                                    send    
+                                    face
                                 </i>
         
                                 Contact Me

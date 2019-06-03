@@ -10,6 +10,7 @@ import Description from '../components/post/Description';
 import Rating from '../components/post/Rating';
 import Comment from '../components/post/Comment';
 import UserProfile from '../components/post/UserProfile';
+import LatestProducts from '../components/post/LatestProducts';
 
 import PostService from '../services/posts-service';
 import '../styles/Sections.scss';
@@ -172,6 +173,8 @@ export default class PostDetails extends Component {
                                         phone='334636' 
                                         website='www.test.com'
                                     />
+
+                                    <LatestProducts />
                                 </div>
                            </div>
                         </div>
