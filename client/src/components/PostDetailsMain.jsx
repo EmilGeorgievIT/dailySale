@@ -166,13 +166,11 @@ export default class PostDetails extends Component {
                            
                            <div className="col-xl-4 col-lg-4 col-md-12">
                                 <div className="section__aside">
-                                    <UserProfile 
-                                        image=''
-                                        name='' 
-                                        joined=''
-                                        email=''
-                                        phone='' 
-                                        website=''
+                                    <UserProfile
+                                        creator={creator} 
+                                        joined='1555536805497'
+                                        phone='334636' 
+                                        website='www.test.com'
                                     />
                                 </div>
                            </div>

@@ -1,115 +1,167 @@
-import React, { Fragment } from 'react';
-
+import React, { Component, Fragment } from 'react';
 import '../../styles/List.scss';
+import '../../styles/Profile.scss';
+
+// import { Link } from 'react-router-dom';
+import ProfileService from '../../services/profile-service';
 
 import facebook from '../../images/facebook.svg';
 import twitter from '../../images/twitter.svg'; 
 import linkedin from '../../images/linkedin.svg';
 
-const UserProfile = ({image, name, joined, email, phone, website}) => (
-    <Fragment>
-        <div className="card user-profile">
-            <div className="card-header user__header">
-                <h3 className='card-title'>
-                    Post By
-                </h3>
-            </div>
-            
-            <div className="card-body">
-                <img src={image} alt="profile-avatar"/>
-                
-                <h5 className='user-name'>
-                    { name }
-                </h5>
-                
-                <p className='user-join'>
-                    { joined }
-                </p>
-                
-                <button className='btn btn-primary'>
-                    See All ads
-                </button>
-            </div>
+class UserProfile extends Component {
+    static service = new ProfileService();
+    
+    constructor(props) {
+        super(props);
+        
+        this.state = {
+            user: '',
+            creator: props.creator
+        }
+    }
+    
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.creator !== this.state.creator) {
+          this.setState({
+              creator: prevProps.creator
+          });
+        }
+    }
 
-            <div className="card-body">
-                <h4 className='contact-title'>
-                    Contact Info
-                </h4>
+    componentDidMount() {
+        try {
+            setTimeout(async() => {
+                const user = await UserProfile.service.getUserDetails(this.state.creator)
+                .then((user) => {
+                    this.setState({user});
+                })
+            }, 300);
+        } catch(error) {
+                console.log(error);
+        };
+    }
+
+    static getDerivedStateFromProps(nextProps, prevState){
+        if(nextProps.creator!==prevState.creator){
+          return {creator : nextProps.creator};
+        }
+        else return null;
+    }
+
+    render() {
+        const { name, image, email } = this.state.user;
+        
+        return (
+            <Fragment>
+                <div className="card user-profile">
+                    <div className="card-header user__header">
+                        <h3 className='card-title'>
+                            Post By
+                        </h3>
+                    </div>
                 
-                <ul className="list-contact">
-                    <li>
-                        <i className="material-icons">
-                            alternate_email
-                        </i>
+                    <div className="card-body user__body">
+                        <div className="user__image text-center">
+                            <img src={image} alt="profile-avatar"/>
+                        </div>
+                            
+                        <h5 className='user__title text-dark mb-1'>
+                            { name }
+                        </h5>
                         
-                        <span>
-                            { email }
-                        </span>
-                    </li>
-
-                    <li>
-                        <i className="material-icons">
-                            phone
-                        </i>
+                        { 
+                            <p className='user-join text-center text-muted'>
+                                Member since { (new Date(Date.now())).toLocaleDateString('en-US', 'short') }
+                            </p>
+                        }   
+                        <div className="user__actions text-center">
+                            <button className='btn btn-success'>
+                                See All ads
+                            </button>
+                        </div>
+                    </div>
+    
+                    <div className="card-body user__body">
+                        <h4 className='contact-title'>
+                            Contact Info
+                        </h4>
                         
-                        <span>
-                            { phone }
-                        </span>
-                    </li>
-
-                    <li>
-                        <i className="material-icons">
-                            link
-                        </i>
-                        
-                        <span>
-                            { website }
-                        </span>
-                    </li>
-                </ul>
-
-                <ul className="list d-flex list-socials">
-                    <li>
-                        <a href="https://www.facebook.com/emil.georgiev.it">
-                            <img src={facebook} alt="facebook" width='35' height='35'/>
-                        </a>
-                    </li>
-
-                    <li>    
-                        <a href="https://www.twitter.com/">
-                            <img src={twitter} alt="twitter" width='35' height='35'/>
-                        </a>
-                    </li>
-
-                    <li>    
-                        <a href="https://www.linkedin.com/in/emil-georgiev-b5464bb9/">
-                            <img src={linkedin} alt="linkedin" width='35' height='35'/>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div className="card-footer">
-                <div className="user-actions">
-                    <button className='btn btn-primary'>
-                        <i className="material-icons">
-                            send    
-                        </i>
-
-                        Chat
-                    </button>
-
-                    <button className='btn btn-success'>
-                        <i className="material-icons">
-                            send    
-                        </i>
-
-                        Contact Me
-                    </button>
+                        <ul className="list-contact">
+                            <li>
+                                <i className="material-icons">
+                                    alternate_email
+                                </i>
+                                
+                                <span>
+                                    { email }
+                                </span>
+                            </li>
+        
+                            <li>
+                                <i className="material-icons">
+                                    phone
+                                </i>
+                                
+                                <span>
+                                    { this.props.phone }
+                                </span>
+                            </li>
+        
+                            <li>
+                                <i className="material-icons">
+                                    link
+                                </i>
+                                
+                                <span>
+                                    { this.props.website }
+                                </span>
+                            </li>
+                        </ul>
+        
+                        <ul className="list d-flex list-socials">
+                            <li>
+                                <a href="https://www.facebook.com/emil.georgiev.it">
+                                    <img src={facebook} alt="facebook" width='35' height='35'/>
+                                </a>
+                            </li>
+        
+                            <li>    
+                                <a href="https://www.twitter.com/">
+                                    <img src={twitter} alt="twitter" width='35' height='35'/>
+                                </a>
+                            </li>
+        
+                            <li>    
+                                <a href="https://www.linkedin.com/in/emil-georgiev-b5464bb9/">
+                                    <img src={linkedin} alt="linkedin" width='35' height='35'/>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+    
+                    <div className="card-footer">
+                        <div className="user-actions">
+                            <button className='btn btn-primary'>
+                                <i className="material-icons">
+                                    send    
+                                </i>
+        
+                                Chat
+                            </button>
+        
+                            <button className='btn btn-success'>
+                                <i className="material-icons">
+                                    send    
+                                </i>
+        
+                                Contact Me
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </Fragment>
-);
-
+            </Fragment>
+        );
+    }
+}
 export default UserProfile;
