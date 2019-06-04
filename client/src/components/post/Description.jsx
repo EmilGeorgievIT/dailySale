@@ -18,7 +18,7 @@ const Description = ({description}) => (
             <div className="card-footer">
                 <ul className="d-flex list-links">
                     <li>
-                        <a href="#" className="btn btn-success">
+                        <a href="#" className="btn btn-success btn-sm">
                             <i className="material-icons">share</i>
                             
                             <span>
@@ -28,7 +28,7 @@ const Description = ({description}) => (
                     </li>
 
                     <li>
-                        <a href="#" className="btn btn-warning">
+                        <a href="#" className="btn btn-warning btn-sm">
                             <i className="material-icons">warning</i>
                             
                             <span>
@@ -38,7 +38,7 @@ const Description = ({description}) => (
                     </li>
 
                     <li>
-                        <button href="#" className="btn btn-secondary">
+                        <button href="#" className="btn btn-secondary btn-sm">
                             <i className="material-icons">favorite</i>
                             
                             <span>
@@ -48,7 +48,7 @@ const Description = ({description}) => (
                     </li>
 
                     <li>
-                        <button href="#" className="btn btn-primary">
+                        <button href="#" className="btn btn-primary btn-sm">
                             <i className="material-icons">print</i>
                             
                             <span>

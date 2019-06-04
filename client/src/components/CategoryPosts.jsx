@@ -1,7 +1,8 @@
 import '../styles/Sections.scss';
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import SearchForm from './SearchForm';
 import PostsList from './PostsList';
+import { Intro } from './shared/Intro';
 import CategoryService from '../services/category-service';
 import { Link } from 'react-router-dom';
 
@@ -79,27 +80,34 @@ export default class CategoryPosts extends Component {
         )
     }
     return (
-        <section className="section-category">
-            <div className='container'>
-                <div className="section__head">
-                    <SearchForm items={this.state.items} results={this.getResults}/>
-                </div>
-                
-                <div className="section__body">
-                    <h3 className='mb-4 h3'>
-                        {
-                            `Found ${posts.length} ads`
-                        }
-                    </h3>
+        <Fragment>
+            <Intro 
+                title={this.props.match.params.categoryName}>
+                <SearchForm items={this.state.items} results={this.getResults}/>
+            </Intro>
+            
+            <section className="section-category">
+                <div className='container'>
+                    <div className="section__head">
+                    </div>
                     
-                    {
-                        posts.map((post) => 
-                            <PostsList className='ads' key={post._id} {...post} />
-                        )
-                    }
+                    <div className="section__body">
+                        <h3 className='mb-4 h3'>
+                            {
+                                `Found ${posts.length} ads`
+                            }
+                        </h3>
+                        
+                        {
+                            posts.map((post) => 
+                                <PostsList className='ads' key={post._id} {...post} />
+                            )
+                        }
+                    </div>
                 </div>
-            </div>
-        </section>
-    )
+            </section>
+        </Fragment>
+        )
+
   }
 }

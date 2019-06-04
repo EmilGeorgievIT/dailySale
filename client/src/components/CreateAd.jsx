@@ -266,18 +266,18 @@ class CreateAd extends Component {
                                         <div className="card-body">
                                             <ul className="list-terms list-unstyled widget-spec  mb-0"> 
                                                 <li> 
-                                                    <i class="material-icons">check</i>
+                                                    <i className="material-icons">check</i>
                                                     Money Not Refundable 
                                                 </li>
 
                                                 <li> 
-                                                    <i class="material-icons">check</i>
+                                                    <i className="material-icons">check</i>
                                                     
                                                     You can renew your Premium ad after experted. 
                                                 </li>
 
                                                 <li> 
-                                                    <i class="material-icons">check</i>
+                                                    <i className="material-icons">check</i>
 
                                                     Premium ads are active for depend on package. 
                                                 </li>

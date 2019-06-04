@@ -142,7 +142,7 @@ class UserProfile extends Component {
     
                     <div className="card-footer">
                         <div className="user-actions d-flex">
-                            <button className='btn btn-primary'>
+                            <button className='btn btn-primary btn-sm'>
                                 <i className="material-icons">
                                     send    
                                 </i>
@@ -150,7 +150,7 @@ class UserProfile extends Component {
                                 Chat
                             </button>
         
-                            <button className='btn btn-success'>
+                            <button className='btn btn-success btn-sm'>
                                 <i className="material-icons">
                                     face
                                 </i>
