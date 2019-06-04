@@ -1,9 +1,67 @@
 @import '../styles/variables.scss';
 
+
 /* ------------------------------------------------------------ *\
 	Comment
 \* ------------------------------------------------------------ */
 .comment {
+    & {
+        border-radius: 0;
+        margin-bottom: 0;
+    }
+    .comment__body {
+        display: flex;
+        
+        .comment__title {
+            margin-bottom: .3em;
+        }
+        
+        .comment__content {
+            flex: 1;
+            padding: 0 1rem;
+        }
+        .comment__description {
+            padding: .5rem 0;
+        }
+    }
+    .material-icons {
+        margin-right: 5px;
+    }
+    .comment__meta, .material-icons{
+        font-size: 13px;
+    }
+    .list-meta{ 
+        &, li {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            list-style: none;
+        }
+        li ~ li {
+            margin-left: 5px;
+        }
+    }
+    .comment__aside{
+        & {
+            flex: 0 1 60px;
+            max-width: 60px;
+        }
+        .comment__image {
+            img { 
+                border-radius: 50%;
+            }
+        }
+    }
+}
+
+/* ------------------------------------------------------------ *\
+	Comment Create
+\* ------------------------------------------------------------ */
+
+.comment-create {
+    &{
+        margin: 1.5rem 0;
+    }
     .comment__body {
         .from-group {
             margin-bottom: 1.5rem;

@@ -1,32 +1,54 @@
 import React from 'react';
-import '../../styles/Comment.scss';
 
-const Comment = ({phoneNumber}) => (
-    <div className='comment card'>
-        <div className="comment__head card-header">
-            <h3 className="comment__title card-title">
-                Leave a reply 
-            </h3>
+const Comment = ({id, image, date, time, name, location, comment}) => (
+    <div className='card comment'>
+        <div className="card-body comment__body">
+            <div className="comment__aside">
+                <div className="comment__image">
+                    <img src={image} alt="avatar"/>
+                </div>
+            </div>
+
+            <div className="comment__content">
+                <div className="comment__meta">
+                    <h5 className='comment__title'>
+                        {name}
+                    </h5>
+                    
+                    <ul className="list-meta">
+                        <li>
+                            <i className="material-icons">calendar_today</i>
+                            
+                            {
+                                <span> 
+                                    { (new Date(date)).toLocaleDateString('en-US', 'short') }
+                                </span> 
+                            }
+                        </li>
+
+                        <li>
+                            <i className="material-icons">access_time</i>
+                            
+                            <span>
+                                {time}
+                            </span>
+                        </li>
+
+                        <li>
+                            <i className="material-icons">location_on</i>
+                            
+                            <span>
+                                {location}
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div className="comment__description">
+                    {comment}
+                </div>
+            </div>
         </div>
-        
-        <div className="comment__body card-body">
-            <form>
-                <div className="from-group">
-                    <input type="text" name='name' className="form-control" placeholder='Your name' />
-                </div>
-
-                <div className="from-group">
-                    <input type="email" name='email' className="form-control" placeholder='Email address' />
-                </div>
-
-                <div className="form-group">
-                    <textarea className="form-control"
-                    placeholder='Comment' name='comment' id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
-
-                <button type="submit" className="btn btn-primary btn-sm">Send Reply</button>
-            </form>
-        </div> 
     </div>
-)
+);
 export default Comment;

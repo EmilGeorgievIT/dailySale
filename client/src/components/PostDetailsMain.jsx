@@ -8,9 +8,10 @@ import PostsList from '../components/PostsList';
 import Gallery from '../components/post/Gallery';
 import Description from '../components/post/Description';
 import Rating from '../components/post/Rating';
-import Comment from '../components/post/Comment';
+import AddComment from '../components/post/AddComment';
 import UserProfile from '../components/post/UserProfile';
 import LatestProducts from '../components/post/LatestProducts';
+import Comment from '../components/post/Comment';
 
 import PostService from '../services/posts-service';
 import '../styles/Sections.scss';
@@ -43,6 +44,32 @@ export default class PostDetails extends Component {
                 "1": 1,
                 "id": ''
             },
+            comments: [
+                {
+                    id: '34324',
+                    date: '4/29/2019',
+                    time: '15:43',
+                    name: 'Pesho',
+                    location: 'Ireland',
+                    comment: 'Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a sea'
+                },
+                {
+                    id: '34324',
+                    date: '4/29/2019',
+                    time: '15:43',
+                    name: 'Ivan',
+                    location: 'Bulgaria Plovdiv',
+                    comment: 'Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a sea'
+                },
+                {
+                    id: '343124',
+                    date: '4/29/2019',
+                    time: '11:43',
+                    name: 'Pesho 2',
+                    location: 'Bulgaria',
+                    comment: 'Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a sea'
+                }
+            ],
             items: [
                 { name: 'House & DIY' , icon: 'home' },
                 { name: 'Animals', icon: 'pets' },
@@ -98,7 +125,7 @@ export default class PostDetails extends Component {
     }
 
     render() {
-        const { title, image, category, price, description, date, location, phoneNumber, rating, creator, posts } = this.state;
+        const { title, image, category, price, description, date, location, phoneNumber, rating, creator, posts, comments } = this.state;
         
         const postImage = {
             width: "100%",
@@ -161,7 +188,17 @@ export default class PostDetails extends Component {
                                     <Rating 
                                     rating={rating}
                                     />
-                                    <Comment />
+
+                                    {
+                                        comments.map(item => (
+                                            <Comment 
+                                                key={item.id}
+                                                image={image}
+                                                {...item}  
+                                            />
+                                        ))
+                                    }
+                                    <AddComment />
                                 </div> 
                             </div>  
                            

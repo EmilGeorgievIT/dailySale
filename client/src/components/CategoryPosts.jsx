@@ -71,8 +71,8 @@ export default class CategoryPosts extends Component {
                     <h1 className="display-4 text-center mb-4">There are no posts in this category</h1>
                     
                     <div className='jumbotron-actions text-center'>
-                        <Link className='btn btn-danger text-center' to='/'>
-                            back to home
+                        <Link className='btn btn-danger btn-sm text-center' to='/'>
+                            Back to home
                         </Link>
                     </div>
                 </div>
@@ -85,7 +85,7 @@ export default class CategoryPosts extends Component {
                 title={this.props.match.params.categoryName}>
                 <SearchForm items={this.state.items} results={this.getResults}/>
             </Intro>
-            
+
             <section className="section-category">
                 <div className='container'>
                     <div className="section__head">
