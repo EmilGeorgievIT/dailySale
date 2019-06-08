@@ -7,7 +7,15 @@ export const registerUser = (userData, history) => dispatch => {
     const service = new AuthenticationService();
     service.register(userData)
         .then((res) => {
-            history.push('/login');
+            console.log(res);
+            if(res.errors !== undefined) {
+                dispatch({
+                    type: GET_ERRORS,
+                    payload: res.errors
+                })
+            } else {
+                history.push('/login');
+            }
         }).catch(error => {
             console.log(error);
             dispatch({

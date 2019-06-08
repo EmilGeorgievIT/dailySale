@@ -21,7 +21,7 @@ class RegisterForm extends Component {
             email: '',
             password: '',
             isRegister: '',
-            error: {}
+            error: ''
         };
     } 
     
@@ -49,7 +49,7 @@ class RegisterForm extends Component {
     
     static getDerivedStateFromProps(props, state){
         if (props.error !== state.error) {
-            console.log(props.error);
+            console.log(props.error[0]);
             return {
                 error: props.error
             };
@@ -88,8 +88,12 @@ class RegisterForm extends Component {
                                 <div className="form-group">
                                     <label htmlFor="exampleInputName">Name</label>
                                     
-                                    <input type="text" name='name' className="form-control" id="exampleInputName" aria-describedby="emailHelp" onChange={this.handleChange} value={name} placeholder="Enter your name"/>                    
+                                    <input type="text" name='name' className="form-control" id="exampleInputName" aria-describedby="emailHelp" onChange={this.handleChange} value={name} placeholder="Enter your name"/>
                                 </div>
+
+                                <p className={this.props.error[2] ? 'alert alert-danger' : ''}>
+                                    { this.props.error[2] ? this.props.error[2].msg : '' }
+                                </p>
                                 
                                 <div className="form-group">
                                     <label htmlFor="exampleInputEmail1">Email address</label>
@@ -97,8 +101,11 @@ class RegisterForm extends Component {
                                     <input type="email" name='email' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" onChange={this.handleChange} value={email} placeholder="Enter email"/>
                                     
                                     <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-                                    
                                 </div>
+
+                                <p className={this.props.error[0] ? 'alert alert-danger' : ''}>
+                                    { this.props.error[0] ? this.props.error[0].msg : '' }
+                                </p>
 
                                 <div className="form-group">
                                     <label htmlFor="exampleInputPassword1">Password</label>
@@ -106,10 +113,10 @@ class RegisterForm extends Component {
                                     <input type="password" name='password' value={password} onChange={this.handleChange} className="form-control" id="exampleInputPassword1" placeholder="Password"/>
                                 </div>
                                 
-                                {/* <p className={error ? 'alert alert-danger' : ''}>
-                                    { error ? error : '' }
+                                <p className={this.props.error[1] ? 'alert alert-danger' : ''}>
+                                    { this.props.error[1] ? this.props.error[1].msg : '' }
                                 </p>
-                                */}
+                               
 
                                 <div className="form__actions">
                                     <button type="submit" className="btn btn-block btn-primary">Submit</button>
