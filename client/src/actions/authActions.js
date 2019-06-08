@@ -30,7 +30,7 @@ export const loginUser = userData => dispatch => {
         } else {
             dispatch({
                 type: GET_ERRORS,
-                payload: data.message
+                payload: data
             })
         }
     }).catch(error => {

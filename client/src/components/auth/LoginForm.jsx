@@ -26,6 +26,16 @@ class LoginForm extends Component {
             error: ''
         };
     }
+
+    static getDerivedStateFromProps(props, state){
+        if (props.error !== state.error) {
+            console.log(props.error);
+
+            return props.error;
+        }
+
+        else return null;
+    }
     
     handleChange = ({target}) => {
         this.setState({
@@ -47,7 +57,7 @@ class LoginForm extends Component {
     }
 
     render() {
-        const { email, password, error } = this.state;
+        const { email, password } = this.state;
         
         const imageBackground = {
             backgroundImage: `url(${bannerImage})`
@@ -90,8 +100,8 @@ class LoginForm extends Component {
                                     <input type="password" name='password' value={password} onChange={this.handleChange} className="form-control" id="exampleInputPassword1" placeholder="Password"/>
                                 </div>
                                 
-                                <p className={error ? 'alert alert-danger' : ''}>
-                                    { error ? error : '' }
+                                <p className={this.props.error['message'] ? 'alert alert-danger' : ''}>
+                                    { this.props.error['message'] ? this.props.error['message'] : '' }
                                 </p>
                                 
                                 <div className="form__actions">
