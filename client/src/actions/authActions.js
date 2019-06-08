@@ -22,14 +22,17 @@ export const loginUser = userData => dispatch => {
 
     service.login(userData)
     .then((data) => {
-        localStorage.setItem('ds_chk_temp', data.userId);
-        localStorage.setItem('token', data.token);
-        const decode = jwt_decode(data.token);
-        
-        // Set current user 
-        
-        dispatch(setCurrentUser(decode));
-
+        if (data.token !== undefined) {
+            localStorage.setItem('ds_chk_temp', data.userId);
+            localStorage.setItem('token', data.token);
+            const decode = jwt_decode(data.token);
+            dispatch(setCurrentUser(decode));
+        } else {
+            dispatch({
+                type: GET_ERRORS,
+                payload: data.message
+            })
+        }
     }).catch(error => {
         console.log(error);
         dispatch({

@@ -44,7 +44,6 @@ class LoginForm extends Component {
         };
 
         this.props.loginUser(userData);
-
     }
 
     render() {

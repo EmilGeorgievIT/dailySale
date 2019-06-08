@@ -48,18 +48,21 @@ module.exports = {
         if (!user) {
             const error = new Error('A user with this email could not be found');
             error.statusCode = 404;
+            
             res.status(404).json({
                 "message" : "User not found!"
-              })
-              throw error;
+            })
+            throw error;
         }
 
         if(!user.authenticate(password)) {
           const error = new Error('A user with this email could not be found');
           error.statusCode = 404;
+          
           res.status(404).json({
             "message" : "User not found!"
           })
+
           throw error;
         }
 
