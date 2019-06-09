@@ -7,6 +7,7 @@ import User from '../post/User';
 import PostsList from './../PostsList';
 import ProfileService from '../../services/profile-service';
 import PostService from '../../services/posts-service';
+import UserProfile from '../post/UserProfile';
 
 
 export default class UserAds extends Component {
@@ -54,21 +55,6 @@ export default class UserAds extends Component {
         }
     }
 
-    handleScroll = (event) => {
-        const el = document.getElementsByClassName('footer');
-        const elOffsetTop = el[0].offsetTop;
-
-        const isTop = window.scrollY >= 165 && window.scrollY <= elOffsetTop - window.innerHeight;
-        
-        if (isTop !== this.state.isTop) {
-            this.setState({ isTop })
-        }
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.handleScroll);
-    }
-
     render() {
         const { phone, _id } = this.state.user;
         
@@ -86,24 +72,13 @@ export default class UserAds extends Component {
                         }
                         </div>
 
-                        <div className={this.state.isTop ? 'section__aside fixed' : 'section__aside'}>
-                            <Link to='/message' className='btn-wide bg-blue mb-2'>
-                                <i className="material-icons">send</i>
-                                
-                                <span className='btn-text'>
-                                    Send message
-                                </span>    
-                            </Link>
-                                        
-                            <Link to='/message' className='btn-wide bg-blue'>
-                                <i className="material-icons">phone</i>
-                                
-                                <span className='btn-text'>
-                                    { phone? phone: '089xxxxxxx' }
-                                </span>    
-                            </Link>
-                            
-                            <User creator={_id}/>
+                        <div className='section__aside'>
+                            <UserProfile
+                                creator={_id} 
+                                joined='1555536805497'
+                                phone={phone ? phone: '23235'} 
+                                website='www.test.com'
+                            />
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom'; 
 import '../../styles/List.scss';
 import '../../styles/Profile.scss';
 
@@ -8,6 +9,7 @@ import ProfileService from '../../services/profile-service';
 import facebook from '../../images/facebook.svg';
 import twitter from '../../images/twitter.svg'; 
 import linkedin from '../../images/linkedin.svg';
+
 
 class UserProfile extends Component {
     static service = new ProfileService();
@@ -76,9 +78,9 @@ class UserProfile extends Component {
                             </p>
                         }   
                         <div className="user__actions text-center">
-                            <button className='btn btn-success'>
+                            <Link to={`/user/ads/${this.state.creator}`} className='btn btn-success btn-user-ads'>
                                 See All ads
-                            </button>
+                            </Link>
                         </div>
                     </div>
     
