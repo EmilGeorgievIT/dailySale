@@ -29,8 +29,6 @@ class LoginForm extends Component {
 
     static getDerivedStateFromProps(props, state){
         if (props.error !== state.error) {
-            console.log(props.error);
-
             return props.error;
         }
 

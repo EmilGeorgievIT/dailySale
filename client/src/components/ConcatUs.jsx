@@ -52,7 +52,7 @@ class ContactUs extends Component {
                                             <li>
                                                 <div className="box-contacts">
                                                     <div className="box__content">
-                                                        <i class="material-icons">phone</i>
+                                                        <i className="material-icons">phone</i>
                                                         
                                                         <div className="box__entry">
                                                             <h5>
@@ -70,7 +70,7 @@ class ContactUs extends Component {
                                             <li>
                                                 <div className="box-contacts box-contacts--blue">
                                                     <div className="box__content">
-                                                        <i class="material-icons">access_time</i>
+                                                        <i className="material-icons">access_time</i>
                                                         
                                                         <div className="box__entry">
                                                             <h5>
@@ -88,7 +88,7 @@ class ContactUs extends Component {
                                             <li>
                                                 <div className="box-contacts box-contacts--orange">
                                                     <div className="box__content">
-                                                        <i class="material-icons">email</i>
+                                                        <i className="material-icons">email</i>
                                                         
                                                         <div className="box__entry">
                                                             <h5>

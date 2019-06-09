@@ -156,7 +156,7 @@ class CreateAd extends Component {
                                         <div className="from__body card-body">
                                             <div className="form-row">
                                                 <div className="form-group col">
-                                                    <label htmlFor="title">Ad Title</label>
+                                                    <label htmlFor="title">Ad Title *</label>
                                                     
                                                     <input onChange={this.handleChange} type="text" className="form-control" id="title" name='title' placeholder="Title" required/>
                                                     
@@ -168,7 +168,7 @@ class CreateAd extends Component {
                                             
                                             <div className="form-row ">
                                                 <div className="form-group col">
-                                                    <label htmlFor="category-select">Category</label>
+                                                    <label htmlFor="category-select">Category *</label>
                                                     
                                                     <select id='category-select' name='category' onChange={this.changeCategory} className="custom-select">
                                                         {
@@ -184,13 +184,13 @@ class CreateAd extends Component {
                                         
                                             <div className="form-row">
                                                 <div className="form-group col-md-6 col-sm-12">
-                                                    <label htmlFor="price">Price</label>
+                                                    <label htmlFor="price">Price *</label>
 
-                                                    <input onChange={this.handleChange} type="text" className='form-control' name="price" id="price"/>   
+                                                    <input onChange={this.handleChange} type="text" className='form-control' placeholder='0$' name="price" id="price"/>   
                                                 </div>
 
                                                 <div className="form-group col-md-6 col-sm-12">
-                                                    <label htmlFor="condition">Condition</label>
+                                                    <label htmlFor="condition">Condition *</label>
                                                     
                                                     <select onChange={this.handleChange} name='condition' id='condition-select'  className="custom-select">
                                                         <option name='condition'>New</option>
@@ -201,33 +201,32 @@ class CreateAd extends Component {
 
                                             <div className="form-row">
                                                 <div className="form-group col">
-                                                    <label htmlFor="description">Description</label>
+                                                    <label htmlFor="description">Description *</label>
 
                                                     <textarea onChange={this.handleChange} className="form-control" id="description" name='description' placeholder='text here..' rows="3" required>
-                                                    
                                                     </textarea>   
                                                 </div>
                                             </div>
                                             
                                             <div className="form-row">
                                                 <div className="form-group col-md-6 col-sm-12">
-                                                    <label htmlFor="location">Location</label>
+                                                    <label htmlFor="location">Location *</label>
                                                     
-                                                    <input onChange={this.handleChange} type="text" name="location" id="location" className='form-control' />
+                                                    <input onChange={this.handleChange} type="text" name="location" id="location" placeholder='Ireland' className='form-control' />
                                                 </div>
 
                                                 <div className="form-group col-md-6 col-sm-12">
-                                                    <label htmlFor="phone">Phone Number</label>
+                                                    <label htmlFor="phone">Phone Number *</label>
                                                     
-                                                    <input onChange={this.handleChange} type="text" name="phoneNumber" id="phone" className='form-control' />
+                                                    <input onChange={this.handleChange} type="text" name="phoneNumber" id="phone" placeholder='083XXXXXXX' className='form-control' />
                                                 </div>
                                             </div>
 
                                             <div className="form-row">
                                                 <div className="form-group col">
-                                                    <label htmlFor="email">Email</label>
+                                                    <label htmlFor="email">Email *</label>
                                                     
-                                                    <input onChange={this.handleChange} type="email" name="email" id="email" className='form-control' />
+                                                    <input onChange={this.handleChange} type="email" name="email" placeholder='example@gmail.com' id="email" className='form-control' />
                                                 </div>
                                             </div>
                                             
@@ -295,24 +294,24 @@ class CreateAd extends Component {
                                         <div className="card-body">
                                             <ul className="list-terms list-unstyled widget-spec  mb-0"> 
                                                 <li> 
-                                                    <i class="material-icons">check</i>
+                                                    <i className="material-icons">check</i>
                                                     Premium Ads Active
                                                 </li>
 
                                                 <li> 
-                                                    <i class="material-icons">check</i>
+                                                    <i className="material-icons">check</i>
                                                     
                                                     Premium ads are displayed on top 
                                                 </li>
 
                                                 <li> 
-                                                    <i class="material-icons">check</i>
+                                                    <i className="material-icons">check</i>
 
                                                     Premium ads will be show in Google results 
                                                 </li>
 
                                                 <li> 
-                                                    <i class="material-icons">check</i>
+                                                    <i className="material-icons">check</i>
 
                                                     Premium ads Active 
                                                 </li>
@@ -330,18 +329,18 @@ class CreateAd extends Component {
                                         <div className="card-body">
                                             <ul className="list-terms list-unstyled widget-spec  mb-0"> 
                                                 <li> 
-                                                    <i class="material-icons">check</i>
+                                                    <i className="material-icons">check</i>
                                                     Meet Seller at public Place
                                                 </li>
 
                                                 <li> 
-                                                    <i class="material-icons">check</i>
+                                                    <i className="material-icons">check</i>
                                                     
                                                     Check item before you buy 
                                                 </li>
 
                                                 <li> 
-                                                    <i class="material-icons">check</i>
+                                                    <i className="material-icons">check</i>
 
                                                     Pay only after collecting item 
                                                 </li>

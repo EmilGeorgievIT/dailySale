@@ -1,15 +1,22 @@
 const User = require('../models/User');
 
 module.exports = {
-    getUserById: (req, res) => {
+    getUserById: (req, res, next) => {
         const userId = req.params.userId;
         User.findById(userId)
         .then((user) => {
-            const { posts } = user;
-
             res
             .status(200)
-            .json(user)
+            .json({
+                image: user.image,
+                messages: user.massages,
+                _id: user._id,
+                name: user.name,
+                location: user.location,
+                email: user.email,
+                posts: user.posts,
+                phoneNumber: user.phoneNumber
+            })
         })
         .catch((error) => {
             if(!error.statusCode) {
@@ -18,7 +25,7 @@ module.exports = {
             next(error);
         });
     },
-    updateProfile: (req, res) => {
+    updateProfile: (req, res, next) => {
         const userId = req.params.userId;
         const user = req.body;
         

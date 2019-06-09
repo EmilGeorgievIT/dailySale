@@ -54,7 +54,7 @@ export default class PostDetails extends Component {
                     comment: 'Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a sea'
                 },
                 {
-                    id: '34324',
+                    id: '343124',
                     date: '4/29/2019',
                     time: '15:43',
                     name: 'Ivan',
@@ -62,7 +62,7 @@ export default class PostDetails extends Component {
                     comment: 'Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a sea'
                 },
                 {
-                    id: '343124',
+                    id: '3243124',
                     date: '4/29/2019',
                     time: '11:43',
                     name: 'Pesho 2',

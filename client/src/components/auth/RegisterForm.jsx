@@ -49,7 +49,6 @@ class RegisterForm extends Component {
     
     static getDerivedStateFromProps(props, state){
         if (props.error !== state.error) {
-            console.log(props.error[0]);
             return {
                 error: props.error
             };
