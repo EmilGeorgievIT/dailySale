@@ -135,7 +135,6 @@ class CreateAd extends Component {
                                         const { 
                                             title,
                                             category,
-                                            image,
                                             price,
                                             phoneNumber,
                                             description,
@@ -150,7 +149,7 @@ class CreateAd extends Component {
                                                 {
                                                     title,
                                                     category,
-                                                    image,
+                                                    image: this.state.image,
                                                     price,
                                                     phoneNumber,
                                                     description,
@@ -181,7 +180,7 @@ class CreateAd extends Component {
                                                     Add post
                                                 </h4>
                                             </div>
-                                            
+
                                             <div className="from__body card-body">
                                                 <div className="form-row">
                                                     <div className="form-group col">
@@ -275,9 +274,6 @@ class CreateAd extends Component {
                                                 <div className="form-row">
                                                     <div className="custom-file">}
                                                         <Field onChange={this.handleImage} type="file" className="custom-file-input" name='image' id="validatedCustomFile"/>
-                                                            {errors.image && touched.image ? (
-                                                                <div className='invalid-feedback'>{errors.image}</div>
-                                                            ) : null}
 
                                                         <label className="custom-file-label" htmlFor="validatedCustomFile">Choose file...</label>
                                                     </div>
@@ -286,7 +282,7 @@ class CreateAd extends Component {
                                             </div>
                                             
                                             <div className="form-actions card-footer">
-                                                <button type="submit" className="btn btn-primary">
+                                                <button type="submit" disabled={Object.keys(errors).length} className="btn btn-primary">
                                                     Submit now
                                                 </button>
                                             </div>

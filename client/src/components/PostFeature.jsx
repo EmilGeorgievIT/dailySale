@@ -5,21 +5,25 @@ import PostsFeatured from './PostsFeatured';
 import '../styles/Sections.scss';
 import '../styles/Posts.scss';
 import Slider from "react-slick";
+import { css } from '@emotion/core';
+import { PulseLoader } from 'react-spinners';
 
+const override = css`
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+`;
 
 class PostFeature extends Component {
     static service = new PostService();
     state = {
         posts: [],
-        isLoading: false
+        isLoading: true
     }
     
     render() {
      const { posts, isLoading } = this.state;
     
-    if (isLoading) { 
-        return <Loading />
-    }
     const settings = {
         dots: false,
         infinite: true,
@@ -53,7 +57,17 @@ class PostFeature extends Component {
             }
           ]
       };
-    
+      if(isLoading) {
+        return(
+            <PulseLoader
+                    css={override}
+                    sizeUnit={"px"}
+                    size={60}
+                    color={'#123abc'}
+                    loading={this.state.loading}
+                />
+            )
+        };
     return (
         <section className='section-posts section-featured-posts'>
             <div className='container'>
@@ -81,7 +95,10 @@ class PostFeature extends Component {
     async componentDidMount() {
         try {
             const posts = await PostFeature.service.getPosts();
-            this.setState({ posts });
+            this.setState({ 
+                posts,
+                isLoading: false
+            });
         } catch (error) {
             console.log(error);
         }

@@ -1,6 +1,6 @@
 import '../../styles/Sections.scss';
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
 import User from '../post/User';
@@ -8,7 +8,15 @@ import PostsList from './../PostsList';
 import ProfileService from '../../services/profile-service';
 import PostService from '../../services/posts-service';
 import UserProfile from '../post/UserProfile';
+import { Intro } from '../shared/Intro';
+import { css } from '@emotion/core';
+import { DotLoader } from 'react-spinners';
 
+
+const override = css`
+    display: block !important;
+    margin: 0 auto;
+`;
 
 export default class UserAds extends Component {
     static service = new ProfileService();
@@ -20,6 +28,7 @@ export default class UserAds extends Component {
         this.state = {
             user: '',
             posts: [],
+            isLoading: true,
             isTop: false
         }
     }
@@ -47,7 +56,10 @@ export default class UserAds extends Component {
                 })
                     
                 setTimeout(()=> {
-                    this.setState({ posts: postsRes })
+                    this.setState({ 
+                        posts: postsRes,
+                        isLoading: false
+                    })
                 }, 500)
             })
         } catch(error) {
@@ -58,8 +70,23 @@ export default class UserAds extends Component {
     render() {
         const { phone, _id } = this.state.user;
         
+        if (this.state.isLoading) {
+            return(
+                <DotLoader
+                    css={override}
+                    sizeUnit={"px"}
+                    size={150}
+                    color={'#123abc'}
+                    loading={this.state.loading}
+                />
+            )
+        }
         return (
-            <section className="section-post-details">
+            <Fragment>
+                <Intro 
+                    title='All posts'
+                />
+                <section className="section-post-details">
                 <div className="container">
                     <div className="section__inner">
                         <div className="section__content">
@@ -83,6 +110,7 @@ export default class UserAds extends Component {
                     </div>
                 </div>
             </section>
+            </Fragment>
         );
     }
 } 

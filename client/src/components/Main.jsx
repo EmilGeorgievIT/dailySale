@@ -37,7 +37,8 @@ class Main extends Component {
     showResults = (data) => {
         if(data.length > 0 ) {
             this.setState({
-                posts: [...data]
+                posts: [...data],
+                loading: false
             })
         }
     }
@@ -60,7 +61,7 @@ class Main extends Component {
                     <div className="section__body">
                         <CategoriesList items={this.state.items} />
                     </div>
-               </Intro>
+                </Intro>
 
                 <main className='main'>
                     {
