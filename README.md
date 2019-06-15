@@ -1,5 +1,8 @@
 # MEAN Stack dailySale 
 
+# demo
+
+* [dailySale](https://frozen-brushlands-43779.herokuapp.com/);
 
 # Stack of technologies
 * [Mongo DB](https://www.mongodb.org/);
