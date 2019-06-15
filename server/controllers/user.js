@@ -39,6 +39,7 @@ module.exports = {
             userDetails.name = user.name;
             userDetails.phoneNumber = user.phoneNumber;
             userDetails.image = user.image;
+            userDetails.website = user.website;
             userDetails.location = user.location;
             userDetails.email = user.email;
             

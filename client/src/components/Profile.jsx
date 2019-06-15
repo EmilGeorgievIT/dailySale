@@ -56,7 +56,8 @@ class Profile extends Component {
     }
 
     render() {
-        const { email, image, location, phoneNumber, name } = this.state.user;
+        const { email, image, location, website, phoneNumber, name } = this.state.user;
+
         const imageBackground = {
             backgroundImage: `url(${banner})`
         }
@@ -137,6 +138,7 @@ class Profile extends Component {
                                             <div className="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                                 <ProfileDetails 
                                                 email={email}
+                                                website= {website}
                                                 location={location}
                                                 phoneNumber={phoneNumber}
                                                 name= {name}

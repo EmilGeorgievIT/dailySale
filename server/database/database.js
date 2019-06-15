@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
+const { mongoDB } = require('../config/config');
 mongoose.Promise = global.Promise;
 module.exports = () => {
-    mongoose.connect('mongodb://localhost:27017/mainDB', {
+    mongoose.connect(mongoDB , {
         useNewUrlParser: true
     });       
     const db = mongoose.connection;

@@ -4,9 +4,9 @@ const feedRoutes = require('./routes/feed');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const messageRoutes = require('./routes/message');
+const { port } = require('./config/config');
 
 require('./database/database')();
-const port = 3200;
 const app = express();
 
 app.use(bodyParser.json({limit: '20mb'}));

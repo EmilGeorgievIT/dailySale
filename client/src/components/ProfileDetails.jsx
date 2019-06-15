@@ -3,6 +3,7 @@ import ProfileService from '../services/profile-service';
 
 export default class ProfileDetails extends Component {
     static service = new ProfileService();
+    
     constructor(props){
         super(props);
         
@@ -10,15 +11,21 @@ export default class ProfileDetails extends Component {
             name: '',
             phoneNumber: '',
             email: '',
+            website: '',
             location: ''
         }
     }
-
+    checkStateVale(obj){
+        if (obj !== 'undefined') {
+            
+        }
+    }
     handleChanges = ({target}) => {
         this.setState({
             [target.name] : target.value
         })
     }
+
     handleSubmit = async (event) => {
         event.preventDefault();
         console.log(this.state);
@@ -26,7 +33,10 @@ export default class ProfileDetails extends Component {
         const userId = sessionStorage.getItem('ds_chk_temp');
         
         try {
-            const userInfo = await ProfileDetails.service.updateUserDetails(userId, this.state);
+            const userInfo = await ProfileDetails.service.updateUserDetails(
+                userId, 
+                this.state
+            );
             console.log(userInfo);
         } catch(error) {
             console.log(error);
@@ -38,10 +48,16 @@ export default class ProfileDetails extends Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <div className="form-row">
-                    <div className="form-group">
+                    <div className="form-group col-md-6">
                         <label htmlFor="name">Name</label>
                         
                         <input type="text" onChange={this.handleChanges} name='name' value={this.state.name} placeholder={this.props.name} className="form-control" id="name"/>
+                    </div>
+
+                    <div className="form-group col-md-6">
+                        <label htmlFor="location">Website</label>
+                        
+                        <input type="text" onChange={this.handleChanges} value={this.state.website} name='website' className="form-control" id="website" placeholder={this.props.website}/>
                     </div>
                 </div>
 
