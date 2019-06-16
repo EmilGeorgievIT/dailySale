@@ -5,18 +5,13 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const messageRoutes = require('./routes/message');
 const path = require('path');
+const cors = require('cors');
 const { port } = require('./config/config');
 require('./database/database')();
 const app = express();
 
 app.use(bodyParser.json({limit: '20mb'}));
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  next();
-});
 
 app.use('/feed', feedRoutes);
 app.use('/auth', authRoutes);
@@ -31,6 +26,8 @@ app.use((error, req, res, next) => {
   res.status(status).json({ message: message });
   next();
 })
+
+app.use(cors());
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
