@@ -25,8 +25,6 @@ import store from './store';
 import jwt_decode from 'jwt-decode';
 import { setCurrentUser, logOutUser } from './actions/authActions';
 
-console.log(process.env.REACT_APP_API_SERVER);
-
 if(localStorage.token !== undefined) {
   const decode = jwt_decode(localStorage.token);
   
