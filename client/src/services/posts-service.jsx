@@ -2,9 +2,9 @@ import { get, post } from '../rest/rest';
 
 class PostService {
     constructor() {
-        this.baseUrl = 'http://localhost:3200/feed/posts';
-        this.baseUrlPost = 'http://localhost:3200/feed/post/';
-        this.baseUrlCreate = 'http://localhost:3200/feed/post/create';
+        this.baseUrl = '/feed/posts';
+        this.baseUrlPost = '/feed/post/';
+        this.baseUrlCreate = '/feed/post/create';
     }
     getPosts() {
         return get(this.baseUrl);
