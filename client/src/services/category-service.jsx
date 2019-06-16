@@ -1,8 +1,9 @@
 import { get } from '../rest/rest';
+const API_SERVER = `${process.env.REACT_APP_API_SERVER}`;
 
 export default class CategoryService {
     constructor() {
-        this.baseUrl = 'http://localhost:3200/feed/post/category/';
+        this.baseUrl = API_SERVER + '/feed/post/category/';
     }
 
     getCategories(categoryName) {  

@@ -1,8 +1,9 @@
 import { get, put } from '../rest/rest';
+const API_SERVER = `${process.env.REACT_APP_API_SERVER}`;
 
 export default class ProfileService {
     constructor() {
-        this.baseUrl = 'http://localhost:3200/profile/details/';
+        this.baseUrl = API_SERVER + '/profile/details/';
     }
 
     getUserDetails(userId) {  

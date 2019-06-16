@@ -1,9 +1,11 @@
 import { get, post } from '../rest/rest';
+const API_SERVER = `${process.env.REACT_APP_API_SERVER}`;
+
 
 class SearchService {
     constructor() {
-        this.baseUrl = 'http://localhost:3200/feed/posts';
-        this.searchUrl = 'http://localhost:3200/feed/post/find';
+        this.baseUrl = API_SERVER + '/feed/posts';
+        this.searchUrl = API_SERVER + '/feed/post/find';
     }
     findPosts(obj) {
         return post(this.searchUrl , obj);

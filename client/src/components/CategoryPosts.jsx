@@ -66,7 +66,7 @@ export default class CategoryPosts extends Component {
     
     if (!posts.length) {
         return (
-            <div className="jumbotron jumbotron-fluid">
+            <div className="jumbotron jumbotron-fluid warning-message">
                 <div className="container">
                     <h1 className="display-4 text-center mb-4">There are no posts in this category</h1>
                     
