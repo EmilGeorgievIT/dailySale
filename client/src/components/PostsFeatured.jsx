@@ -74,7 +74,7 @@ class PostsFeatured extends Component {
                                             location_on
                                         </i>
 
-                                        { location }
+                                        { location && location.length > 10 ? location.slice(0, 10) + ' ...' : location }
                                     </p>
                                     
                                 </div>
@@ -97,7 +97,7 @@ class PostsFeatured extends Component {
                                 </div>
                                 
                                 <div className="post__description">
-                                    {  description && description.length > 50 ? description.slice(0, 50) + '...' : description }
+                                    {  description && description.length > 30 ? description.slice(0, 30) + '...' : description }
                                 </div>
                             </div>
                         </div>

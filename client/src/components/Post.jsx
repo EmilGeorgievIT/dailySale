@@ -52,7 +52,7 @@ class Post extends Component {
               settings: {
                 slidesToShow: 1,
                 dots: false,
-                centerMode: true,
+                centerMode: false,
                 slidesToScroll: 1
               }
             }

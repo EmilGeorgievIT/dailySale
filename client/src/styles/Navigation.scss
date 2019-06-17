@@ -83,7 +83,17 @@
  }
 
  @media #{$mobile} {
-	 
+	.navigation.fixed .nav-item .btn, 
+		.navigation.fixed .nav-item .dropdown-btn  {
+		color: $white;
+	}
+	.navbar-collapse {
+		position: absolute;
+		top: 60px;
+		width: 100%;
+		left: 0;
+		background: linear-gradient(225deg, rgba(70, 43, 220, 0.8) 0%, rgba(181, 62, 189, 0.8) 40%, rgba(243, 125, 7, 0.7) 100%);
+	}
 	.logo { max-width: 45px; }
  }
 

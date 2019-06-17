@@ -81,7 +81,7 @@ class Posts extends Component {
                                 </div>
                                 
                                 <div className="post__description">
-                                    {  description && description.length > 30 ? description.slice(0, 30) + '...' : description }
+                                    {  description && description.length > 30 ? description.slice(0, 30) + ' ...' : description }
                                 </div>
                             </div>
                         </div>

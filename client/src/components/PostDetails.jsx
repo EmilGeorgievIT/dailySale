@@ -50,6 +50,7 @@ export default class PostDetails extends Component {
             ]
         }
     }
+
     async componentDidMount() {
         window.addEventListener('scroll', this.handleScroll);
 

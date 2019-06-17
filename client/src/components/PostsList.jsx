@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import '../styles/List.scss';
 
 class PostsList extends Component {
-
     render() {
         const { _id, image, price, title, location, date } = this.props;
         

@@ -122,6 +122,19 @@
     }
 }
 
+@media #{$mobile} {
+    .section-results {
+        & {
+            padding: 1rem 0;
+            margin: 0;
+        }
+        h3 {
+            margin-bottom: 10px !important;
+            font-size: 22px;
+        }
+    }
+}
+
 /* ------------------------------------------------------------ *\
 	Section Featured Posts
 \* ------------------------------------------------------------ */
