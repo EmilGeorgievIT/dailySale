@@ -30,11 +30,11 @@ export default class PostDetails extends Component {
             location: '',
             date: '',
             price: '',
+            noResults: false,
             phoneNumber: '',
             description: '',
             category: '',
             creator: '',
-            isTop: false,
             posts: [],
             rating: {
                 "5" : 353,
@@ -89,8 +89,30 @@ export default class PostDetails extends Component {
             ]
         }
     }
+    async componentDidUpdate(prevProps) {
+        // Typical usage (don't forget to compare props):
+        if (this.props.match.params.id !== prevProps.match.params.id) {
+            try {
+                let postId = this.props.match.params.id;
+                const post = await PostDetails.service.getPostById(postId);
+                const headerEl = document.getElementsByClassName('navigation');
+                const navOffsetTop = headerEl[0].offsetHeight;
+                const el = document.getElementsByClassName('section-post-view');
+                const elOffsetTop = el[0].offsetTop;
+                
+                this.setState({ ...post })
+                
+                window.scrollTo({
+                    top: elOffsetTop - navOffsetTop,
+                    behavior: 'smooth'
+                });
+            } catch(error) {
+                console.log(error);
+            }
+        }
+    }
+    
     async componentDidMount() {
-        window.addEventListener('scroll', this.handleScroll);
 
         try {
             let postId = this.props.match.params.id;
@@ -101,25 +123,16 @@ export default class PostDetails extends Component {
             console.log(error);
         }
     }
-    // handleScroll = (event) => {
-    //     const el = document.getElementsByClassName('footer');
-    //     const elOffsetTop = el[0].offsetTop;
-
-    //     const isTop = window.scrollY >= 165 && window.scrollY <= elOffsetTop - window.innerHeight;
-        
-    //     if (isTop !== this.state.isTop) {
-    //         this.setState({ isTop })
-    //     }
-    // }
-
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.handleScroll);
-    }
-
+    
     showResults = (data) => {
         if(data.length > 0 ) {
             this.setState({
                 posts: [...data]
+            })
+        } else {
+            this.setState({
+                noResults: true,
+                posts: []
             })
         }
     }
@@ -163,6 +176,18 @@ export default class PostDetails extends Component {
                                     <PostsList key= {item._id}  {...item}/>
                                 ) : ''
                             }
+                        </div>
+                    </div> : ''
+                }
+                {
+                    this.state.noResults ?
+                    <div className='section-results'>
+                        <div className="container">
+                            <h3 className='mb-4 h3'>
+                                {
+                                    `Found ${posts.length} ads`
+                                }
+                            </h3>
                         </div>
                     </div> : ''
                 }

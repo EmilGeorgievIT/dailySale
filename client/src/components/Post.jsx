@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import Loading from './shared/Loading';
 import PostService from '../services/posts-service';
 import Posts from './Posts';
 import '../styles/Sections.scss';
