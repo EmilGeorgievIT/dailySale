@@ -15,6 +15,7 @@ class Main extends Component {
         
         this.state = {
             posts: [],
+            noResults: false,
             items: [
                 { name: 'House & DIY' , icon: 'home' },
                 { name: 'Animals', icon: 'pets' },
@@ -38,7 +39,13 @@ class Main extends Component {
         if(data.length > 0 ) {
             this.setState({
                 posts: [...data],
+                noResults: false,
                 loading: false
+            })
+        } else {
+            this.setState({
+                posts: [],
+                noResults: true
             })
         }
     }
@@ -79,6 +86,18 @@ class Main extends Component {
                                         <PostsList key= {item._id}  {...item}/>
                                     ) : ''
                                 }
+                            </div>
+                        </div> : ''
+                    }
+                    {
+                        this.state.noResults ?
+                        <div className='section-results'>
+                            <div className="container">
+                                <h3 className='mb-4 h3'>
+                                    {
+                                        `Found ${posts.length} ads`
+                                    }
+                                </h3>
                             </div>
                         </div> : ''
                     }

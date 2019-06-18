@@ -127,7 +127,8 @@ export default class PostDetails extends Component {
     showResults = (data) => {
         if(data.length > 0 ) {
             this.setState({
-                posts: [...data]
+                posts: [...data],
+                noResults: false,
             })
         } else {
             this.setState({
