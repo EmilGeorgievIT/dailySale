@@ -29,6 +29,7 @@ export default class PostDetails extends Component {
             phoneNumber: '',
             description: '',
             creator: '',
+            viewCount: '',
             isTop: false,
             posts: [],
             items: [
@@ -87,7 +88,7 @@ export default class PostDetails extends Component {
     }
 
     render() {
-        const { title, image, price, description, date, location, phoneNumber, creator, posts } = this.state;
+        const { title, image, price, description, date, location, phoneNumber, creator, posts, viewCount } = this.state;
         
         const postImage = {
             width: "100%",

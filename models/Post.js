@@ -10,6 +10,10 @@ const postSchema = new Schema({
     type: String,
     required: true
   },
+  viewCount: {
+    type: Number,
+    default: 0
+  },
   location: {
     type: String,
     required: true

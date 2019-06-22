@@ -14,6 +14,7 @@ module.exports = {
                 name: user.name,
                 location: user.location,
                 email: user.email,
+                website: user.website,
                 posts: user.posts,
                 phoneNumber: user.phoneNumber
             })

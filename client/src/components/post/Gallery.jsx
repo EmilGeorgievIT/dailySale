@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import '../../styles/Gallery.scss';
 
-const Gallery = ({title, postDate, location, category, imageBackground, views, price, favorite}) => (
+const Gallery = ({title, postDate, location, category, imageBackground, viewCount, price, favorite}) => (
     <Fragment>
         <div className="card gallery">
             <div className="gallery__head">
@@ -41,7 +41,7 @@ const Gallery = ({title, postDate, location, category, imageBackground, views, p
                             <i className="material-icons">visibility</i> 
                             
                             <span>
-                                { views }
+                                { viewCount }
                             </span>    
                         </li>
 

@@ -33,6 +33,7 @@ export default class PostDetails extends Component {
             noResults: false,
             phoneNumber: '',
             description: '',
+            viewCount: '',
             category: '',
             creator: '',
             posts: [],
@@ -139,7 +140,7 @@ export default class PostDetails extends Component {
     }
 
     render() {
-        const { title, image, category, price, description, date, location, phoneNumber, rating, creator, posts, comments } = this.state;
+        const { title, image, category, price, description, date, location, phoneNumber, rating, creator, posts, comments, viewCount } = this.state;
         
         const postImage = {
             width: "100%",
@@ -203,7 +204,7 @@ export default class PostDetails extends Component {
                                         location={location}
                                         category={category}
                                         imageBackground={postImage}
-                                        views='3'
+                                        views={viewCount}
                                         price={price}
                                         favorite='3'
                                     />
@@ -233,8 +234,6 @@ export default class PostDetails extends Component {
                                     <UserProfile
                                         creator={creator} 
                                         joined='1555536805497'
-                                        phone='334636' 
-                                        website='www.test.com'
                                     />
 
                                     <LatestProducts />

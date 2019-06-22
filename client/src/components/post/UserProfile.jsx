@@ -38,7 +38,7 @@ class UserProfile extends Component {
                 .then((user) => {
                     this.setState({user});
                 })
-            }, 300);
+            }, 1000);
         } catch(error) {
                 console.log(error);
         };
@@ -52,7 +52,7 @@ class UserProfile extends Component {
     }
 
     render() {
-        const { name, image, email } = this.state.user;
+        const { name, image, email, website, phoneNumber } = this.state.user;
         
         return (
             <Fragment>
@@ -99,26 +99,37 @@ class UserProfile extends Component {
                                     { email }
                                 </span>
                             </li>
-        
-                            <li>
-                                <i className="material-icons">
-                                    phone
-                                </i>
+
+                            {
+                                phoneNumber ? 
+                                <li>
+                                    <i className="material-icons">
+                                        phone
+                                    </i>
+                                    
+                                    <span>
+                                        { phoneNumber }
+                                    </span>
+                                </li>
+
+                                : '' 
                                 
-                                <span>
-                                    { this.props.phone }
-                                </span>
-                            </li>
-        
-                            <li>
-                                <i className="material-icons">
-                                    link
-                                </i>
+                            }
+
+                            {
+                                website? 
+                                    <li>
+                                        <i className="material-icons">
+                                            link
+                                        </i>
+                                        
+                                        <span>
+                                            { website }
+                                        </span>
+                                    </li>
+                                : ''
                                 
-                                <span>
-                                    { this.props.website }
-                                </span>
-                            </li>
+                            }
                         </ul>
         
                         <ul className="list d-flex list-socials">

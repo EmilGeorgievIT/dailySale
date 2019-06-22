@@ -64,7 +64,7 @@ class LatestProducts extends Component {
               ]
         };
         const { posts } = this.state;
-    
+        
         return(
             <Fragment>
                 <div className="card product-latest">
