@@ -9,13 +9,22 @@ export default class SearchForm extends Component {
 
         this.state = {
             title: '',
-            location: ''
+            location: '',
+            category: ''
         }
     }
     getValue = ({target}) => {
-        this.setState({
-            [target.name] : target.value
-        });
+        if(target.name === 'category') {
+            const smallerCase = target.value.toLowerCase().replace(' & ','and');
+            
+            this.setState({
+                category : smallerCase
+            });
+        } else {
+            this.setState({
+                [target.name] : target.value
+            });
+        }
     }
     
     onSubmit = async (event) => {
@@ -46,7 +55,7 @@ export default class SearchForm extends Component {
                             <input type="text" className="form-control" onChange={this.getValue} value={location} name='location' id="location" placeholder='Ireland' />
                         </div>
                         
-                        <select className="custom-select category-select form__line">
+                        <select name='category' onChange={this.getValue} className="custom-select category-select form__line">
                             <option defaultValue>Category</option>
                             {
                                 this.props.items.map((item, index) => (

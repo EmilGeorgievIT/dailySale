@@ -127,11 +127,14 @@ module.exports = {
     const pageSize = 10;
     const title = req.body.title || '';
     const location = req.body.location || '';
+    const category = req.body.category || '';
+    
     const filterQuery = {
       title: new RegExp(title, 'i'),
-      location: new RegExp(location, 'i')
+      location: new RegExp(location, 'i'),
+      category: new RegExp(category, 'i'),
     }
-    if(location.length > 0 || title.length > 0) {
+    if(location.length > 0 || title.length > 0 || category.length > 0) {
       Post.find(filterQuery)
       .then((post) => {
         res
