@@ -2,7 +2,7 @@
 
 # Demo
 
-* [dailySale](https://frozen-brushlands-43779.herokuapp.com/)
+* [dailySale](https://daily-sale.herokuapp.com/)
 
 # Stack of technologies
 * [Mongo DB](https://www.mongodb.org/);
