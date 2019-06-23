@@ -21,7 +21,7 @@ class Profile extends Component {
         
         this.state = {
             user: '',
-            posts: ''
+            posts: []
         }
     }
     
@@ -39,20 +39,23 @@ class Profile extends Component {
                     const post = await Profile.getPost.getPostById(item)
                         .then((res) => {
                             const postData = res;
-                            postsRes.push(postData);
+                            if (postData !== null) {
+                                postsRes.push(postData);
+                                this.updateState(postsRes);
+                            }
                         }).catch((error) => {
-                            console.log(error)
+                            console.log(error);
                         })                    
                     return postsRes;
                 })
-                    
-                setTimeout(()=> {
-                    this.setState({ posts: postsRes })
-                }, 500)
+
             })                
         } catch(error) {
-                console.log(error);
+            console.log(error);
         };
+    }
+    updateState = (postsRes) => {
+        this.setState({ posts: [...postsRes] })
     }
 
     render() {
@@ -147,7 +150,7 @@ class Profile extends Component {
 
                                             <div className="tab-pane tab-pane-ads fade justify-content-between d-flex flex-wrap" id="v-pills-ads" role="tabpanel" aria-labelledby="v-pills-ads-tab">
                                                 {   
-                                                    this.state.posts ? 
+                                                    this.state.posts !== null && this.state.posts !== undefined  ? 
                                                         this.state.posts.map((post) => (
                                                             <Posts className='ads' key={post._id} {...post} />
                                                             )
@@ -157,7 +160,7 @@ class Profile extends Component {
 
                                             <div className="tab-pane tab-pane-ads fade justify-content-between d-flex flex-wrap" id="v-pills-favorite" role="tabpanel" aria-labelledby="v-pills-favorite-tab">
                                                 {   
-                                                    this.state.posts ? 
+                                                    this.state.posts !== null && this.state.posts !== undefined ? 
                                                         this.state.posts.map((post) => (
                                                             <Posts className='ads' key={post._id} {...post} />
                                                             )

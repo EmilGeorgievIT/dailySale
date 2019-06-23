@@ -48,23 +48,25 @@ export default class UserAds extends Component {
                     const post = await UserAds.getPost.getPostById(item)
                         .then((res) => {
                             const postData = res;
-                            postsRes.push(postData);
+                            if (postData !== null) {
+                                postsRes.push(postData);
+                                this.updateState(postsRes);
+                            }
                         }).catch((error) => {
                             console.log(error)
                         })                    
                     return postsRes;
                 })
-                    
-                setTimeout(()=> {
-                    this.setState({ 
-                        posts: postsRes,
-                        isLoading: false
-                    })
-                }, 500)
             })
         } catch(error) {
             console.log(error);
         }
+    }
+    updateState = (postsRes) => {
+        this.setState({ 
+            posts: postsRes,
+            isLoading: false
+        })
     }
 
     render() {

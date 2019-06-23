@@ -9,7 +9,14 @@ import ProfileService from '../../services/profile-service';
 import facebook from '../../images/facebook.svg';
 import twitter from '../../images/twitter.svg'; 
 import linkedin from '../../images/linkedin.svg';
+import { css } from '@emotion/core';
+import { ScaleLoader } from 'react-spinners';
 
+const override = css`
+    display: block !important;
+    text-align: center;
+    margin: 0 auto;
+`;
 
 class UserProfile extends Component {
     static service = new ProfileService();
@@ -19,6 +26,7 @@ class UserProfile extends Component {
         
         this.state = {
             user: '',
+            isLoading: true,
             creator: props.creator
         }
     }
@@ -36,9 +44,10 @@ class UserProfile extends Component {
             setTimeout(async() => {
                 const user = await UserProfile.service.getUserDetails(this.state.creator)
                 .then((user) => {
-                    this.setState({user});
+                    this.setState({user, isLoading: false });
+                    
                 })
-            }, 1000);
+            }, 500);
         } catch(error) {
                 console.log(error);
         };
@@ -54,6 +63,18 @@ class UserProfile extends Component {
     render() {
         const { name, image, email, website, phoneNumber } = this.state.user;
         
+        if (this.state.isLoading) {
+            return(
+                <ScaleLoader
+                    css={override}
+                    sizeUnit={"px"}
+                    size={40}
+                    color={'#123abc'}
+                    loading={this.state.loading}
+                />
+            )
+        }
+
         return (
             <Fragment>
                 <div className="card user-profile">

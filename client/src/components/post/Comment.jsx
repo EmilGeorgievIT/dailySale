@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Comment = ({id, image, date, time, name, location, comment}) => (
+const Comment = ({id, image, date, title, comment}) => (
     <div className='card comment'>
         <div className="card-body comment__body">
             <div className="comment__aside">
@@ -12,7 +12,7 @@ const Comment = ({id, image, date, time, name, location, comment}) => (
             <div className="comment__content">
                 <div className="comment__meta">
                     <h5 className='comment__title'>
-                        {name}
+                        {title}
                     </h5>
                     
                     <ul className="list-meta">
@@ -29,17 +29,11 @@ const Comment = ({id, image, date, time, name, location, comment}) => (
                         <li>
                             <i className="material-icons">access_time</i>
                             
-                            <span>
-                                {time}
-                            </span>
-                        </li>
-
-                        <li>
-                            <i className="material-icons">location_on</i>
-                            
-                            <span>
-                                {location}
-                            </span>
+                            {
+                                <span> 
+                                    { (new Date(date)).toLocaleTimeString('en-US', 'short') }
+                                </span> 
+                            }
                         </li>
                     </ul>
                 </div>

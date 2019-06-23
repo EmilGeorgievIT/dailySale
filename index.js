@@ -3,7 +3,9 @@ const bodyParser = require('body-parser');
 const feedRoutes = require('./routes/feed');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
+const commentRoutes = require('./routes/comment');
 const messageRoutes = require('./routes/message');
+
 const path = require('path');
 const { port } = require('./config/config');
 require('./database/database')();
@@ -22,6 +24,7 @@ app.use('/feed', feedRoutes);
 app.use('/auth', authRoutes);
 app.use('/mail', messageRoutes);
 app.use('/profile', userRoutes);
+app.use('/comment', commentRoutes);
 
 // General error handling
 

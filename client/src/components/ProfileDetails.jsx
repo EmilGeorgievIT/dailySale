@@ -11,15 +11,12 @@ export default class ProfileDetails extends Component {
         website: this.props.website,
         location: this.props.location
     }
-
-     componentDidMount () {
-        console.log(this.state);
-    }
     handleChanges = ({target}) => {
         this.setState({
             [target.name] : target.value
         })
     }
+
     static getDerivedStateFromProps(props, state) {
         if (props.name !== state.name) {
           return {

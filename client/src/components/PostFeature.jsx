@@ -29,6 +29,7 @@ class PostFeature extends Component {
         infinite: true,
         speed: 500,
         slidesToShow: 4,
+        initialSlide: this.state.posts.length,
         slidesToScroll: 4,
         responsive: [
             {

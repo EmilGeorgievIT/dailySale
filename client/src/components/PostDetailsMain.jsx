@@ -17,9 +17,11 @@ import PostService from '../services/posts-service';
 import '../styles/Sections.scss';
 import '../styles/helpers.scss';
 import '../styles/Buttons.scss';
+import CommentService from '../services/comment-service';
 
 export default class PostDetails extends Component {
     static service = new PostService();
+    static serviceComment = new CommentService();
 
     constructor(props) {
         super(props)
@@ -45,32 +47,7 @@ export default class PostDetails extends Component {
                 "1": 1,
                 "id": ''
             },
-            comments: [
-                {
-                    id: '34324',
-                    date: '4/29/2019',
-                    time: '15:43',
-                    name: 'Pesho',
-                    location: 'Ireland',
-                    comment: 'Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a sea'
-                },
-                {
-                    id: '343124',
-                    date: '4/29/2019',
-                    time: '15:43',
-                    name: 'Ivan',
-                    location: 'Bulgaria Plovdiv',
-                    comment: 'Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a sea'
-                },
-                {
-                    id: '3243124',
-                    date: '4/29/2019',
-                    time: '11:43',
-                    name: 'Pesho 2',
-                    location: 'Bulgaria',
-                    comment: 'Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a sea'
-                }
-            ],
+            comments: [],
             items: [
                 { name: 'House & DIY' , icon: 'home' },
                 { name: 'Animals', icon: 'pets' },
@@ -118,8 +95,9 @@ export default class PostDetails extends Component {
         try {
             let postId = this.props.match.params.id;
             const post = await PostDetails.service.getPostById(postId);
+            const comments = await PostDetails.serviceComment.getComments(postId);
             
-            this.setState({ ...post })
+            this.setState({ ...post, ...comments })
         } catch(error) {
             console.log(error);
         }
@@ -140,7 +118,7 @@ export default class PostDetails extends Component {
     }
 
     render() {
-        const { title, image, category, price, description, date, location, phoneNumber, rating, creator, posts, comments, viewCount } = this.state;
+        const { title, image, category, price, description, date, location, rating, creator, posts, comments, viewCount } = this.state;
         
         const postImage = {
             width: "100%",
