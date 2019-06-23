@@ -114,7 +114,9 @@ export default class PostDetails extends Component {
             })
         }
     }
-
+    addCommentFromChild = (comment) => {
+        this.setState({ comments: [...this.state.comments, comment] })
+    }
     render() {
         const { title, image, category, price, description, date, location, rating, creator, posts, comments, viewCount } = this.state;
         
@@ -200,7 +202,7 @@ export default class PostDetails extends Component {
                                             />
                                         ))
                                     }
-                                    <AddComment postId={this.props.match.params.id} />
+                                    <AddComment handleComment={this.addCommentFromChild} postId={this.props.match.params.id} />
                                 </div> 
                             </div>  
                            

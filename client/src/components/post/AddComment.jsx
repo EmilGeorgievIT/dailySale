@@ -40,7 +40,9 @@ class AddComment extends Component  {
         }
         else return null;
     }
-
+    sendComment(comment) {
+        this.props.handleComment(comment);
+    }
     render() {
         return (
             <Fragment>
@@ -85,6 +87,13 @@ class AddComment extends Component  {
                                             this.setState({
                                                 submitted: true
                                             })
+                                            this.sendComment({
+                                                    title,
+                                                    comment,
+                                                    email,
+                                                    userId: this.state.userId,
+                                                    postId: this.state.postId
+                                            });
                                             resetForm();
                                             console.log(data);
                                         })
@@ -121,7 +130,7 @@ class AddComment extends Component  {
                                         ) : null}
                                 </div>
 
-                                <button type="submit"  disabled={Object.keys(errors).length} className="btn btn-primary btn-sm">Send Reply</button>
+                                <button type="submit" disabled={Object.keys(errors).length} className="btn btn-primary btn-sm">Send Reply</button>
                             </Form>                             
                          )}
                         </Formik>

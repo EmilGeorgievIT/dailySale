@@ -47,7 +47,7 @@ class UserProfile extends Component {
                     this.setState({user, isLoading: false });
                     
                 })
-            }, 500);
+            }, 1500);
         } catch(error) {
                 console.log(error);
         };
