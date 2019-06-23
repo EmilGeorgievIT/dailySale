@@ -200,7 +200,7 @@ export default class PostDetails extends Component {
                                             />
                                         ))
                                     }
-                                    <AddComment />
+                                    <AddComment postId={this.props.match.params.id} />
                                 </div> 
                             </div>  
                            
