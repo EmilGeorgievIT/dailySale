@@ -26,6 +26,23 @@ module.exports = {
             next(error);
         });
     },
+    getUserProfileImage: (req,res,next) => {
+        const userId = req.params.userId;
+        
+        User.findById(userId)
+            .then((user) => {
+                res
+                .status(200)
+                .json({
+                    image: user.image
+                })
+            }).catch((error) => {
+                if(!error.statusCode) { 
+                    error.statusCode = 500;
+                }
+                next(error);
+            });
+    },
     updateProfile: (req, res, next) => {
         const userId = req.params.userId;
         const user = req.body;

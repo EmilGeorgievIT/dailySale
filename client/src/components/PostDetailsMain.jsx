@@ -68,7 +68,6 @@ export default class PostDetails extends Component {
         }
     }
     async componentDidUpdate(prevProps) {
-        // Typical usage (don't forget to compare props):
         if (this.props.match.params.id !== prevProps.match.params.id) {
             try {
                 let postId = this.props.match.params.id;
@@ -95,8 +94,7 @@ export default class PostDetails extends Component {
         try {
             let postId = this.props.match.params.id;
             const post = await PostDetails.service.getPostById(postId);
-            const comments = await PostDetails.serviceComment.getComments(postId);
-            
+            const comments = await PostDetails.serviceComment.getComments(postId)
             this.setState({ ...post, ...comments })
         } catch(error) {
             console.log(error);
@@ -123,7 +121,7 @@ export default class PostDetails extends Component {
         const postImage = {
             width: "100%",
             backgroundPosition: 'center center',
-            backgroundRepaet: 'no-repeat',
+            backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             minHeight: "431px",
             height: '100%',
@@ -197,8 +195,7 @@ export default class PostDetails extends Component {
                                     {
                                         comments.map(item => (
                                             <Comment 
-                                                key={item.id}
-                                                image={image}
+                                                key={item._id}
                                                 {...item}  
                                             />
                                         ))
