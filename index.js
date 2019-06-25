@@ -5,12 +5,14 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const commentRoutes = require('./routes/comment');
 const messageRoutes = require('./routes/message');
+const helmet = require('helmet');
 
 const path = require('path');
 const { port } = require('./config/config');
 require('./database/database')();
 const app = express();
 
+app.use(helmet());
 app.use(bodyParser.json({limit: '20mb'}));
 
 app.use((req, res, next) => {
