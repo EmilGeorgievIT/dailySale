@@ -137,6 +137,17 @@ nav ol { list-style: none outside none; }
 	Warning Message
 \* ------------------------------------------------------------ */
 
+.warning-message {
+	& {
+		padding: 0;
+		min-height: calc(100vh - 80px);
+		display: flex;
+		flex-direction: column;
+		align-items: center center;
+		justify-content: center; 
+	}
+}
+
 @media #{$mobile} {
 	.warning-message { 
 		h1 {
