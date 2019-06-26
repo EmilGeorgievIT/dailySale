@@ -52,9 +52,9 @@ class Posts extends Component {
                                     <i className="material-icons">home</i>
                                 </div>
                                 
-                                <div className="icon post__favorite">
+                                <button data-toggle="tooltip" data-placement="top" title="Add to favorite" className="btn icon post__favorite">
                                     <i className="material-icons">favorite</i>
-                                </div>
+                                </button>
                             </div>
                         </div>
                     </div>
