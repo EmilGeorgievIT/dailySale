@@ -24,7 +24,7 @@ class PostsFeatured extends Component {
     });
 
     render() {
-        const { _id, image, price, date, title, location, description, category, phoneNumber } = this.props;
+        const { _id, image, price, date, title, viewCount, location, description, category, phoneNumber } = this.props;
         
         const postImage = {
             width: "100%",
@@ -66,7 +66,7 @@ class PostsFeatured extends Component {
                                     <p className='post__meta-views'>
                                         <i className="icon material-icons">visibility</i>
                                         
-                                        {this.state.views} Views
+                                        {viewCount} Views
                                     </p>
 
                                     <p className='post__meta-location'>

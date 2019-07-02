@@ -19,24 +19,24 @@ function validateMessage(req, res) {
 module.exports = {
     sendMessage: (req, res, next) => {
         if(validateMessage(req, res)) {            
-            const { receiver, title, description } = req.body;
-            const message = new Message({receiver, title, description, creator: req.userId});
-            let creator;
+            const { creator, description } = req.body;
+            const message = new Message({creator, description, receiver: req.params.userId});
+            let receiver;
     
             message.save()
             .then(() => {
-                return User.findById(receiver);
+                return User.findById(creator);
             })
-            .then((receiver) => {
-                receiver.messages.push(message);
-                receiver.save();
+            .then((creator) => {
+                creator.sentMessages.push(message);
+                creator.save();
             })
             .then(() => {
-                return User.findById(req.userId);
+                return User.findById(req.params.userId);
             })
             .then((user) => {
-                user.messages.push(message);
-                creator = user;
+                user.receivedMessages.push(message);
+                receiver = user;
                 return user.save();
             })
             .then(() => {
@@ -58,9 +58,9 @@ module.exports = {
             });
         }
     },
-    getMessageById: (req, res, next) => {
-        const messageId = req.params.messageId
-        Message.findById(messageId)
+    receivedMessage: (req, res, next) => {
+        const userId = req.params.userId
+        Message.find({receiver: userId})
         .then((message) => {
             res
             .status(200)

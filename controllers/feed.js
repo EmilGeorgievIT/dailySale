@@ -155,12 +155,12 @@ module.exports = {
     const postId = req.params.postId;
     
     Post.findById(postId)
-    // .then((post) => {
-    //   let count = post.viewCount;
-    //   count ++;
-    //   post.viewCount = count;
-    //   return post.save();
-    // })
+    .then((post) => {
+      let count = post.viewCount;
+      count ++;
+      post.viewCount = count;
+      return post.save();
+    })
     .then((post) => {
       res
         .status(200)

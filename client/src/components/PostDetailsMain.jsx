@@ -182,7 +182,7 @@ export default class PostDetails extends Component {
                                         location={location}
                                         category={category}
                                         imageBackground={postImage}
-                                        views={viewCount}
+                                        viewCount={viewCount}
                                         price={price}
                                         favorite='3'
                                     />
