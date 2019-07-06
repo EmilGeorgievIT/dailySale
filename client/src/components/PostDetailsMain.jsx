@@ -114,9 +114,11 @@ export default class PostDetails extends Component {
             })
         }
     }
+    
     addCommentFromChild = (comment) => {
         this.setState({ comments: [...this.state.comments, comment] })
     }
+
     render() {
         const { title, image, category, price, description, date, location, rating, creator, posts, comments, viewCount } = this.state;
         

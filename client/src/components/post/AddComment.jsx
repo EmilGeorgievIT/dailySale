@@ -44,6 +44,9 @@ class AddComment extends Component  {
         this.props.handleComment(comment);
     }
     render() {
+        if(localStorage.getItem('token') === null) {
+            return null;
+        }
         return (
             <Fragment>
                 <div className='comment-create card'>

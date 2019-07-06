@@ -42,9 +42,7 @@ export default class CategoryPosts extends Component {
             .then((data) => {
                 this.setState({
                     posts: [...data]
-                })
-                
-                console.log(this.state);
+                })                
             }).catch((error) => {
                 console.log(error);   
             })

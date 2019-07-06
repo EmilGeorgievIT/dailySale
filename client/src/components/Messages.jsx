@@ -33,7 +33,6 @@ export default class Messages extends Component {
             this.setState({
                 messages
             });
-            console.log(this.state);
         }).catch((error) => {
             console.log(error);
         });
