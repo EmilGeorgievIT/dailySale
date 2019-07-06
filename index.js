@@ -6,6 +6,7 @@ const userRoutes = require('./routes/user');
 const commentRoutes = require('./routes/comment');
 const favoriteRoutes = require('./routes/favorite');
 const messageRoutes = require('./routes/message');
+const mailRouter = require('./routes/contacts');
 const helmet = require('helmet');
 
 const path = require('path');
@@ -29,6 +30,7 @@ app.use('/mail', messageRoutes);
 app.use('/profile', userRoutes);
 app.use('/comment', commentRoutes);
 app.use('/favorite', favoriteRoutes);
+app.use('/contact', mailRouter);
 
 
 // General error handling
