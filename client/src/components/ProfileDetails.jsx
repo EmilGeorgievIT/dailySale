@@ -7,7 +7,7 @@ export default class ProfileDetails extends Component {
     state = {
         name: this.props.name,
         phoneNumber: this.props.phoneNumber,
-        email: this.props.email,
+        email: this.props.email,    
         website: this.props.website,
         location: this.props.location
     }
@@ -55,13 +55,13 @@ export default class ProfileDetails extends Component {
                     <div className="form-group col-md-6">
                         <label htmlFor="name">Name</label>
                         
-                        <input type="text" onChange={this.handleChanges} name='name' placeholder='Name' value={this.state.name} className="form-control" id="name"/>
+                        <input type="text" onChange={this.handleChanges} name='name' placeholder='Name' value={this.state.name || ''} className="form-control" id="name"/>
                     </div>
 
                     <div className="form-group col-md-6">
                         <label htmlFor="location">Website</label>
                         
-                        <input type="text" onChange={this.handleChanges} value={this.state.website} name='website' className="form-control" id="website" placeholder='Website'/>
+                        <input type="text" onChange={this.handleChanges} value={this.state.website || ''} name='website' className="form-control" id="website" placeholder='Website'/>
                     </div>
                 </div>
 
@@ -69,20 +69,20 @@ export default class ProfileDetails extends Component {
                     <div className="form-group col-md-6">
                         <label htmlFor="email">Email</label>
                         
-                        <input type="email" name='email' onChange={this.handleChanges} value={this.state.email} className="form-control" id="email" placeholder='Email'/>
+                        <input type="email" name='email' onChange={this.handleChanges} value={this.state.email || ''} className="form-control" id="email" placeholder='Email'/>
                     </div>
                 
                     <div className="form-group col-md-6">
                         <label htmlFor="location">Location</label>
                         
-                        <input type="text" onChange={this.handleChanges} value={this.state.location} name='location' className="form-control" id="location" placeholder='Location'/>
+                        <input type="text" onChange={this.handleChanges} value={this.state.location || ''} name='location' className="form-control" id="location" placeholder='Location'/>
                     </div>
                 </div>
             
                 <div className="form-group">
                     <label htmlFor="phoneNumber">Phone</label>
                 
-                    <input type="text" name='phoneNumber' onChange={this.handleChanges} value={this.state.phoneNumber} className="form-control" id="phoneNumber" placeholder='Phone number'/>
+                    <input type="text" name='phoneNumber' onChange={this.handleChanges} value={this.state.phoneNumber || ''} className="form-control" id="phoneNumber" placeholder='Phone number'/>
                 </div>
                     
                 <button type="submit" className="btn btn-primary">

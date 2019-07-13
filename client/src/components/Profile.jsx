@@ -41,7 +41,7 @@ class Profile extends Component {
                             const postData = res;
                             if (postData !== null) {
                                 postsRes.push(postData);
-                                this.updateState(postsRes);
+                                this.setState({ posts: [...postsRes] })
                             }
                         }).catch((error) => {
                             console.log(error);
@@ -53,9 +53,6 @@ class Profile extends Component {
         } catch(error) {
             console.log(error);
         };
-    }
-    updateState = (postsRes) => {
-        this.setState({ posts: [...postsRes] })
     }
 
     render() {
