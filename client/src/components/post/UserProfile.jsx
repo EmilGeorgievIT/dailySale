@@ -24,6 +24,7 @@ const override = css`
 class UserProfile extends Component {
     static service = new ProfileService();
     static favoriteService = new FavoriteService();
+    _isMounted = false;
     
     constructor(props) {
         super(props);
@@ -42,6 +43,11 @@ class UserProfile extends Component {
           });
         }
     }
+    
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
+
     createNotification = (type) => {
         const postId = document.location.pathname.replace('/post/','');
         const userId = localStorage.getItem('ds_chk_temp');
@@ -73,13 +79,15 @@ class UserProfile extends Component {
     }
 
     componentDidMount() {
+        this._isMounted = true;
         try {
             setTimeout(async() => {
-                const user = await UserProfile.service.getUserDetails(this.state.creator)
-                .then((user) => {
-                    this.setState({user, isLoading: false });
-                    
-                })
+                if(this._isMounted) {
+                    const user = await UserProfile.service.getUserDetails(this.state.creator)
+                    .then((user) => {
+                        this.setState({user, isLoading: false });  
+                    })
+                }
             }, 1500);
         } catch(error) {
                 console.log(error);

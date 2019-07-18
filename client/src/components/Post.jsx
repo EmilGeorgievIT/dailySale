@@ -15,6 +15,8 @@ const override = css`
 
 class Post extends Component {
     static service = new PostService();
+    _isMounted = false;
+
     state = {
         posts: [],
         isLoading: true
@@ -95,16 +97,24 @@ class Post extends Component {
     }
 
     async componentDidMount() {
+        this._isMounted = true;
+       
         try {
-            const posts = await Post.service.getPosts();
-            
-            this.setState({ 
-                posts,
-                isLoading: false
-            });
+            if(this._isMounted) {
+                const posts = await Post.service.getPosts();
+                
+                this.setState({ 
+                    posts,
+                    isLoading: false
+                });
+            }
         } catch (error) {
             console.log(error);
         }
+    }
+    
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 }
 

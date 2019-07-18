@@ -16,21 +16,30 @@ const override = css`
 
 class PostFeature extends Component {
     static service = new PostService();
+    _isMounted = false;
+
     state = {
         posts: [],
         isLoading: true
     }
     
     async componentDidMount() {
+        this._isMounted = true;
+        
         try {
-            const posts = await PostFeature.service.getPosts();
-            this.setState({ 
-                posts,
-                isLoading: false
-            });
+            if (this._isMounted) {
+                const posts = await PostFeature.service.getPosts();
+                this.setState({ 
+                    posts,
+                    isLoading: false
+                });
+            }
         } catch (error) {
             console.log(error);
         }
+    }
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     render() {
