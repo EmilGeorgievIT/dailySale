@@ -11,17 +11,20 @@ import banner from '../images/banner.jpg';
 import Messages from './Messages';
 import { connect } from 'react-redux';
 import { loginUser } from '../actions/authActions';
+import FavoriteService from '../services/favorite-service';
 
 class Profile extends Component {
     static service = new ProfileService();
     static getPost = new PostService();
+    static favoritePosts = new FavoriteService();
     
     constructor(props) {
         super(props);
         
         this.state = {
             user: '',
-            posts: []
+            posts: [],
+            favorites: []
         }
     }
     
@@ -49,6 +52,25 @@ class Profile extends Component {
                     return postsRes;
                 })
 
+            })
+
+            const favoritePosts = await Profile.favoritePosts.getFavorites(userId)
+            .then(async (favorite) => {
+                let postsFavoriteRes = [];
+                
+                favorite.map(async (item)  => {
+                    const post = await Profile.getPost.getPostById(item.postId)
+                        .then((res) => {
+                            const postData = res;
+                            if (postData !== null) {
+                                postsFavoriteRes.push(postData);
+                                this.setState({ favorites: [...postsFavoriteRes] })
+                            }
+                        }).catch((error) => {
+                            console.log(error);
+                        })
+                    return postsFavoriteRes;
+                });                    
             })                
         } catch(error) {
             console.log(error);
@@ -157,19 +179,9 @@ class Profile extends Component {
 
                                             <div className="tab-pane tab-pane-ads fade justify-content-between d-flex flex-wrap" id="v-pills-favorite" role="tabpanel" aria-labelledby="v-pills-favorite-tab">
                                                 {   
-                                                    this.state.posts !== null && this.state.posts !== undefined ? 
-                                                        this.state.posts.map((post) => (
-                                                            <Posts className='ads' key={post._id} {...post} />
-                                                            )
-                                                        ) : 'No ads'
-                                                }
-                                            </div>
-
-                                            <div className="tab-pane tab-pane-ads fade justify-content-between d-flex flex-wrap" id="v-pills-ads" role="tabpanel" aria-labelledby="v-pills-ads-tab">
-                                                {   
-                                                    this.state.posts ? 
-                                                        this.state.posts.map((post) => (
-                                                            <Posts className='ads' key={post._id} {...post} />
+                                                    this.state.favorites !== null && this.state.favorites !== undefined ? 
+                                                        this.state.favorites.map((favorite) => (
+                                                            <Posts className='ads' key={favorite._id} {...favorite} />
                                                             )
                                                         ) : 'No ads'
                                                 }
