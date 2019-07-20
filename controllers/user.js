@@ -43,6 +43,33 @@ module.exports = {
                 next(error);
             });
     },
+    updateProfileImage(req,res,next) {
+        const userId = req.params.userId;
+        const { image } = req.body;
+
+        User.findById(userId)
+        .then((user) => {
+            if(!user) {
+                const error = new Error('User not found !');
+                error.status = 404;
+                throw error;
+            }
+            user.image = image;
+            return user.save()
+        }).then((user) => {
+            res
+            .status(201)
+            .json({
+                message: 'Successfully updated profile picture !'
+            })
+        })
+        .catch((error) => {
+            if(!error.statusCode) { 
+                error.statusCode = 500;
+            }
+            next(error);
+        });
+    },
     updateProfile: (req, res, next) => {
         const userId = req.params.userId;
         const user = req.body;

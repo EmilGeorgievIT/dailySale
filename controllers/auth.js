@@ -68,6 +68,7 @@ module.exports = {
 
         const token = jwt.sign({ 
           email: user.email,
+          image: user.image,
           userId: user._id.toString()
         }
         , 'somesupersecret'

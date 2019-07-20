@@ -25,6 +25,8 @@ class Navigation extends Component {
     }
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll);
+        console.log(this.props.auth);
+        
     }
     componentWillUnmount() {
         window.removeEventListener('scroll', this.handleScroll);
@@ -77,7 +79,9 @@ class Navigation extends Component {
                             <li className="nav-item">
                                 <div className="dropdown">
                                     <button className="nav-link dropdown-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i className="material-icons">account_circle</i>
+                                        {
+                                            user.image? <img src={user.image} className='image-profile' alt=""/> : <i class="material-icons">face</i> 
+                                        }
                                         
                                         <span>
                                             My profile

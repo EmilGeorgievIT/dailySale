@@ -7,6 +7,7 @@ import Posts from '../components/Posts';
 import { Intro } from '../components/shared/Intro';
 import '../styles/Profile.scss';
 import '../styles/Navigation.scss';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
 import banner from '../images/banner.jpg';
 import Messages from './Messages';
 import { connect } from 'react-redux';
@@ -23,11 +24,37 @@ class Profile extends Component {
         
         this.state = {
             user: '',
+            image: '',
             posts: [],
             favorites: []
         }
     }
-    
+
+    handleImage = (e) => {
+        let files = e.target.files;
+
+        for (var i = 0; i < files.length; i++) {
+          let file = files[i];
+          let reader = new FileReader();
+
+          reader.readAsDataURL(file);
+          reader.onload = () => {
+            this.setState({
+                user: {
+                    image: reader.result
+                } 
+            })
+            Profile.service.updateProfileImage(localStorage.getItem('ds_chk_temp'), {
+                image: reader.result
+            })
+            .then(data => {
+                NotificationManager.success('Success', 'Successfully uploaded image', 3000);
+            }, error => {
+                NotificationManager.error('Something went wrong !', 'Image not uploaded', 3000);
+            })
+          }
+        }
+    }
    async componentDidMount() {
         try {
             const userId = localStorage.getItem('ds_chk_temp');
@@ -109,6 +136,12 @@ class Profile extends Component {
                                         
                                         <div className='profile__image'>
                                             <img src={image} alt=""/>
+
+                                            <input type="file" onChange={this.handleImage} className="change-image" id="image"/>
+                                             
+                                            <div className="profile__image-hover">
+                                                <i className="material-icons">camera_alt</i>
+                                            </div>
                                         </div>
 
                                         <h5 className='mb-3 text-center font-weight-semibold'>
@@ -201,6 +234,8 @@ class Profile extends Component {
                         </div>
                     </div>
                 </div>
+                
+                <NotificationContainer/>
             </Fragment>
         );
     }

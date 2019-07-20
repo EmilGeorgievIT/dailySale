@@ -21,6 +21,13 @@
 		background-color: rgba(0,0,0,.4);
 		transition: background .4s;
 		
+		.image-profile {
+			margin-right: 5px;
+			border-radius: 50%;
+			width: 40px;
+			height: 40px;
+		}
+		
 		&.fixed {
 			position: fixed;
 			background: $white;
