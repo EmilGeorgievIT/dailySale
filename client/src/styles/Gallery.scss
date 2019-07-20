@@ -57,6 +57,7 @@
     }
 }
 
+
 @media #{$mobile} {
     .gallery {
         .gallery__image {
@@ -103,6 +104,27 @@
         }
         li ~ li {
             margin-left: 0 !important;
+        }
+    }
+}
+
+@media #{$mobile-small} {
+    .gallery {
+        .gallery-title {
+            text-align: center; 
+        }
+        .list-meta {
+            & {
+                flex-wrap: wrap;
+            }
+            li {
+                width: 100%;
+                padding: .5rem 0;
+            }
+            li ~ li {
+                border-top: 1px solid #605e7e;
+                margin-left: 0;
+            }
         }
     }
 }

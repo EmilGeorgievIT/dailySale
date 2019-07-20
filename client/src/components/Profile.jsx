@@ -159,11 +159,11 @@ class Profile extends Component {
                                         <div className="card-body">
                                             <div className="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                                 <ProfileDetails 
+                                                name= {name}
                                                 email={email}
                                                 website= {website}
                                                 location={location}
                                                 phoneNumber={phoneNumber}
-                                                name= {name}
                                                 />
                                             </div>
 

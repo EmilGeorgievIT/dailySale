@@ -32,7 +32,6 @@ export default class ProfileDetails extends Component {
 
     handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(this.state);
 
         const userId = localStorage.getItem('ds_chk_temp');
         
@@ -41,7 +40,6 @@ export default class ProfileDetails extends Component {
                 userId, 
                 this.state
             );
-            console.log(userInfo);
         } catch(error) {
             console.log(error);
         }
@@ -55,11 +53,11 @@ export default class ProfileDetails extends Component {
                     <div className="form-group col-md-6">
                         <label htmlFor="name">Name</label>
                         
-                        <input type="text" onChange={this.handleChanges} name='name' placeholder='Name' value={this.state.name || ''} className="form-control" id="name"/>
+                        <input type="text" name='name' onChange={this.handleChanges} value={this.state.name || ''} id="name" placeholder='Name' className="form-control"/>
                     </div>
 
                     <div className="form-group col-md-6">
-                        <label htmlFor="location">Website</label>
+                        <label htmlFor="website">Website</label>
                         
                         <input type="text" onChange={this.handleChanges} value={this.state.website || ''} name='website' className="form-control" id="website" placeholder='Website'/>
                     </div>
