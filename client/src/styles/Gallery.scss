@@ -110,8 +110,24 @@
 
 @media #{$mobile-small} {
     .gallery {
+        .gallery__head {
+            text-align: center;
+        }
         .gallery-title {
-            text-align: center; 
+            position: relative;
+            display: inline-block;
+            line-height: 1.5;
+        }
+        .gallery-title:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 100%;
+            width: 100%;
+            margin: 0 auto;
+            height: 3px;
+            background-color: $base-background;
         }
         .list-meta {
             & {
@@ -122,7 +138,6 @@
                 padding: .5rem 0;
             }
             li ~ li {
-                border-top: 1px solid #605e7e;
                 margin-left: 0;
             }
         }

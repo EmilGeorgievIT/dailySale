@@ -77,3 +77,9 @@
         margin-bottom: 1rem;
     }
 }
+
+@media #{$small-desktop} {
+    .form-contacts {
+        padding: 1rem;
+    }
+}

@@ -7,7 +7,6 @@ export const registerUser = (userData, history) => dispatch => {
     const service = new AuthenticationService();
     service.register(userData)
         .then((res) => {
-            console.log(res);
             if(res.errors !== undefined) {
                 dispatch({
                     type: GET_ERRORS,

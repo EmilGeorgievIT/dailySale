@@ -24,7 +24,7 @@ const addPostSchema = Yup.object().shape({
       .required('Required'),
     description: Yup.string()
       .min(10, 'Too Short!')
-      .max(500, 'Too Long!')
+      .max(1000, 'Too Long!')
       .required('Required'),
     email: Yup.string()
       .email('Invalid email')
@@ -163,7 +163,6 @@ class CreateAd extends Component {
                                                     this.setState({
                                                         submitted: true
                                                     })
-                                                    console.log(data);
                                                 })
                                                 .catch(error => {
                                                     console.log(error);

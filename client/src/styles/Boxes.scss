@@ -44,6 +44,17 @@
         }
     }
 }
+@media #{$small-desktop} {
+    .box-contacts {
+        .box__content {
+            display: block;
+            text-align: center;
+            .material-icons {
+                margin: 0 auto .7rem;
+            }
+        }
+    }
+}
 
 /* ------------------------------------------------------------ *\
 	Box User
