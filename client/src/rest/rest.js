@@ -10,6 +10,7 @@ function request(method) {
             method,
             headers: {
                 'Content-Type' : 'application/json',
+                'Access-Control-Allow-Origin': '*',
                 ...authHeader
             },
             body: Object.keys(data).length ?
