@@ -25,6 +25,7 @@ class Navigation extends Component {
     }
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll);        
+        console.log(this.props);
     }
     componentWillUnmount() {
         window.removeEventListener('scroll', this.handleScroll);
@@ -113,9 +114,10 @@ class Navigation extends Component {
         );
     }
 }
+
 const mapStateToPops = (state) => ({
     auth: state.auth,
+    image: state.image,
     error: state.error
 });
-
 export default connect(mapStateToPops, { loginUser, logOutUser })(Navigation);

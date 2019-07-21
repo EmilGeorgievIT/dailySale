@@ -58,10 +58,12 @@
         }
     }
     .user__image {
-        width: 5rem;
-        height: 5rem;
-        border-radius: 50%;
-        margin: 0 auto 1rem;
+        img {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+        }
     }
 }
 

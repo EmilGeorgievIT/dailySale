@@ -33,7 +33,8 @@ export const loginUser = userData => dispatch => {
             localStorage.setItem('ds_chk_temp', data.userId);
             localStorage.setItem('token', data.token);
             const decode = jwt_decode(data.token);
-            dispatch(setCurrentUser(decode));
+            const image = data.image;
+            dispatch(setCurrentUser({decode, image}));
         } else {
             dispatch({
                 type: GET_ERRORS,

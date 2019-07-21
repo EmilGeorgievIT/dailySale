@@ -43,12 +43,14 @@
     }
     .comment__aside{
         & {
-            flex: 0 1 60px;
-            max-width: 60px;
+            flex: 0 1 80px;
+            max-width: 80px;
         }
         .comment__image {
             img { 
                 border-radius: 50%;
+                height: 70px;
+                max-width: 80px;
             }
         }
     }
