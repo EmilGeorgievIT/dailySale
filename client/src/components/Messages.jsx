@@ -44,11 +44,11 @@ export default class Messages extends Component {
 
         return (
             <Fragment>
-            {
-                messages.map((item) => 
-                   <Message key={item.id} {...item} />
-                )
-            }
+                {
+                    messages.map((item) => 
+                        <Message key={item.id} {...item} />
+                    )
+                }
             </Fragment>
         );
     }
