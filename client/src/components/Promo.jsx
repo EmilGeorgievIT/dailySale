@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/Sections.scss';
+import { Link } from 'react-router-dom';
 import banner from '../images/banner.jpg';
 const backgroundImage = {
     backgroundImage: `url(${banner})`
@@ -17,9 +18,9 @@ const Promo = () => (
                 </p>
             
                 <div className="section__actions">
-                    <button className='btn btn-primary'>
+                    <Link to='/create/ad' className='btn btn-primary'>
                         Free Post Ad
-                    </button>   
+                    </Link>   
                 </div>
             </div>
            

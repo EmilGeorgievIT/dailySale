@@ -24,9 +24,39 @@ module.exports = {
                 userId,
                 postId
             });
-            
-            favorite.save().then(() => {
-                res.status(201).json(favorite)
+
+            Favorite.find({postId: postId})
+            .then((obj) => {
+                if(obj.length) {
+                    const error = new Error('This post already exist !');
+                    error.statusCode = 400;
+                    throw error;
+                }
+
+                favorite.save()
+                res.
+                status(201).json(favorite);
+            })
+            .catch((error) => {
+                if (!error.statusCode) {
+                    error.statusCode = 500;
+                }
+                res.status(500).json({
+                    message: error.errors
+                })
+                next(error);
+            });
+        }
+    },
+    getFavorites: (req,res,next) => {
+        if(validateFavorite(req,res)) {
+            const userId = req.params.userId;
+            Favorite
+            .find({userId: userId})
+            .then((favorite) => {
+                res
+                .status(200)
+                .json(favorite)
             }).catch((error) => {
                 if (!error.statusCode) {
                     error.statusCode = 500;
@@ -36,6 +66,7 @@ module.exports = {
                 })
                 next(error);
             });
+
         }
     }
 };

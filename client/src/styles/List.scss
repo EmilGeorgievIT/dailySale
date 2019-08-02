@@ -76,6 +76,20 @@
     }
 }
 
+@media #{$mobile-small} {
+    .post-list {
+        .post__inner {
+            display: block;
+        }
+        .post__body {
+            .post__title {
+                font-size: 16px;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
 /* ------------------------------------------------------------ *\
     List Mobile Apps
 \* ------------------------------------------------------------ */

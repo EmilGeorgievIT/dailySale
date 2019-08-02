@@ -7,7 +7,6 @@ export const registerUser = (userData, history) => dispatch => {
     const service = new AuthenticationService();
     service.register(userData)
         .then((res) => {
-            console.log(res);
             if(res.errors !== undefined) {
                 dispatch({
                     type: GET_ERRORS,
@@ -34,7 +33,8 @@ export const loginUser = userData => dispatch => {
             localStorage.setItem('ds_chk_temp', data.userId);
             localStorage.setItem('token', data.token);
             const decode = jwt_decode(data.token);
-            dispatch(setCurrentUser(decode));
+            const image = data.image;
+            dispatch(setCurrentUser({decode, image}));
         } else {
             dispatch({
                 type: GET_ERRORS,

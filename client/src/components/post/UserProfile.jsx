@@ -1,3 +1,5 @@
+import 'react-notifications/lib/notifications.css';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom'; 
 import '../../styles/List.scss';
@@ -5,6 +7,7 @@ import '../../styles/Profile.scss';
 
 // import { Link } from 'react-router-dom';
 import ProfileService from '../../services/profile-service';
+import FavoriteService from '../../services/favorite-service';
 
 import facebook from '../../images/facebook.svg';
 import twitter from '../../images/twitter.svg'; 
@@ -20,6 +23,8 @@ const override = css`
 
 class UserProfile extends Component {
     static service = new ProfileService();
+    static favoriteService = new FavoriteService();
+    _isMounted = false;
     
     constructor(props) {
         super(props);
@@ -38,15 +43,51 @@ class UserProfile extends Component {
           });
         }
     }
+    
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
+
+    createNotification = (type) => {
+        const postId = document.location.pathname.replace('/post/','');
+        const userId = localStorage.getItem('ds_chk_temp');
+
+        return () => {
+          // eslint-disable-next-line default-case
+          switch (type) {
+            case 'info':
+              NotificationManager.info('Info message');
+              break;
+            case 'success':
+              NotificationManager.success('Success', 'Successfully added to favorite', 3000);
+              UserProfile.favoriteService.sendFavorite({postId, userId});
+              break;
+            case 'warning':
+              NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
+              break;
+            case 'error':
+              NotificationManager.error('Error message', 'Click me!', 5000, () => {
+                alert('callback');
+              });
+              break;
+          }
+        };
+    };
+    
+    saveFavorite = () => {
+        this.createNotification('success');
+    }
 
     componentDidMount() {
+        this._isMounted = true;
         try {
             setTimeout(async() => {
-                const user = await UserProfile.service.getUserDetails(this.state.creator)
-                .then((user) => {
-                    this.setState({user, isLoading: false });
-                    
-                })
+                if(this._isMounted) {
+                    const user = await UserProfile.service.getUserDetails(this.state.creator)
+                    .then((user) => {
+                        this.setState({user, isLoading: false });  
+                    })
+                }
             }, 1500);
         } catch(error) {
                 console.log(error);
@@ -183,7 +224,19 @@ class UserProfile extends Component {
         
                                 Chat
                             </button>
-        
+                            
+                            {
+                                !!localStorage.getItem('ds_chk_temp')? (
+                                    <button onClick={this.createNotification('success')} className='btn btn-danger btn-sm'>
+                                    <i className="material-icons">
+                                        favorite
+                                    </i>
+            
+                                    Add to Favorite
+                                    </button>
+                                ): ''
+                            }
+
                             <button className='btn btn-success btn-sm'>
                                 <i className="material-icons">
                                     face
@@ -194,6 +247,7 @@ class UserProfile extends Component {
                         </div>
                     </div>
                 </div>
+                <NotificationContainer/>
             </Fragment>
         );
     }

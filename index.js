@@ -6,6 +6,7 @@ const userRoutes = require('./routes/user');
 const commentRoutes = require('./routes/comment');
 const favoriteRoutes = require('./routes/favorite');
 const messageRoutes = require('./routes/message');
+const mailRouter = require('./routes/contacts');
 const helmet = require('helmet');
 
 const path = require('path');
@@ -19,6 +20,7 @@ app.use(bodyParser.json({limit: '20mb'}));
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
 });
@@ -29,6 +31,7 @@ app.use('/mail', messageRoutes);
 app.use('/profile', userRoutes);
 app.use('/comment', commentRoutes);
 app.use('/favorite', favoriteRoutes);
+app.use('/contact', mailRouter);
 
 
 // General error handling

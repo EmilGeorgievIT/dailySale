@@ -42,8 +42,6 @@ class RegisterForm extends Component {
             email,
             password
         };
-        console.log(this.state);
-
         this.props.registerUser(userData, this.props.history);
     }
     

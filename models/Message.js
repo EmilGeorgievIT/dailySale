@@ -2,14 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const messageSchema = new Schema({
-    title: {
-        type: Schema.Types.String,
-        required: true
-    },
     receiver: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-        required: false
+        required: true
     },
     description: {
         type: Schema.Types.String,

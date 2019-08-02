@@ -1,32 +1,36 @@
 import React, { Component, Fragment } from 'react';
 import contactImage from '../images/Contact-us-image.jpg';
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
 import { Intro } from '../components/shared/Intro'; 
 import '../styles/Boxes.scss';
 import '../styles/Forms.scss';
 import '../styles/List.scss';
 import '../styles/Sections.scss';
+import MessageService from '../services/message-service';
 
+const messageSchema = Yup.object().shape({
+    name: Yup.string()
+      .min(2, 'Too Short!')
+      .max(50, 'Too Long!')
+      .required('Required'),
+    message: Yup.string()
+      .min(10, 'Too Short!')
+      .max(1000, 'Too Long!')
+      .required('Required'),
+    email: Yup.string()
+      .email('Invalid email')
+      .required('Required')
+});
 
 class ContactUs extends Component {
+    static service = new MessageService();
     constructor(props) {
         super(props);
         
         this.state = {
-            name: '',
-            email: '',
-            message: ''
+            submitted: '',
         }
-    }
-
-    handleChange = ({target}) => {
-        this.setState({
-            [target.name] : target.value
-        })
-    }
-    handleSubmit = (event) => {
-        event.preventDefault();
-
-        console.log(this.state);
     }
 
     render() {
@@ -108,37 +112,87 @@ class ContactUs extends Component {
 
                                 <div className="col-lg-7 col-xl-8 col-md-12 d-block">
                                     <div className="section__content">
-                                        <form className='form-auth form-contacts' onSubmit={this.handleSubmit}>
-                                            <div className="form__head">
-                                                <h4 className='form__title text-center'>
-                                                    Contact Form
-                                                </h4>
-                                            </div>
-                                            
-                                            <div className="form__body">
-                                                <div className="form-group">
-                                                    <input type="text" name='name' className="form-control" id="exampleInputName" aria-describedby="emailHelp" onChange={this.handleChange} value={name} placeholder="Your name"/>                    
-                                                </div>
+                                        <Formik
+                                            initialValues={{
+                                                name: '',
+                                                message: '',
+                                                email: '',
+                                            }}
+                                            validationSchema={messageSchema}
+
+                                            onSubmit={(values, { resetForm}) => {
+                                                const { 
+                                                    name,
+                                                    message,
+                                                    email,
+                                                } = values;
                                                 
-                                                <div className="form-group">        
-                                                    <input type="email" name='email' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" onChange={this.handleChange} value={email} placeholder="Email Address"/>
-                                                    
-                                                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                                                
+                                                try {
+                                                    let res = ContactUs.service.sendMail(
+                                                        {
+                                                            name,
+                                                            message,
+                                                            email
+                                                        }
+                                                    )
+                                                    res
+                                                        .then(data => {
+                                                            this.setState({
+                                                                submitted: true
+                                                            })
+                                                            resetForm();
+                                                            console.log(data);
+                                                        })
+                                                        .catch(error => {
+                                                            console.log(error);
+                                                        })
+                                                        
+                                                } catch(error) {
+                                                    console.log(error);
+                                                }
+                                            }}
+                                        >
+                                        {({ errors, touched }) => (
+                                            <Form className='form-auth form-contacts'>
+                                                <div className="form__head">
+                                                    <h4 className='form__title text-center'>
+                                                        Contact Form
+                                                    </h4>
+                                                </div>
+
+                                                <div className="from-group">
+                                                    <Field className="form-control" id="name" placeholder="Your Name" name="name" required/>
+
+                                                    {errors.name && touched.name ? (
+                                                        <div className="invalid-feedback">{errors.name}</div>
+                                                    ) : null}
+                                                </div>
+
+                                                <div className="from-group">
+                                                    <Field type="email" name="email" placeholder='Email address' id="email" className='form-control' />
+                                                        {errors.email && touched.email ? (
+                                                            <div className='invalid-feedback'>{errors.email}</div>
+                                                        ) : null}
                                                 </div>
 
                                                 <div className="form-group">
-                                                
-                                                    <textarea name='message' className="form-control" 
-                                                    placeholder="Message" 
-                                                    onChange={this.handleChange} value={message}id="message" rows="3">
-                                                    </textarea>
+                                                    <Field component='textarea' className="form-control" id="message" name='message' placeholder='message' rows="3" required />
+                                                        {errors.message && touched.message ? (
+                                                            <div className='invalid-feedback'>{errors.message}</div>
+                                                        ) : null}
                                                 </div>
-
-                                                <div className="form__actions">
-                                                    <button type="submit" className="btn btn-block btn-primary">Send message</button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                                {
+                                                    this.state.submitted? (
+                                                        <div className='alert alert-primary'>
+                                                            Message sent successfully !
+                                                        </div>
+                                                    ) : ''
+                                                    }
+                                                <button type="submit" disabled={Object.keys(errors).length} className="btn btn-block btn-primary">Send Message</button>
+                                            </Form>                             
+                                        )}
+                                        </Formik>
                                     </div>
                                 </div>
                             </div>

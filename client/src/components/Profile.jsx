@@ -7,24 +7,54 @@ import Posts from '../components/Posts';
 import { Intro } from '../components/shared/Intro';
 import '../styles/Profile.scss';
 import '../styles/Navigation.scss';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
 import banner from '../images/banner.jpg';
 import Messages from './Messages';
 import { connect } from 'react-redux';
 import { loginUser } from '../actions/authActions';
+import FavoriteService from '../services/favorite-service';
 
 class Profile extends Component {
     static service = new ProfileService();
     static getPost = new PostService();
+    static favoritePosts = new FavoriteService();
     
     constructor(props) {
         super(props);
         
         this.state = {
             user: '',
-            posts: []
+            image: '',
+            posts: [],
+            favorites: []
         }
     }
-    
+
+    handleImage = (e) => {
+        let files = e.target.files;
+
+        for (var i = 0; i < files.length; i++) {
+          let file = files[i];
+          let reader = new FileReader();
+
+          reader.readAsDataURL(file);
+          reader.onload = () => {
+            this.setState({
+                user: {
+                    image: reader.result
+                } 
+            })
+            Profile.service.updateProfileImage(localStorage.getItem('ds_chk_temp'), {
+                image: reader.result
+            })
+            .then(data => {
+                NotificationManager.success('Success', 'Successfully uploaded image', 3000);
+            }, error => {
+                NotificationManager.error('Something went wrong !', 'Image not uploaded', 3000);
+            })
+          }
+        }
+    }
    async componentDidMount() {
         try {
             const userId = localStorage.getItem('ds_chk_temp');
@@ -41,7 +71,7 @@ class Profile extends Component {
                             const postData = res;
                             if (postData !== null) {
                                 postsRes.push(postData);
-                                this.updateState(postsRes);
+                                this.setState({ posts: [...postsRes] })
                             }
                         }).catch((error) => {
                             console.log(error);
@@ -49,13 +79,29 @@ class Profile extends Component {
                     return postsRes;
                 })
 
+            })
+
+            const favoritePosts = await Profile.favoritePosts.getFavorites(userId)
+            .then(async (favorite) => {
+                let postsFavoriteRes = [];
+                
+                favorite.map(async (item)  => {
+                    const post = await Profile.getPost.getPostById(item.postId)
+                        .then((res) => {
+                            const postData = res;
+                            if (postData !== null) {
+                                postsFavoriteRes.push(postData);
+                                this.setState({ favorites: [...postsFavoriteRes] })
+                            }
+                        }).catch((error) => {
+                            console.log(error);
+                        })
+                    return postsFavoriteRes;
+                });                    
             })                
         } catch(error) {
             console.log(error);
         };
-    }
-    updateState = (postsRes) => {
-        this.setState({ posts: [...postsRes] })
     }
 
     render() {
@@ -90,6 +136,12 @@ class Profile extends Component {
                                         
                                         <div className='profile__image'>
                                             <img src={image} alt=""/>
+
+                                            <input type="file" onChange={this.handleImage} className="change-image" id="image"/>
+                                             
+                                            <div className="profile__image-hover">
+                                                <i className="material-icons">camera_alt</i>
+                                            </div>
                                         </div>
 
                                         <h5 className='mb-3 text-center font-weight-semibold'>
@@ -160,19 +212,9 @@ class Profile extends Component {
 
                                             <div className="tab-pane tab-pane-ads fade justify-content-between d-flex flex-wrap" id="v-pills-favorite" role="tabpanel" aria-labelledby="v-pills-favorite-tab">
                                                 {   
-                                                    this.state.posts !== null && this.state.posts !== undefined ? 
-                                                        this.state.posts.map((post) => (
-                                                            <Posts className='ads' key={post._id} {...post} />
-                                                            )
-                                                        ) : 'No ads'
-                                                }
-                                            </div>
-
-                                            <div className="tab-pane tab-pane-ads fade justify-content-between d-flex flex-wrap" id="v-pills-ads" role="tabpanel" aria-labelledby="v-pills-ads-tab">
-                                                {   
-                                                    this.state.posts ? 
-                                                        this.state.posts.map((post) => (
-                                                            <Posts className='ads' key={post._id} {...post} />
+                                                    this.state.favorites !== null && this.state.favorites !== undefined ? 
+                                                        this.state.favorites.map((favorite) => (
+                                                            <Posts className='ads' key={favorite._id} {...favorite} />
                                                             )
                                                         ) : 'No ads'
                                                 }
@@ -192,6 +234,8 @@ class Profile extends Component {
                         </div>
                     </div>
                 </div>
+                
+                <NotificationContainer/>
             </Fragment>
         );
     }

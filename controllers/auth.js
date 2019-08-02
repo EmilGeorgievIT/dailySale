@@ -76,7 +76,8 @@ module.exports = {
          res.status(200).json(
            { 
              message: 'logged', 
-             token, 
+             token,
+             image: user.image,
              userId: user._id.toString() 
            });
       })

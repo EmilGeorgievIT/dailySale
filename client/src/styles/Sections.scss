@@ -73,6 +73,9 @@
                 justify-content: space-between;
             }
         }
+        .section__aside {
+            padding: 0;
+        }
         .section__aside, .section__aside.fixed {
             position: static;
             max-width: 100%;

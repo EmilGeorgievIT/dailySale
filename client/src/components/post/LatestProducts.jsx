@@ -5,6 +5,7 @@ import Posts from '../Posts';
 
 class LatestProducts extends Component {
     static service = new PostService();
+    _isMounted = false;
 
     constructor(props) {
         super(props);
@@ -14,14 +15,19 @@ class LatestProducts extends Component {
     }
 
     async componentDidMount() {
+        this._isMounted = true;
         try {
-            const posts = await LatestProducts.service.getPosts();
-            this.setState({ posts });
+            if (this._isMounted) {
+                const posts = await LatestProducts.service.getPosts();
+                this.setState({ posts });
+            }
         } catch (error) {
             console.log(error);
         }
     }
-
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
     render() {
         const settings = {
             dots: false,

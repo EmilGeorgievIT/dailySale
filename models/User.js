@@ -43,7 +43,13 @@ const userSchema = new Schema({
     type: Number,
     default: Date.now()
   },
-  messages: [
+  receivedMessages: [
+    { 
+      type: Schema.Types.ObjectId,
+      ref: 'Message'
+    }
+  ],
+  sentMessages: [
     { 
       type: Schema.Types.ObjectId,
       ref: 'Message'
