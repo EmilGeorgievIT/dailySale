@@ -66,7 +66,7 @@ class PostsFeatured extends Component {
                                     <p className='post__meta-views'>
                                         <i className="icon material-icons">visibility</i>
                                         
-                                        {viewCount} Views
+                                        {viewCount || ''} Views
                                     </p>
 
                                     <p className='post__meta-location'>
@@ -74,7 +74,7 @@ class PostsFeatured extends Component {
                                             location_on
                                         </i>
 
-                                        { location && location.length > 10 ? location.slice(0, 10) + ' ...' : location }
+                                        { location && location.length > 10 ? location.slice(0, 10) + ' ...' : location || '' }
                                     </p>
                                     
                                 </div>
@@ -91,13 +91,13 @@ class PostsFeatured extends Component {
                                             phone
                                         </i>
 
-                                        { phoneNumber }
+                                        { phoneNumber || '' }
                                     </p>
                                     
                                 </div>
                                 
                                 <div className="post__description">
-                                    {  description && description.length > 30 ? description.slice(0, 30) + '...' : description }
+                                    {  description && description.length > 30 ? description.slice(0, 30) + '...' : description || '' }
                                 </div>
                             </div>
                         </div>

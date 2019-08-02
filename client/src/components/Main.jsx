@@ -10,6 +10,8 @@ import { Intro } from './shared/Intro';
 import homeBackground from '../images/banner.jpg';
 
 class Main extends Component {
+    _isMounted = false;
+    
     constructor(props) {
         super(props);
         
@@ -36,19 +38,28 @@ class Main extends Component {
         }
     }
     showResults = (data) => {
-        if(data.length > 0 ) {
-            this.setState({
-                posts: [...data],
-                noResults: false,
-                loading: false
-            })
-        } else {
-            this.setState({
-                posts: [],
-                noResults: true
-            })
+        this._isMounted = true;
+
+        if (this._isMounted) { 
+            if(data.length > 0 ) {
+                this.setState({
+                    posts: [...data],
+                    noResults: false,
+                    loading: false
+                })
+            } else {
+                this.setState({
+                    posts: [],
+                    noResults: true
+                })
+            }
         }
     }
+    
+    componentWillUnmout() {
+        this._isMounted = false;
+    }
+
     render() {
         const posts = this.state.posts;
         
@@ -63,7 +74,7 @@ class Main extends Component {
                 subTitle='Sell ​​what you do not need or buy what you need in one place for free'
                 image= {imageBackground}
                 > 
-                    <SearchForm items={this.state.items} results={this.showResults} location='Ireland'/>
+                    <SearchForm items={this.state.items} results={this.showResults || '' } location='Ireland'/>
 
                     <div className="section__body">
                         <CategoriesList items={this.state.items} />

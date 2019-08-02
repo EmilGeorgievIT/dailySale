@@ -16,13 +16,13 @@ class LatestProducts extends Component {
 
     async componentDidMount() {
         this._isMounted = true;
-        try {
-            if (this._isMounted) {
-                const posts = await LatestProducts.service.getPosts();
-                this.setState({ posts });
+        if (this._isMounted) {
+            try {
+                    const posts = await LatestProducts.service.getPosts();
+                    this.setState({ posts });
+                } catch (error) {
+                    console.log(error);
             }
-        } catch (error) {
-            console.log(error);
         }
     }
     componentWillUnmount() {

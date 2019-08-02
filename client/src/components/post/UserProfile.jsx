@@ -80,6 +80,7 @@ class UserProfile extends Component {
 
     componentDidMount() {
         this._isMounted = true;
+        
         try {
             setTimeout(async() => {
                 if(this._isMounted) {

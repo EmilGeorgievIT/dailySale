@@ -5,6 +5,7 @@ import '../../styles/Boxes.scss';
 
 export default class User extends Component {
     static service = new ProfileService();
+    _isMounted = false
 
     constructor(props) {
         super(props);
@@ -31,18 +32,24 @@ export default class User extends Component {
     }
     
     componentDidMount() {
-        try {
-            setTimeout(async() => {
-                const user = await User.service.getUserDetails(this.state.creator)
-                .then((user) => {
-                    this.setState({user});
-                })
-            }, 300);
-        } catch(error) {
-                console.log(error);
-        };
+        this._isMounted = true;
+        
+        if(this._isMounted) {
+            try {
+                setTimeout(async() => {
+                    const user = await User.service.getUserDetails(this.state.creator)
+                    .then((user) => {
+                        this.setState({user});
+                    })
+                }, 300);
+            } catch(error) {
+                    console.log(error);
+            };
+        }
     }
-
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
     render() {
         const { location, name, image } = this.state.user; 
         const styleImage = {

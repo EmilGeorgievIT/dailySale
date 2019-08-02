@@ -16,7 +16,8 @@ import '../styles/Buttons.scss';
 
 export default class PostDetails extends Component {
     static service = new PostService();
-
+    _isMounted = false;
+    
     constructor(props) {
         super(props)
         
@@ -54,16 +55,20 @@ export default class PostDetails extends Component {
 
     async componentDidMount() {
         window.addEventListener('scroll', this.handleScroll);
-
-        try {
-            let postId = this.props.match.params.id;
-            const post = await PostDetails.service.getPostById(postId);
-            
-            this.setState({ ...post })
-        } catch(error) {
-            console.log(error);
+        this._isMounted = true;
+        
+        if(this._isMounted)  {
+            try {
+                let postId = this.props.match.params.id;
+                const post = await PostDetails.service.getPostById(postId);
+                
+                this.setState({ ...post })
+            } catch(error) {
+                console.log(error);
+            }
         }
     }
+
     // handleScroll = (event) => {
     //     const el = document.getElementsByClassName('footer');
     //     const elOffsetTop = el[0].offsetTop;
@@ -76,6 +81,7 @@ export default class PostDetails extends Component {
     // }
 
     componentWillUnmount() {
+        this._isMounted = false;
         window.removeEventListener('scroll', this.handleScroll);
     }
 

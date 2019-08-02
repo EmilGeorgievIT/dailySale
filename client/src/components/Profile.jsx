@@ -18,6 +18,7 @@ class Profile extends Component {
     static service = new ProfileService();
     static getPost = new PostService();
     static favoritePosts = new FavoriteService();
+    _isMounted = false;
     
     constructor(props) {
         super(props);
@@ -55,53 +56,62 @@ class Profile extends Component {
           }
         }
     }
+
    async componentDidMount() {
-        try {
-            const userId = localStorage.getItem('ds_chk_temp');
-            const user = await Profile.service.getUserDetails(userId)
-            .then((user) => {
-                this.setState({user});
-                let postsRes = [];
-                
-                const { posts } = user;
-                
-                 posts.map(async (item)  => {
-                    const post = await Profile.getPost.getPostById(item)
-                        .then((res) => {
-                            const postData = res;
-                            if (postData !== null) {
-                                postsRes.push(postData);
-                                this.setState({ posts: [...postsRes] })
-                            }
-                        }).catch((error) => {
-                            console.log(error);
-                        })                    
-                    return postsRes;
-                })
-
-            })
-
-            const favoritePosts = await Profile.favoritePosts.getFavorites(userId)
-            .then(async (favorite) => {
-                let postsFavoriteRes = [];
-                
-                favorite.map(async (item)  => {
-                    const post = await Profile.getPost.getPostById(item.postId)
-                        .then((res) => {
-                            const postData = res;
-                            if (postData !== null) {
-                                postsFavoriteRes.push(postData);
-                                this.setState({ favorites: [...postsFavoriteRes] })
-                            }
-                        }).catch((error) => {
-                            console.log(error);
-                        })
-                    return postsFavoriteRes;
-                });                    
-            })                
-        } catch(error) {
-            console.log(error);
-        };
+       this._isMounted = true;
+        
+       if(this._isMounted) {
+           try {
+               const userId = localStorage.getItem('ds_chk_temp');
+               const user = await Profile.service.getUserDetails(userId)
+               .then((user) => {
+                   this.setState({user});
+                   let postsRes = [];
+                   
+                   const { posts } = user;
+                   
+                    posts.map(async (item)  => {
+                       const post = await Profile.getPost.getPostById(item)
+                           .then((res) => {
+                               const postData = res;
+                               if (postData !== null) {
+                                   postsRes.push(postData);
+                                   this.setState({ posts: [...postsRes] })
+                               }
+                           }).catch((error) => {
+                               console.log(error);
+                           })                    
+                       return postsRes;
+                   })
+   
+               })
+   
+               const favoritePosts = await Profile.favoritePosts.getFavorites(userId)
+               .then(async (favorite) => {
+                   let postsFavoriteRes = [];
+                   
+                   favorite.map(async (item)  => {
+                       const post = await Profile.getPost.getPostById(item.postId)
+                           .then((res) => {
+                               const postData = res;
+                               if (postData !== null) {
+                                   postsFavoriteRes.push(postData);
+                                   this.setState({ favorites: [...postsFavoriteRes] })
+                               }
+                           }).catch((error) => {
+                               console.log(error);
+                           })
+                       return postsFavoriteRes;
+                   });                    
+               })                
+           } catch(error) {
+               console.log(error);
+           };
+       }
+    }
+    
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     render() {
