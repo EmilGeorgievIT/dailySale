@@ -9,10 +9,10 @@ import '../styles/Profile.scss';
 import '../styles/Navigation.scss';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import banner from '../images/banner.jpg';
-import Messages from './Messages';
 import { connect } from 'react-redux';
 import { loginUser } from '../actions/authActions';
 import FavoriteService from '../services/favorite-service';
+import Chat from '../components/chat/Chat';
 
 class Profile extends Component {
     static service = new ProfileService();
@@ -195,7 +195,7 @@ class Profile extends Component {
                                     <div className="tab-content card" id="v-pills-tabContent">
                                         <div className="card-header">
                                             <h3 className="card-title">
-                                                Edit Profile
+                                                My Profile
                                             </h3>
                                         </div>
 
@@ -231,7 +231,7 @@ class Profile extends Component {
                                             </div>
 
                                             <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                                                <Messages />
+                                                <Chat />
                                             </div>
                                             
                                             <div className="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
