@@ -37,6 +37,12 @@ export default class ListMessages extends Component {
             messages: []
         }
     }
+    
+    changeUser = (event) => {
+        event.preventDefault();
+        
+        console.log('clicked');
+    }
 
     componentDidMount () {
         Promise.resolve(this.message())
@@ -55,9 +61,8 @@ export default class ListMessages extends Component {
                 <ul className='list-user-message'>
                     {
                         this.state.messages.map((user) => (
-                            <li>
+                            <li onClick={this.changeUser} key={user._id}>
                                 <UserMessage 
-                                    key={user._id}
                                     {...user}
                                 />
                             </li>

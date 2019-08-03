@@ -17,13 +17,13 @@ export default class Chat extends Component {
                 <section className="section-message">
                     <div className="section__body">
                         <div className="row">
-                            <div className="col-md-4">
+                            <div className="col-md-4 p-0">
                                 <div className="section__aside">
                                     <ListMessages/>
                                 </div>
                             </div>
 
-                            <div className="col-md-8">
+                            <div className="col-md-8 p-0">
                                 <div className="section__content">
                                     <Messages />
                                 </div>
