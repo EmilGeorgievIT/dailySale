@@ -1,40 +1,19 @@
 import React, { Component, Fragment } from 'react';
-import profileImage from  '../../images/avatar.png';
 import UserMessage from '../chat/UserMessage';
-
+import MessageService from '../../services/message-service';
+import ProfileService from '../../services/profile-service';
 
 export default class ListMessages extends Component {
-    message = () => (
-        [ 
-            {
-                _id: '4363634',
-                name: 'Fes Facv',
-                time: '19:43',
-                message: 'This is test message',
-                image: profileImage
-            },
-            {
-                _id: '4463363634',
-                name: 'Res Fadr',
-                time: '09:43',
-                message: 'This is test message 2',
-                image: profileImage
-            },
-            {
-                _id: '464634',
-                name: 'Res Fadr 2',
-                time: '09:43',
-                message: 'This is test message 3',
-                image: profileImage
-            }
-        ]
-    )
+    _isMounted = false;
+    static service = new ProfileService();
+    static getReceivedMessage = new MessageService();
 
     constructor(props) {
         super(props);
         
         this.state = {
-            messages: []
+            messages: '',
+            user: ''
         }
     }
     
@@ -44,29 +23,46 @@ export default class ListMessages extends Component {
         console.log('clicked');
     }
 
-    componentDidMount () {
-        Promise.resolve(this.message())
-        .then((messages) => {
-            this.setState({
-                messages
-            });
-        }).catch((error) => {
-            console.log(error);
-        });
+    async componentDidMount () {
+        this._isMounted = true;
+        const userId = localStorage.getItem('ds_chk_temp');
+        
+        if(this._isMounted) {
+            const user = await ListMessages.service.getUserDetails(userId)
+            .then((user) => {
+                this.setState({user});
+            })
+            
+            try {
+                const allMessages = await ListMessages.getReceivedMessage
+                .getMessages({
+                    list: this.state.user.receivedMessages
+                });
+                this.setState({
+                    messages: allMessages
+                })
+            } catch (error) {
+                console.log(error);
+            }
+        }
     }
 
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
+    
     render() {
         return(
             <Fragment>
                 <ul className='list-user-message'>
                     {
-                        this.state.messages.map((user) => (
+                        this.state.messages? this.state.messages.map((user) => (
                             <li onClick={this.changeUser} key={user._id}>
                                 <UserMessage 
                                     {...user}
                                 />
                             </li>
-                        ))
+                        )) : ''
                     }
                 </ul>
             </Fragment>

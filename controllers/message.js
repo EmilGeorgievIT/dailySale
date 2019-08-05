@@ -18,26 +18,34 @@ function validateMessage(req, res) {
 
 module.exports = {
     sendMessage: (req, res, next) => {
-        if(validateMessage(req, res)) {            
+        if(validateMessage(req, res)) {
+            let creatorName;            
+            let receiverName;
+
             const { creator, description } = req.body;
-            const message = new Message({creator, description, receiver: req.params.userId});
+            const message = new Message({
+                creator, description,
+                receiver: req.params.userId,
+                creatorName, 
+                receiverName
+            });
             let receiver;
-    
-            message.save()
-            .then(() => {
-                return User.findById(creator);
-            })
+
+            User.find({_id: creator})
             .then((creator) => {
-                creator.sentMessages.push(message);
-                creator.save();
+                message.creatorName = creator[0].name;
+                creator[0].sentMessages.push(message);
+                creator[0].save();
             })
             .then(() => {
-                return User.findById(req.params.userId);
+                return User.find({_id: req.params.userId});
             })
             .then((user) => {
-                user.receivedMessages.push(message);
+                message.receiverName = user[0].name;
+                user[0].receivedMessages.push(message);
                 receiver = user;
-                return user.save();
+                user[0].save();
+                message.save()
             })
             .then(() => {
                 res
@@ -58,6 +66,26 @@ module.exports = {
             });
         }
     },
+    getMessages: (req, res, next) => {
+        const { list } = req.body;
+        
+        Message
+        .find({ _id: {$in: list} })
+        .then((message) => {
+            res
+            .status(200)
+            .json(message);
+        })
+        .catch((error) => {
+            if (!error.statusCode) {
+                error.statusCode = 500;
+            }
+            res.status(500).json({
+                message: error.errors
+            })
+            next(error);
+        });
+    },
     receivedMessage: (req, res, next) => {
         const userId = req.params.userId
         Message.find({receiver: userId})
@@ -69,7 +97,7 @@ module.exports = {
             res
             .status(500)
             .json({
-                message: "Internal server erorr"
+                message: "Internal server error"
             })
             next(error); 
         })

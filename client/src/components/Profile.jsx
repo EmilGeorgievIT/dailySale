@@ -115,7 +115,7 @@ class Profile extends Component {
     }
 
     render() {
-        const { email, image, location, website, phoneNumber, name } = this.state.user;
+        const { email, image, location, website, phoneNumber, name, receivedMessages, sentMessages } = this.state.user;
 
         const imageBackground = {
             backgroundImage: `url(${banner})`
@@ -231,7 +231,10 @@ class Profile extends Component {
                                             </div>
 
                                             <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                                                <Chat />
+                                                <Chat 
+                                                    received = { receivedMessages }
+                                                    sent  = { sentMessages }
+                                                />
                                             </div>
                                             
                                             <div className="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">

@@ -12,6 +12,7 @@ export default class Chat extends Component {
         }
     }
     render() {
+
         return (
             <Fragment>
                 <section className="section-message">

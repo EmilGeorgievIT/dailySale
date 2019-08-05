@@ -1,29 +1,22 @@
 import React, { Component, Fragment } from 'react';
 import Message from '../chat/Message';
 import '../../styles/Forms.scss';
+import MessageService from '../../services/message-service';
+import ProfileService from '../../services/profile-service';
+
 
 export default class Messages extends Component {
-    message = () => (
-        [ 
-            {
-                _id: '4363634',
-                message: 'This is test message',
-                userImage: 'fsfsefsefes'
-            },
-            {
-                _id: '4463363634',
-                message: 'This is test message 2',
-                userImage: 'fsfsefsefes 2'
-            }
-        ]
-    )
+    _isMounted = false;
+    static service = new ProfileService();
+    static getReceivedMessage = new MessageService();
         
     constructor(props) {
         super(props);
         
         this.state = {
             messages: [],
-            message: ''
+            message: '',
+            user: ''
         }
     }
     
@@ -45,17 +38,34 @@ export default class Messages extends Component {
         })
     }
 
-    componentDidMount () {
-        Promise.resolve(this.message())
-        .then((messages) => {
-            this.setState({
-                messages
-            });
-        }).catch((error) => {
-            console.log(error);
-        });
+    async componentDidMount () {
+        this._isMounted = true;
+        const userId = localStorage.getItem('ds_chk_temp');
+        
+        if(this._isMounted) {
+            const user = await Messages.service.getUserDetails(userId)
+            .then((user) => {
+                this.setState({user});
+            })
+            
+            try {
+                const allMessages = await Messages.getReceivedMessage
+                .getMessages({
+                    list: this.state.user.sentMessages
+                });
+                this.setState({
+                    messages: allMessages
+                })
+            } catch (error) {
+                console.log(error);
+            }
+        }
     }
     
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
+
     render() {
         const { message, messages } = this.state;
         
@@ -63,9 +73,9 @@ export default class Messages extends Component {
             <Fragment>
                 <div className="chat-messages">
                     {
-                        messages.map((message) => (
+                        messages? messages.map((message) => (
                             <Message key={message._id} {...message} />
-                        ))
+                        )): ''
                     }
                 </div>
 

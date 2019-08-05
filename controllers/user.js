@@ -16,7 +16,9 @@ module.exports = {
                 email: user.email,
                 website: user.website,
                 posts: user.posts,
-                phoneNumber: user.phoneNumber
+                phoneNumber: user.phoneNumber,
+                receivedMessages: user.receivedMessages,
+                sentMessages: user.sentMessages
             })
         })
         .catch((error) => {
