@@ -172,10 +172,15 @@
 \* ------------------------------------------------------------ */
 
 .tab-pane-ads {
+    justify-content: flex-start;
     .post {
         flex: 0 1 30%;
         margin: 0 10px 20px;
     }
+}
+
+.tab-pane-edit {
+    justify-content: flex-start;
 }
 
 @media #{$mobile} {

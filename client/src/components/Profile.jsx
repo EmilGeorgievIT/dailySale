@@ -13,6 +13,7 @@ import Messages from './Messages';
 import { connect } from 'react-redux';
 import { loginUser } from '../actions/authActions';
 import FavoriteService from '../services/favorite-service';
+import PostsEdit from '../components/PostsEdit'
 
 class Profile extends Component {
     static service = new ProfileService();
@@ -163,7 +164,13 @@ class Profile extends Component {
                                                 
                                                 My Favorite
                                             </a>
-                                        
+                                            
+                                            <a className="nav-link" id="v-pills-edit-tab" data-toggle="pill" href="#v-pills-edit" role="tab" aria-controls="v-pills-edit" aria-selected="false">
+                                                <i className="material-icons">edit</i>
+                                                
+                                                Edit My Ads
+                                            </a>
+
                                             <a className="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">
                                                 <i className="material-icons">message</i>
                                                 
@@ -200,7 +207,7 @@ class Profile extends Component {
                                                 />
                                             </div>
 
-                                            <div className="tab-pane tab-pane-ads fade justify-content-between d-flex flex-wrap" id="v-pills-ads" role="tabpanel" aria-labelledby="v-pills-ads-tab">
+                                            <div className="tab-pane tab-pane-ads fade justify-content-flex-start d-flex flex-wrap" id="v-pills-ads" role="tabpanel" aria-labelledby="v-pills-ads-tab">
                                                 {   
                                                     this.state.posts !== null && this.state.posts !== undefined  ? 
                                                         this.state.posts.map((post) => (
@@ -210,11 +217,21 @@ class Profile extends Component {
                                                 }
                                             </div>
 
-                                            <div className="tab-pane tab-pane-ads fade justify-content-between d-flex flex-wrap" id="v-pills-favorite" role="tabpanel" aria-labelledby="v-pills-favorite-tab">
+                                            <div className="tab-pane tab-pane-ads fade justify-content-flex-start d-flex flex-wrap" id="v-pills-favorite" role="tabpanel" aria-labelledby="v-pills-favorite-tab">
                                                 {   
                                                     this.state.favorites !== null && this.state.favorites !== undefined ? 
                                                         this.state.favorites.map((favorite) => (
                                                             <Posts className='ads' key={favorite._id} {...favorite} />
+                                                            )
+                                                        ) : 'No ads'
+                                                }
+                                            </div>
+                                            
+                                            <div className="tab-pane tab-pane-edit fade justify-content-flex-start d-flex flex-wrap" id="v-pills-edit" role="tabpanel" aria-labelledby="v-pills-edit-tab">
+                                                {   
+                                                    this.state.posts !== null && this.state.posts !== undefined  ? 
+                                                        this.state.posts.map((post) => (
+                                                            <PostsEdit className='ads' key={post._id} {...post} />
                                                             )
                                                         ) : 'No ads'
                                                 }

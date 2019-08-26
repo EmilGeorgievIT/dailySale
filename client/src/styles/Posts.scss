@@ -97,6 +97,26 @@
     .post__description {
         padding: 5px 5px 0;
     }
+
+    &--edit {
+        & {
+           flex: 0 1 33.33%;
+           max-width: 255px;
+        }
+        .post__actions {
+            position: relative;
+            justify-content: space-between;
+            .material-icons {
+                margin-left: 5px;
+            }
+            .btn {
+                display: flex;
+                align-items: center;
+                background-color: $black;
+                color: $white;
+            }
+        }
+    }
     &--featured {
         .post__meta-inner {
             padding: .4rem 0;
@@ -144,6 +164,14 @@
     }
 }
 
+
+@media #{$mobile} {
+    .post {
+        &--edit {
+            flex: 0 1 100%;
+        }
+    }
+}
 /* ------------------------------------------------------------ *\
 	Post Details
 \* ------------------------------------------------------------ */
