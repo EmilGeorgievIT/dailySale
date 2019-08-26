@@ -21,6 +21,7 @@ const override = css`
 export default class UserAds extends Component {
     static service = new ProfileService();
     static getPost = new PostService();
+    _isMounted = false;
 
     constructor(props) {
         super(props);
@@ -33,35 +34,44 @@ export default class UserAds extends Component {
         }
     }
     async componentDidMount() {
-        window.addEventListener('scroll', this.handleScroll);
 
-        try {
-            let userId = this.props.match.params.userId;
-            const user = await UserAds.service.getUserDetails(userId)
-            .then((user) => {
-                this.setState({user});
-                let postsRes = [];
-                
-                const { posts } = user;
-                
-                 posts.map(async (item)  => {
-                    const post = await UserAds.getPost.getPostById(item)
-                        .then((res) => {
-                            const postData = res;
-                            if (postData !== null) {
-                                postsRes.push(postData);
-                                this.updateState(postsRes);
-                            }
-                        }).catch((error) => {
-                            console.log(error)
-                        })                    
-                    return postsRes;
+        window.addEventListener('scroll', this.handleScroll);
+        this._isMounted = true;
+        
+        if(this._isMounted) {
+            try {
+                let userId = this.props.match.params.userId;
+                const user = await UserAds.service.getUserDetails(userId)
+                .then((user) => {
+                    this.setState({user});
+                    let postsRes = [];
+                    
+                    const { posts } = user;
+                    
+                     posts.map(async (item)  => {
+                        const post = await UserAds.getPost.getPostById(item)
+                            .then((res) => {
+                                const postData = res;
+                                if (postData !== null) {
+                                    postsRes.push(postData);
+                                    this.updateState(postsRes);
+                                }
+                            }).catch((error) => {
+                                console.log(error)
+                            })                    
+                        return postsRes;
+                    })
                 })
-            })
-        } catch(error) {
-            console.log(error);
+            } catch(error) {
+                console.log(error);
+            }
         }
     }
+
+    componentWillUnmout() {
+        this._isMounted = false;
+    }
+    
     updateState = (postsRes) => {
         this.setState({ 
             posts: postsRes,

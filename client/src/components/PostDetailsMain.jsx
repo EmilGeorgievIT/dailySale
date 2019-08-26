@@ -22,6 +22,7 @@ import CommentService from '../services/comment-service';
 export default class PostDetails extends Component {
     static service = new PostService();
     static serviceComment = new CommentService();
+    _isMounted = false;
 
     constructor(props) {
         super(props)
@@ -90,15 +91,21 @@ export default class PostDetails extends Component {
     }
     
     async componentDidMount() {
+        this._isMounted = true;
 
         try {
-            let postId = this.props.match.params.id;
-            const post = await PostDetails.service.getPostById(postId);
-            const comments = await PostDetails.serviceComment.getComments(postId)
-            this.setState({ ...post, ...comments })
+            if(this._isMounted) {
+                let postId = this.props.match.params.id;
+                const post = await PostDetails.service.getPostById(postId);
+                const comments = await PostDetails.serviceComment.getComments(postId)
+                this.setState({ ...post, ...comments })
+            }
         } catch(error) {
             console.log(error);
         }
+    }
+    componentWillUnmount() {
+        this._isMounted = false;
     }
     
     showResults = (data) => {
@@ -141,7 +148,7 @@ export default class PostDetails extends Component {
                 <Intro 
                 image= {bannerImage}
                 > 
-                    <SearchForm items={this.state.items} results={this.showResults} location='Ireland'/>
+                    <SearchForm items={this.state.items} results={this.showResults || ''} location='Ireland'/>
                </Intro>
                {
                     posts.length ?
@@ -162,7 +169,7 @@ export default class PostDetails extends Component {
                     </div> : ''
                 }
                 {
-                    this.state.noResults ?
+                    this.state.noResults || '' ?
                     <div className='section-results'>
                         <div className="container">
                             <h3 className='mb-4 h3'>
@@ -179,21 +186,21 @@ export default class PostDetails extends Component {
                             <div className="col-xl-8 col-lg-8 col-md-12">
                                 <div className="section__content">
                                     <Gallery
-                                        title={title}
-                                        postDate={date}
-                                        location={location}
-                                        category={category}
-                                        imageBackground={postImage}
-                                        viewCount={viewCount}
-                                        price={price}
+                                        title={title || ''}
+                                        postDate={date || ''}
+                                        location={location || ''}
+                                        category={category || ''}
+                                        imageBackground={postImage || ''}
+                                        viewCount={viewCount || ''}
+                                        price={price || ''}
                                         favorite='3'
                                     />
                                     <Description 
-                                        description={description}
+                                        description={description || ''}
                                     />
 
                                     <Rating 
-                                    rating={rating}
+                                    rating={rating || ''}
                                     />
 
                                     {
@@ -211,7 +218,7 @@ export default class PostDetails extends Component {
                            <div className="col-xl-4 col-lg-4 col-md-12">
                                 <div className="section__aside">
                                     <UserProfile
-                                        creator={creator} 
+                                        creator={creator || ''} 
                                         joined='1555536805497'
                                     />
 

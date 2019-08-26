@@ -29,6 +29,7 @@ class PostFeature extends Component {
         try {
             if (this._isMounted) {
                 const posts = await PostFeature.service.getPosts();
+                
                 this.setState({ 
                     posts,
                     isLoading: false

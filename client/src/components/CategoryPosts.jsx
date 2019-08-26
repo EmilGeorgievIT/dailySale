@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 
 export default class CategoryPosts extends Component {
     static service = new CategoryService();
+    _isMounted = false
 
     constructor(props) {
         super(props);
@@ -33,24 +34,33 @@ export default class CategoryPosts extends Component {
             ]
         }
     }
-    async componentDidMount() {
 
-        try {
-            let categoryName = this.props.match.params.categoryName;
-            
-            const posts = await CategoryPosts.service.getCategories(categoryName)
-            .then((data) => {
-                this.setState({
-                    posts: [...data]
-                })                
-            }).catch((error) => {
-                console.log(error);   
-            })
-            
-        } catch(error) {
-            console.log(error);
+    async componentDidMount() {
+        this._isMounted = true;
+        
+        if(this._isMounted) {
+            try {
+                let categoryName = this.props.match.params.categoryName;
+                
+                const posts = await CategoryPosts.service.getCategories(categoryName)
+                .then((data) => {
+                    this.setState({
+                        posts: [...data]
+                    })                
+                }).catch((error) => {
+                    console.log(error);   
+                })
+                
+            } catch(error) {
+                console.log(error);
+            }
         }
     }
+
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
+
     getResults = (data) => {
         if(data.length > 0) {
             this.setState({

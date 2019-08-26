@@ -12,7 +12,7 @@ import LoginForm from './components/auth/LoginForm';
 import RegisterForm from './components/auth/RegisterForm';
 import Profile from './components/Profile';
 import PostDetailsMain from './components/PostDetailsMain';
-import Messages from './components/Messages';
+import Chat from './components/chat/Chat';
 import UserAds from './components/shared/UserAds';
 import CreateAd from './components/CreateAd';
 import CategoryPosts from './components/CategoryPosts';
@@ -64,7 +64,7 @@ class App extends Component {
                       <Route exact path='/register' component = { RegisterForm }/>
                       <Route exact path='/post/:id' component = { PostDetailsMain }/>
                       <Route exact path='/login' component = { LoginForm }/>
-                      <Route exact path='/messages' component = { Messages }/>
+                      <Route exact path='/messages' component = { Chat }/>
                       <Route exact path='/about' component = { About }/>
                       <Route exact path='/contacts' component = { ContactUs }/>
                       <Route exact path='/create/ad' component = { CreateAd }/>

@@ -1,0 +1,50 @@
+@import '../styles/variables.scss';
+
+/* ------------------------------------------------------------ *\
+	Chat
+\* ------------------------------------------------------------ */
+
+.user-chat {
+    .user__body {
+        & {
+            display: flex;
+            align-items: center;
+        }
+        .user__aside {
+            max-width: 20%;
+            flex: 0 1 20%;
+        }
+        .user__content {
+            max-width: 100%;
+            flex: 1;
+        }
+        .user__meta {
+            display: flex;
+            align-content: center;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        .user__title {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .user__image {
+            img {
+                max-width: 40px;
+                border-radius: 50%;
+            }
+        }
+    }
+}
+
+/* ------------------------------------------------------------ *\
+	Chat Messages
+\* ------------------------------------------------------------ */
+
+.chat-messages {
+    & {
+        max-height: 320px;
+        overflow-y: auto;
+        padding-bottom: 30px;
+    }
+}

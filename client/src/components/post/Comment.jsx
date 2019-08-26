@@ -3,6 +3,7 @@ import ProfileService from '../../services/profile-service';
 
 export default class Comment extends Component {
     static service = new ProfileService();
+    _isMounted = false;
 
     constructor(props) {
         super(props);
@@ -20,10 +21,19 @@ export default class Comment extends Component {
         else return null;
     }
     async componentDidMount() {
-        const userId = this.props.userId;
-        const image = await Comment.service.getUserImage(userId);
-        this.setState(image);
+        this._isMounted = true;
+
+        if(this._isMounted) {
+            const userId = this.props.userId;
+            const image = await Comment.service.getUserImage(userId);
+            this.setState(image);
+        }
     }
+    
+    componentWillUnmout() {
+        this._isMounted = false;
+    }
+
     render() {
         const { title, date, comment } = this.props;
         const { image } = this.state;

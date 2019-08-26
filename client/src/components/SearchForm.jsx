@@ -38,7 +38,7 @@ export default class SearchForm extends Component {
         }
     }
     render() {
-        const { search, location } = this.state;
+        const { title, location } = this.state;
     
         return(
             <Fragment>
@@ -46,13 +46,13 @@ export default class SearchForm extends Component {
                         <div className="form-group form__line">
                             <i className="material-icons">search</i>
                             
-                            <input type="text" className="form-control" onChange={this.getValue} name='title' value={search} id="title" placeholder="Search DailyDeal" />
+                            <input type="text" className="form-control" onChange={this.getValue} value={title || ''} name='title' id="title" placeholder="Search DailyDeal" />
                         </div>
 
                         <div className="form-group form__line">
                             <i className="material-icons">location_on</i>
                             
-                            <input type="text" className="form-control" onChange={this.getValue} value={location} name='location' id="location" placeholder='Ireland' />
+                            <input type="text" className="form-control" onChange={this.getValue} value={location || ''} name='location' id="location" placeholder='Ireland' />
                         </div>
                         
                         <select name='category' onChange={this.getValue} className="custom-select category-select form__line">

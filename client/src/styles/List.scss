@@ -195,3 +195,24 @@
         margin-right: 4px; 
     }
 }
+
+/* ------------------------------------------------------------ *\
+    List User Chat
+\* ------------------------------------------------------------ */
+.list-user-message {
+    & {
+        list-style: none;
+        max-width: 400px;
+        overflow-y: auto;
+    }
+    li {
+        padding: 10px;
+    }
+    li:hover {
+        background-color: #F4F6F7;
+        cursor: pointer;
+    }
+    li ~ li {
+        border-top: 1px solid #EDF0F2;
+    }    
+}

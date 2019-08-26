@@ -9,16 +9,20 @@ import '../styles/Profile.scss';
 import '../styles/Navigation.scss';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import banner from '../images/banner.jpg';
-import Messages from './Messages';
 import { connect } from 'react-redux';
 import { loginUser } from '../actions/authActions';
 import FavoriteService from '../services/favorite-service';
+<<<<<<< HEAD
 import PostsEdit from '../components/PostsEdit'
+=======
+import Chat from '../components/chat/Chat';
+>>>>>>> 730c5f33aa2891daaa53378591d67a591217ff2a
 
 class Profile extends Component {
     static service = new ProfileService();
     static getPost = new PostService();
     static favoritePosts = new FavoriteService();
+    _isMounted = false;
     
     constructor(props) {
         super(props);
@@ -56,57 +60,66 @@ class Profile extends Component {
           }
         }
     }
+
    async componentDidMount() {
-        try {
-            const userId = localStorage.getItem('ds_chk_temp');
-            const user = await Profile.service.getUserDetails(userId)
-            .then((user) => {
-                this.setState({user});
-                let postsRes = [];
-                
-                const { posts } = user;
-                
-                 posts.map(async (item)  => {
-                    const post = await Profile.getPost.getPostById(item)
-                        .then((res) => {
-                            const postData = res;
-                            if (postData !== null) {
-                                postsRes.push(postData);
-                                this.setState({ posts: [...postsRes] })
-                            }
-                        }).catch((error) => {
-                            console.log(error);
-                        })                    
-                    return postsRes;
-                })
-
-            })
-
-            const favoritePosts = await Profile.favoritePosts.getFavorites(userId)
-            .then(async (favorite) => {
-                let postsFavoriteRes = [];
-                
-                favorite.map(async (item)  => {
-                    const post = await Profile.getPost.getPostById(item.postId)
-                        .then((res) => {
-                            const postData = res;
-                            if (postData !== null) {
-                                postsFavoriteRes.push(postData);
-                                this.setState({ favorites: [...postsFavoriteRes] })
-                            }
-                        }).catch((error) => {
-                            console.log(error);
-                        })
-                    return postsFavoriteRes;
-                });                    
-            })                
-        } catch(error) {
-            console.log(error);
-        };
+       this._isMounted = true;
+        
+       if(this._isMounted) {
+           try {
+               const userId = localStorage.getItem('ds_chk_temp');
+               const user = await Profile.service.getUserDetails(userId)
+               .then((user) => {
+                   this.setState({user});
+                   let postsRes = [];
+                   
+                   const { posts } = user;
+                   
+                    posts.map(async (item)  => {
+                       const post = await Profile.getPost.getPostById(item)
+                           .then((res) => {
+                               const postData = res;
+                               if (postData !== null) {
+                                   postsRes.push(postData);
+                                   this.setState({ posts: [...postsRes] })
+                               }
+                           }).catch((error) => {
+                               console.log(error);
+                           })                    
+                       return postsRes;
+                   })
+   
+               })
+   
+               const favoritePosts = await Profile.favoritePosts.getFavorites(userId)
+               .then(async (favorite) => {
+                   let postsFavoriteRes = [];
+                   
+                   favorite.map(async (item)  => {
+                       const post = await Profile.getPost.getPostById(item.postId)
+                           .then((res) => {
+                               const postData = res;
+                               if (postData !== null) {
+                                   postsFavoriteRes.push(postData);
+                                   this.setState({ favorites: [...postsFavoriteRes] })
+                               }
+                           }).catch((error) => {
+                               console.log(error);
+                           })
+                       return postsFavoriteRes;
+                   });                    
+               })                
+           } catch(error) {
+               console.log(error);
+           };
+       }
+    }
+    
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     render() {
-        const { email, image, location, website, phoneNumber, name } = this.state.user;
+        const { email, image, location, website, phoneNumber, name, receivedMessages, sentMessages } = this.state.user;
 
         const imageBackground = {
             backgroundImage: `url(${banner})`
@@ -192,18 +205,18 @@ class Profile extends Component {
                                     <div className="tab-content card" id="v-pills-tabContent">
                                         <div className="card-header">
                                             <h3 className="card-title">
-                                                Edit Profile
+                                                My Profile
                                             </h3>
                                         </div>
 
                                         <div className="card-body">
                                             <div className="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                                 <ProfileDetails 
-                                                name= {name}
-                                                email={email}
-                                                website= {website}
-                                                location={location}
-                                                phoneNumber={phoneNumber}
+                                                email={email || ''}
+                                                website= {website || ''}
+                                                location={location || ''}
+                                                phoneNumber={phoneNumber || ''}
+                                                name= {name || ''}
                                                 />
                                             </div>
 
@@ -238,7 +251,10 @@ class Profile extends Component {
                                             </div>
 
                                             <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                                                <Messages />
+                                                <Chat 
+                                                    received = { receivedMessages }
+                                                    sent  = { sentMessages }
+                                                />
                                             </div>
                                             
                                             <div className="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">

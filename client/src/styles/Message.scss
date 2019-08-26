@@ -1,0 +1,35 @@
+@import '../styles/variables.scss';
+
+/* ------------------------------------------------------------ *\
+	Message
+\* ------------------------------------------------------------ */
+
+.message {
+	& {
+		margin-bottom: 20px;
+		max-width: 380px;
+		margin-left: auto;
+	}
+	.message__content {
+		display: flex;
+		align-items: center;
+		padding: 20px;
+		color: $black;
+	}
+	
+	.message__entry {
+		margin: 0 20px;
+		padding: 10px;
+		background-color: #F4F6F8;
+		border-radius: 20px;
+	}
+	.message__time {
+		color: #CCCBCC;
+	}
+	.message__image {
+		img {
+			max-width: 50px;
+			border-radius: 50%;
+		}
+	}
+}
