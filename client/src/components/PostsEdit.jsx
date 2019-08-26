@@ -24,9 +24,9 @@ class PostsEdit extends Component {
         });
     }
     
-    // removePost = (index) => {
-    //     console.log(index);
-    // }
+    removePost = (index) => {
+        console.log(index);
+    }
     
     render() {
         const { _id, image, price, title, location, description, category } = this.props;
@@ -83,7 +83,7 @@ class PostsEdit extends Component {
                         Edit <i className="material-icons">edit</i>
                     </button>
                     
-                    <button data-toggle="tooltip" data-placement="top" title="Remove Post" className="btn btn-sm">
+                    <button data-toggle="tooltip" onClick={this.removePost.bind(this, _id)} data-placement="top" title="Remove Post" className="btn btn-sm">
                         Remove <i className="material-icons">remove_circle</i>
                     </button>
                 </div>

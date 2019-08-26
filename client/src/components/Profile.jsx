@@ -12,11 +12,8 @@ import banner from '../images/banner.jpg';
 import { connect } from 'react-redux';
 import { loginUser } from '../actions/authActions';
 import FavoriteService from '../services/favorite-service';
-<<<<<<< HEAD
 import PostsEdit from '../components/PostsEdit'
-=======
 import Chat from '../components/chat/Chat';
->>>>>>> 730c5f33aa2891daaa53378591d67a591217ff2a
 
 class Profile extends Component {
     static service = new ProfileService();
