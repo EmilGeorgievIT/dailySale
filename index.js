@@ -8,6 +8,7 @@ const favoriteRoutes = require('./routes/favorite');
 const messageRoutes = require('./routes/message');
 const mailRouter = require('./routes/contacts');
 const helmet = require('helmet');
+const compression = require('compression')
 
 const path = require('path');
 const { port } = require('./config/config');
@@ -15,6 +16,7 @@ require('./database/database')();
 const app = express();
 
 app.use(helmet());
+app.use(compression());
 app.use(bodyParser.json({limit: '20mb'}));
 
 app.use((req, res, next) => {
