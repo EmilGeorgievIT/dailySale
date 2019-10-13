@@ -16,7 +16,7 @@ const path = require('path');
 const { port } = require('./config/config');
 require('./database/database')();
 const app = express();
-const server = require('http').createServer(app)
+const server = app.listen(port, () => { console.log(`REST API listening on port: ${port}`) });
 const io = require('socket.io').listen(server);
 
 let usersCollection = [];
@@ -67,7 +67,6 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
-server.listen(port, () => { console.log(`REST API listening on port: ${port}`) });
 
 // Socket.io operations
 
