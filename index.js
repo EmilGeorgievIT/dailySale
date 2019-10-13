@@ -10,23 +10,23 @@ const chatHistoryRoutes = require('./routes/chathistory');
 const mailRouter = require('./routes/contacts');
 const helmet = require('helmet');
 const compression = require('compression');
-const logger = require('./middleware/app-logger');
+// const logger = require('./middleware/app-logger');
 
 const path = require('path');
 const { port } = require('./config/config');
 require('./database/database')();
 const app = express();
-const server = app.listen(port, () => { console.log(`REST API listening on port: ${port}`) });
+const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
 let usersCollection = [];
 let usersCollection2 = {};
 
-logger.stream = {
-  write(message) {
-      logger.info(message)
-  },
-}
+// logger.stream = {
+//   write(message) {
+//       logger.info(message)
+//   },
+// }
 
 app.use(helmet());
 app.use(compression());
@@ -67,6 +67,7 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
+app.listen(port, () => { console.log(`REST API listening on port: ${port}`) });
 
 // Socket.io operations
 
