@@ -17,7 +17,7 @@ const { port } = require('./config/config');
 require('./database/database')();
 const app = express();
 const server = app.listen(port, () => { console.log(`REST API listening on port: ${port}`) });
-const io = require('socket.io').listen(server);
+const io = require('socket.io')(server);
 
 let usersCollection = [];
 let usersCollection2 = {};
