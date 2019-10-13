@@ -70,6 +70,7 @@ if (process.env.NODE_ENV === 'production') {
 server.listen(port, () => { console.log(`REST API listening on port: ${port}`) });
 
 // Socket.io operations
+
 io.on('connection', function (socket) {
   console.log('A user has connected to the server.');
 
