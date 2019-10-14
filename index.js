@@ -10,7 +10,6 @@ const chatHistoryRoutes = require('./routes/chathistory');
 const mailRouter = require('./routes/contacts');
 const helmet = require('helmet');
 const compression = require('compression');
-// const logger = require('./middleware/app-logger');
 
 const path = require('path');
 const { port } = require('./config/config');
@@ -21,12 +20,6 @@ const io = require('socket.io')(server);
 
 let usersCollection = [];
 let usersCollection2 = {};
-
-// logger.stream = {
-//   write(message) {
-//       logger.info(message)
-//   },
-// }
 
 app.use(helmet());
 app.use(compression());
