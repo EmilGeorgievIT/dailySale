@@ -14,6 +14,7 @@ import { loginUser } from '../actions/authActions';
 import FavoriteService from '../services/favorite-service';
 import PostsEdit from '../components/PostsEdit'
 import Chat from '../components/chat/Chat';
+import ChatReverseAngular from '../components/chat/ChatReverseAngular';
 
 class Profile extends Component {
     static service = new ProfileService();
@@ -248,10 +249,12 @@ class Profile extends Component {
                                             </div>
 
                                             <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                                                <Chat 
+                                                {/* <Chat 
                                                     received = { receivedMessages }
                                                     sent  = { sentMessages }
-                                                />
+                                                /> */}
+
+                                                <ChatReverseAngular />
                                             </div>
                                             
                                             <div className="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
