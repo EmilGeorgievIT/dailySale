@@ -281,7 +281,7 @@ export default class ChatReverseAngular extends Component {
                                                 </div>
                                             ) 
 
-                                        }) : 'No history'
+                                        }) : ''
                                     }
                                 </div>
                                 
