@@ -103,7 +103,7 @@ class UserProfile extends Component {
     }
 
     render() {
-        const { name, image, email, website, phoneNumber } = this.state.user;
+        const { _id, name, image, email, website, phoneNumber } = this.state.user;
         
         if (this.state.isLoading) {
             return(
@@ -218,13 +218,17 @@ class UserProfile extends Component {
     
                     <div className="card-footer">
                         <div className="user-actions d-flex">
-                            <button className='btn btn-primary btn-sm'>
-                                <i className="material-icons">
-                                    send    
-                                </i>
-        
-                                Chat
-                            </button>
+                            {
+                                !!localStorage.getItem('ds_chk_temp')? (
+                                    <Link to={`/chat/${_id}`} className='btn btn-primary btn-sm'>
+                                        <i className="material-icons">
+                                            send    
+                                        </i>
+                
+                                        Chat
+                                    </Link>
+                                ): ''
+                            }
                             
                             {
                                 !!localStorage.getItem('ds_chk_temp')? (

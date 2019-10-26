@@ -17,7 +17,7 @@ ChatHistoryModel.getAll = () => {
 }
 
 ChatHistoryModel.getById = (id) => {
-    return ChatHistoryModel.findOne({_id: id})
+    return ChatHistoryModel.find({_id: id})
 }
 
 ChatHistoryModel.sendMessage = (messageToAdd) => {

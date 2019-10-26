@@ -249,12 +249,12 @@ class Profile extends Component {
                                             </div>
 
                                             <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                                                {/* <Chat 
+                                                <Chat 
                                                     received = { receivedMessages }
                                                     sent  = { sentMessages }
-                                                /> */}
+                                                />
 
-                                                <ChatReverseAngular />
+                                                {/* <ChatReverseAngular /> */}
                                             </div>
                                             
                                             <div className="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">

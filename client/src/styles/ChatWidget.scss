@@ -93,6 +93,10 @@
     clear: both;
 }
 
+.message_history {
+    width: 100%;
+}
+
 .chat_list {
     border-bottom: 1px solid $gray;
     margin: 0;
@@ -137,9 +141,11 @@
     width: 6%;
 }
 .received_msg {
-    display: inline-block;
-    padding: 0 0 0 10px;
-    vertical-align: top;
+    display: block;
+    background: blue;
+    color: white;
+    margin-bottom: 1rem;
+    padding: 10px;
     border-radius: 2px;
     border: navy;
 }
@@ -172,8 +178,8 @@
     height: 555px;
     overflow-y: auto;
     display: flex;
-    
-    align-items: flex-end;
+    flex-direction: column;
+    align-items: center;
 }
 
 .sent_msg p {
@@ -185,7 +191,7 @@
 }
 
 .messaging {
-    background-color: $white;
+    padding-top: 2rem;
     
     .inbox_msg {
         box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);

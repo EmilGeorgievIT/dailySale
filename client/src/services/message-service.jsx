@@ -24,9 +24,5 @@ class MessageService {
     getChatHistory(senderId, receiverId) {
         return get(API_SERVER  + '/chat/user/' + senderId + '/' + receiverId);
     }
-
-    getUserById(fromUserId) {
-        return get(API_SERVER + '/chat/user/' + fromUserId);
-    }
 }
 export default MessageService;

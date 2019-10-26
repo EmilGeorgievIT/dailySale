@@ -18,25 +18,27 @@ export default class ChatReverseAngular extends Component {
         this.state = {
             response: '',
             history: [],
-            usersCollection: [],
-            usersCollection2: [],
+            usersCollection: '',
+            usersCollection2: '',
             participants: [],
             email: '',
             message: '',
             toId: '',
-            toUserId: '5d336f531bcfe30c944f75f2',
+            toUserId: '',
             userIdSocket: '',
             fromUserId: ''
         }
     }
     
     componentDidMount() { 
-        // const toUserId = this.props.match.params.id;
+        const toUserId = this.props.match.params.id;
+
         const token = jwt_decode(localStorage.getItem('token'));
         
         if (token) {
             this.setState({
                 email: token.email,
+                toUserId: toUserId,
                 fromUserId: token.userId
             })
         }
@@ -59,7 +61,7 @@ export default class ChatReverseAngular extends Component {
     
     sendMessage = (event) => {
         event.preventDefault();
-
+        
         const { fromUserId, toUserId, history, toId, userIdSocket, message } = this.state;
 
         if(message !== undefined && message !== '') {
@@ -69,7 +71,7 @@ export default class ChatReverseAngular extends Component {
                 message: message,
                 timestamp: new Date()
             }
-
+            
             this.setState({
                 history: [...history, userMessage]
             })
@@ -79,15 +81,20 @@ export default class ChatReverseAngular extends Component {
                     fromId: userIdSocket,
                     fromUserId: fromUserId,
                     message: message,
+                    toId: toId,
                     toUserId: toUserId,
                     dataSent: new Date()
                 }
                 socket.emit('sendMessage', toIdUserMessage);
             }
-
-            ChatReverseAngular.chatService.sendMessage({
+            console.log({
                 from: fromUserId,
-                to: toUserId,
+                toId: toUserId,
+                message: message,
+            });
+            ChatReverseAngular.chatService.sendMessage({
+                fromId: fromUserId,
+                toId: toUserId,
                 message: message,
             }).then((res) => {
                 console.log(res);
@@ -98,9 +105,7 @@ export default class ChatReverseAngular extends Component {
     }
 
 
-    initializeSocketListeners = () => {
-        const { fromUserId, history, usersCollection, usersCollection2, toUserId, toId } = this.state;
-        
+    initializeSocketListeners = () => {        
         socket.on('generatedUserId', (userId) => {
             this.setState({
                 userIdSocket: userId
@@ -114,53 +119,59 @@ export default class ChatReverseAngular extends Component {
 
         socket.on('messageReceived', (message) => {
             console.log('message received = ', message);
-
-            if(message.message.toUserId === fromUserId){
+            
+            if(message.message.toUserId === this.state.fromUserId){
                 const receivedMessage = {
-                    from: message.message.fromUserId,
-                    to: message.message.toUserId,
+                    fromId: message.message.fromUserId,
+                    toId: message.message.toUserId,
                     message: message.message.message,
-                    timestamp: message.message.dateSent
+                    createdAt: message.message.dateSent
                 };
 
                 this.setState({
-                    history: [...history, receivedMessage]
+                    history: this.state.history.concat([receivedMessage])
                 });
+
+                console.log(this.state.history);
             }
         });
 
         socket.on('friendsListChanged', (usersCollectionRes) => {
             this.setState({
-                usersCollection: [...usersCollection, usersCollectionRes]
+                usersCollection: usersCollectionRes
             });
         });
 
         socket.on('friendsListChanged2', (usersCollectionRes2) => {
             this.setState({
-                usersCollection2: [...usersCollection2, usersCollectionRes2]
+                usersCollection2: usersCollectionRes2
             });
-
-            // if(Object.keys(usersCollectionRes2).length) {
-            //     for (const a of Object.keys(usersCollectionRes2)) {
-            //         if (usersCollection2[a].fromUserId && usersCollection2[a].fromUserId === toUserId) {
-            //             this.setState({
-            //                 toId: a
-            //             });
-    
-            //             break;
-            //         }
-            //     }
-            // }
+            
+            console.log('usersCollectionRes2= ', usersCollectionRes2);
+            
+            if(Object.keys(usersCollectionRes2).length) {
+                for (const a of Object.keys(usersCollectionRes2)) {
+                    console.log('a = ', usersCollectionRes2[a]);
+                    if (usersCollectionRes2[a].fromUserId && usersCollectionRes2[a].fromUserId === this.props.match.params.id) {
+                        
+                        this.setState({
+                            toId: a
+                        });
+                        
+                        break;
+                    }
+                }
+            }
         });
 
     }
 
     getParticipants = () => {
         const { fromUserId, participants } = this.state;
-
         ChatReverseAngular.chatService
             .getParticipants(fromUserId)
             .then((user) => {
+                console.log('User getParticipants = ', user);
                 user.users.map((userId) => {
                     ChatReverseAngular.profileService.getUserDetails(userId)
                     .then((res) => {
@@ -199,6 +210,10 @@ export default class ChatReverseAngular extends Component {
         ChatReverseAngular.chatService
         .getChatHistory(fromUserId, toUserId)
         .then((res) => {
+            this.setState({
+                history: this.state.history.concat(res.chatHistories)
+            })
+
             console.log('Chat History Response = ', res);
         }).catch((error) => {
             console.log(error);
@@ -209,12 +224,8 @@ export default class ChatReverseAngular extends Component {
         const {
             history,
             message,
-            usersCollection,
-            usersCollection2,
             participants,
-            toId,
             toUserId,
-            userIdSocket,
             fromUserId
         } = this.state;
         return (
@@ -247,18 +258,37 @@ export default class ChatReverseAngular extends Component {
                             <div className="mesgs">
                                 <div className="message_history">
                                     {
-                                        history? history.map((message, id) => (
-                                            <div key={id} className="received_msg">
-                                                { message.message }
-                                            </div>
-                                        )) : 'No history'
+                                        history? history.map((message, id) => {
+                                            if (message.fromId === fromUserId) {
+                                                return (
+                                                    <div key={id} className={`${message.fromId === toUserId?  'incoming_msg' : 'outgoing_msg'}`}>
+                                                        <p>{ message.message}</p>
+
+                                                        <span> { message.createdAt }</span>
+                                                    </div>
+                                                )
+                                            }
+
+                                            return (
+                                                <div key={id} className={`${message.fromId === toUserId?  'incoming_msg' : 'outgoing_msg'}`}>
+                                                    <p>
+                                                        { message.message }
+                                                    </p>
+
+                                                    <p>
+                                                        { message.createdAt }
+                                                    </p>
+                                                </div>
+                                            ) 
+
+                                        }) : 'No history'
                                     }
                                 </div>
                                 
                                 <div className="type_msg">
                                     <div className="input_msg_write">
                                         <form className="form-message">
-                                            <input type="text" className="write_msg form-control" onChange={this.getValue} value={ message || ''} name='message' id="message" placeholder="Type a message" name="message"/>
+                                            <input type="text" className="write_msg form-control" onChange={this.getValue} value={ message || ''} name='message' id="message" placeholder="Type a message" />
                                             
                                             <button onClick={this.sendMessage} className="msg_send_btn" type="submit">
                                                 <i className="material-icons blue-color">
