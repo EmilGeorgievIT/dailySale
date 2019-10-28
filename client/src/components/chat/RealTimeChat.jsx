@@ -7,8 +7,6 @@ import '../../styles/RealTimeChat.scss';
 import '../../styles/Forms.scss';
 import '../../styles/Message.scss';
 import UserMessage from './UserMessage';
-import profileImage from  '../../images/avatar.png';
-
 
 const socket = openSocket('http://localhost:3200');
 
