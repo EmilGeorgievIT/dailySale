@@ -5,10 +5,12 @@ import MessageService from '../../services/message-service';
 import ProfileService from '../../services/profile-service';
 import '../../styles/RealTimeChat.scss';
 import '../../styles/Forms.scss';
+const API_SERVER = `${process.env.REACT_APP_API_SERVER}`;
+
 import '../../styles/Message.scss';
 import UserMessage from './UserMessage';
 
-const socket = openSocket('http://localhost:3200');
+const socket = openSocket(API_SERVER);
 
 
 export default class RealTimeChat extends Component {
