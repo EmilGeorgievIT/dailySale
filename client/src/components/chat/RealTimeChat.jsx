@@ -5,10 +5,10 @@ import MessageService from '../../services/message-service';
 import ProfileService from '../../services/profile-service';
 import '../../styles/RealTimeChat.scss';
 import '../../styles/Forms.scss';
-const API_SERVER = `${process.env.REACT_APP_API_SERVER}`;
-
 import '../../styles/Message.scss';
 import UserMessage from './UserMessage';
+const API_SERVER = `${process.env.REACT_APP_API_SERVER}`;
+
 
 const socket = openSocket(API_SERVER);
 
