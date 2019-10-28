@@ -58,9 +58,9 @@ export default class ListMessages extends Component {
                     {
                         this.state.messages? this.state.messages.map((user) => (
                             <li onClick={this.changeUser} key={user._id}>
-                                <UserMessage 
+                                {/* <UserMessage 
                                     {...user}
-                                />
+                                /> */}
                             </li>
                         )) : ''
                     }

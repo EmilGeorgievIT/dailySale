@@ -4,6 +4,11 @@ import openSocket from 'socket.io-client';
 import MessageService from '../../services/message-service';
 import ProfileService from '../../services/profile-service';
 import '../../styles/ChatWidget.scss';
+import '../../styles/Forms.scss';
+import '../../styles/Message.scss';
+import UserMessage from '../chat/UserMessage';
+import profileImage from  '../../images/avatar.png';
+
 
 const socket = openSocket('http://localhost:3200');
 
@@ -180,6 +185,7 @@ export default class ChatReverseAngular extends Component {
                         const participantDetails = {
                             userName: res.name,
                             userId: userId,
+                            image: res.image,
                             newNotification: ''
                         }
 
@@ -228,6 +234,8 @@ export default class ChatReverseAngular extends Component {
             toUserId,
             fromUserId
         } = this.state;
+        
+        
         return (
             <Fragment>
                 <div className="container">
@@ -236,67 +244,84 @@ export default class ChatReverseAngular extends Component {
                             <div className="inbox_people">
                                 <div className="inbox_chat">
                                     <div className='chat_list'>
-                                        {
-                                            participants? participants.map((participant) => (
-                                                <div key={participant.userId} className="chat_people">
-                                                    <div className="chat_img">
-                                                        <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"/>
-                                                    </div>
-                                                    
-                                                    <div className="chat_ib">
-                                                        <h5>
-                                                            { participant.userName }
-                                                        </h5>
-                                                    </div>
-                                                </div>
-                                            )) : 'No participants' 
-                                        }
+                                        <ul className='list-user-message'>
+                                            {
+                                                participants? participants.map((participant) => (
+                                                    <li onClick={this.changeUser} key={participant.userId}>
+                                                        <UserMessage 
+                                                            {...participant}
+                                                        />
+                                                    </li>
+                                                )) : ''
+                                            }
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
                             
-                            <div className="mesgs">
+                            <div className="messages">
                                 <div className="message_history">
                                     {
                                         history? history.map((message, id) => {
                                             if (message.fromId === fromUserId) {
                                                 return (
-                                                    <div key={id} className={`${message.fromId === toUserId?  'incoming_msg' : 'outgoing_msg'}`}>
-                                                        <p>{ message.message}</p>
+                                                    <div key={id} className={`${message.fromId === toUserId?  'message incoming_msg' : 'message outgoing_msg'}`}>
+                                                        <div className="message__content">
+                                                            <div className="message__inner">
+                                                                <div className="message__entry">                                                                    
+                                                                    <div className="message__description">
+                                                                        { message.message}
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <div className="message__time">
+                                                                    { (new Date(message.createdAt)).toLocaleDateString('en-US', 'short') }
+                                                                </div>
+                                                            </div>
 
-                                                        <span> { message.createdAt }</span>
+                                                            <div className="message__image">
+                                                                <img src={profileImage} alt=""/>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 )
                                             }
 
                                             return (
-                                                <div key={id} className={`${message.fromId === toUserId?  'incoming_msg' : 'outgoing_msg'}`}>
-                                                    <p>
-                                                        { message.message }
-                                                    </p>
+                                                <div key={id} className={`${message.fromId === toUserId?  'message incoming_msg' : 'message outgoing_msg'}`}>
+                                                    <div className="message__content">
+                                                            <div className="message__inner">
+                                                                <div className="message__entry">                                                                    
+                                                                    <div className="message__description">
+                                                                        { message.message}
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <div className="message__time">
+                                                                    { (new Date(message.createdAt)).toLocaleDateString('en-US', 'short') }
+                                                                </div>
+                                                            </div>
 
-                                                    <p>
-                                                        { message.createdAt }
-                                                    </p>
+                                                            <div className="message__image">
+                                                                <img src={profileImage} alt=""/>
+                                                            </div>
+                                                        </div>
                                                 </div>
                                             ) 
-
                                         }) : ''
                                     }
                                 </div>
                                 
                                 <div className="type_msg">
-                                    <div className="input_msg_write">
-                                        <form className="form-message">
-                                            <input type="text" className="write_msg form-control" onChange={this.getValue} value={ message || ''} name='message' id="message" placeholder="Type a message" />
-                                            
-                                            <button onClick={this.sendMessage} className="msg_send_btn" type="submit">
-                                                <i className="material-icons blue-color">
-                                                    send
-                                                </i>
+                                    <form className="form-message form-chat">
+                                        <div className="input-group input-group-sm">
+                                            <input type="text" className="form-control" onChange={this.getValue} value={ message || ''} name='message' id="message" placeholder="Type a message"  aria-describedby="send message"/>
+                                        
+                                            <button onClick={this.sendMessage} className="btn btn-primary btn-sm" type="submit">
+                                                Send
                                             </button>
-                                        </form>
-                                    </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

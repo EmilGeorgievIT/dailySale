@@ -7,28 +7,47 @@
 .message {
 	& {
 		margin-bottom: 20px;
-		max-width: 380px;
+		max-width: 480px;
 		margin-left: auto;
+	}
+	&.incoming_msg {
+		.message__inner {
+			order: 2;
+			
+			.message__content {
+				justify-content: flex-start;
+			}
+			.message__time { 
+				text-align: left;
+			}
+		}
+		.message__image {
+			order: 1;
+		}	
+	}
+	.message__time {
+		margin: 5px 20px;
+		color: #C6C6C6;
+		font-weight: 500;
+		text-align: right;
 	}
 	.message__content {
 		display: flex;
-		align-items: center;
+		align-items: flex-start;
 		padding: 20px;
-		color: $black;
+		justify-content: flex-end;
+		color: #5B5652;
 	}
 	
 	.message__entry {
 		margin: 0 20px;
 		padding: 16px 10px;
-		background-color: #e3effd;
+		background-color: #EBF2FC;
 		border-radius: 11px;
-	}
-	.message__time {
-		color: #CCCBCC;
 	}
 	.message__image {
 		img {
-			max-width: 50px;
+			max-width: 60px;
 			border-radius: 50%;
 		}
 	}
