@@ -26,6 +26,8 @@ export default class RealTimeChat extends Component {
             usersCollection2: '',
             participants: [],
             email: '',
+            fromUserImage: '',
+            toUserImage: '',
             message: '',
             toId: '',
             toUserId: '',
@@ -62,6 +64,9 @@ export default class RealTimeChat extends Component {
                 toUserId: toUserId,
                 fromUserId: token.userId
             })
+
+            this.getUserImage(toUserId, 'toUserImage');
+            this.getUserImage(token.userId, 'fromUserImage');
         }
         
         const { userIdSocket } = this.state;
@@ -78,6 +83,20 @@ export default class RealTimeChat extends Component {
         setTimeout( () => {
             console.log(this.state);    
         },3000);
+
+    }
+
+    getUserImage = (userId, type) => {
+        const el = type;
+
+        RealTimeChat.profileService.getUserImage(userId)
+        .then((image) => {
+            this.setState({
+                [el]: image.image
+            });
+        }).catch((error) => {
+            console.log(error);
+        });
     }
     
     sendMessage = (event) => {
@@ -128,7 +147,7 @@ export default class RealTimeChat extends Component {
     }
 
 
-    initializeSocketListeners = () => {        
+    initializeSocketListeners = () => {
         socket.on('generatedUserId', (userId) => {
             this.setState({
                 userIdSocket: userId
@@ -249,7 +268,9 @@ export default class RealTimeChat extends Component {
             history,
             message,
             participants,
+            fromUserImage,
             toUserId,
+            toUserImage,
             fromUserId
         } = this.state;
         
@@ -298,7 +319,7 @@ export default class RealTimeChat extends Component {
                                                             </div>
 
                                                             <div className="message__image">
-                                                                <img src={profileImage} alt=""/>
+                                                                <img src={`${message.fromId === toUserId? toUserImage:  fromUserImage}`} alt=""/>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -321,7 +342,7 @@ export default class RealTimeChat extends Component {
                                                         </div>
 
                                                         <div className="message__image">
-                                                            <img src={profileImage} alt=""/>
+                                                            <img src={`${message.fromId === toUserId? toUserImage:  fromUserImage}`} alt=""/>
                                                         </div>
                                                     </div>
                                                 </div>
