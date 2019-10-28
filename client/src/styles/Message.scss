@@ -16,7 +16,9 @@
 		}
 		.message__inner {
 			order: 2;
-			
+			.message__entry {
+				background-color: #F4F5F7;
+			}
 			.message__time { 
 				text-align: left;
 			}

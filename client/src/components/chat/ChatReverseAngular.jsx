@@ -21,7 +21,6 @@ export default class ChatReverseAngular extends Component {
         super();
         
         this.state = {
-            response: '',
             history: [],
             usersCollection: '',
             usersCollection2: '',
@@ -119,7 +118,9 @@ export default class ChatReverseAngular extends Component {
                 toId: toUserId,
                 message: message,
             }).then((res) => {
-                console.log(res);
+                this.setState({
+                    message: ''
+                });
             }).catch((error) => {
                 console.log(error);
             })
@@ -147,7 +148,7 @@ export default class ChatReverseAngular extends Component {
                     fromId: message.message.fromUserId,
                     toId: message.message.toUserId,
                     message: message.message.message,
-                    createdAt: message.message.dateSent
+                    createdAt: message.message.dataSent
                 };
 
                 this.setState({
@@ -264,7 +265,7 @@ export default class ChatReverseAngular extends Component {
                                         <ul className='list-user-message'>
                                             {
                                                 participants? participants.map((participant) => (
-                                                    <li onClick={this.changeUser} key={participant.userId}>
+                                                    <li className={`${participant.userId === toUserId? 'active' : ''}`} onClick={this.changeUser} key={participant.userId}>
                                                         <UserMessage 
                                                             {...participant}
                                                         />
@@ -292,7 +293,7 @@ export default class ChatReverseAngular extends Component {
                                                                 </div>
                                                                 
                                                                 <div className="message__time">
-                                                                    { (new Date(message.createdAt)).toLocaleDateString('en-US', 'short') }
+                                                                    { (new Date(message.createdAt || message.timestamp)).toLocaleDateString('en-US', 'short') }
                                                                 </div>
                                                             </div>
 
