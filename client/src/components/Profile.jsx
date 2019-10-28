@@ -13,8 +13,7 @@ import { connect } from 'react-redux';
 import { loginUser } from '../actions/authActions';
 import FavoriteService from '../services/favorite-service';
 import PostsEdit from '../components/PostsEdit'
-import Chat from '../components/chat/Chat';
-import ChatReverseAngular from '../components/chat/ChatReverseAngular';
+import { Link } from 'react-router-dom';
 
 class Profile extends Component {
     static service = new ProfileService();
@@ -117,7 +116,7 @@ class Profile extends Component {
     }
 
     render() {
-        const { email, image, location, website, phoneNumber, name, receivedMessages, sentMessages } = this.state.user;
+        const { _id, email, image, location, website, phoneNumber, name } = this.state.user;
 
         const imageBackground = {
             backgroundImage: `url(${banner})`
@@ -182,11 +181,11 @@ class Profile extends Component {
                                                 Edit My Ads
                                             </a>
 
-                                            <a className="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">
+                                            <Link to={`/chat/${_id}`} className="nav-link" role="tab" aria-controls="v-pills-messages" aria-selected="false">
                                                 <i className="material-icons">message</i>
                                                 
                                                 My Messages
-                                            </a>
+                                            </Link>
                                             
                                             <a className="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">
                                                 <i className="material-icons">settings</i>
@@ -246,15 +245,6 @@ class Profile extends Component {
                                                             )
                                                         ) : 'No ads'
                                                 }
-                                            </div>
-
-                                            <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                                                <Chat 
-                                                    received = { receivedMessages }
-                                                    sent  = { sentMessages }
-                                                />
-
-                                                {/* <ChatReverseAngular /> */}
                                             </div>
                                             
                                             <div className="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">

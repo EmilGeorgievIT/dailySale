@@ -24,7 +24,7 @@ import { Provider } from 'react-redux'
 import store from './store';
 import jwt_decode from 'jwt-decode';
 import { setCurrentUser, logOutUser } from './actions/authActions';
-import ChatReverseAngular from './components/chat/ChatReverseAngular';
+import RealTimeChat from './components/chat/RealTimeChat';
 
 if(localStorage.token !== undefined) {
   const decode = jwt_decode(localStorage.token);
@@ -70,7 +70,7 @@ class App extends Component {
                       <Route exact path='/contacts' component = { ContactUs }/>
                       <Route exact path='/create/ad' component = { CreateAd }/>
                       <Route exact path='/profile' component = { Profile }/>
-                      <Route exact path='/chat/:id' component = { ChatReverseAngular }/>
+                      <Route exact path='/chat/:id' component = { RealTimeChat }/>
                       <Route exact path='/category/:categoryName' component = { CategoryPosts }/>
                       <Route exact path='/user/ads/:userId' component = { UserAds }/>
                       <Route component = { NotFound } />

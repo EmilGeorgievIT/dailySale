@@ -3,17 +3,17 @@ import jwt_decode from 'jwt-decode';
 import openSocket from 'socket.io-client';
 import MessageService from '../../services/message-service';
 import ProfileService from '../../services/profile-service';
-import '../../styles/ChatWidget.scss';
+import '../../styles/RealTimeChat.scss';
 import '../../styles/Forms.scss';
 import '../../styles/Message.scss';
-import UserMessage from '../chat/UserMessage';
+import UserMessage from './UserMessage';
 import profileImage from  '../../images/avatar.png';
 
 
 const socket = openSocket('http://localhost:3200');
 
 
-export default class ChatReverseAngular extends Component {
+export default class RealTimeChat extends Component {
     static chatService = new MessageService();
     static profileService = new ProfileService();
     
@@ -113,7 +113,7 @@ export default class ChatReverseAngular extends Component {
                 toId: toUserId,
                 message: message,
             });
-            ChatReverseAngular.chatService.sendMessage({
+            RealTimeChat.chatService.sendMessage({
                 fromId: fromUserId,
                 toId: toUserId,
                 message: message,
@@ -191,12 +191,12 @@ export default class ChatReverseAngular extends Component {
 
     getParticipants = () => {
         const { fromUserId } = this.state;
-        ChatReverseAngular.chatService
+        RealTimeChat.chatService
             .getParticipants(fromUserId)
             .then((user) => {
                 console.log('User getParticipants = ', user);
                 user.users.map((userId) => {
-                    ChatReverseAngular.profileService.getUserDetails(userId)
+                    RealTimeChat.profileService.getUserDetails(userId)
                     .then((res) => {
                         console.log('User profile response = ', res);
 
@@ -231,7 +231,7 @@ export default class ChatReverseAngular extends Component {
 
         const { fromUserId, toUserId } = this.state; 
 
-        ChatReverseAngular.chatService
+        RealTimeChat.chatService
         .getChatHistory(fromUserId, toUserId)
         .then((res) => {
             this.setState({
