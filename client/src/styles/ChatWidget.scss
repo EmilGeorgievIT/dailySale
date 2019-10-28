@@ -1,68 +1,64 @@
 @import '../styles/variables.scss';
 
-.message_history {
-    width: 100%;
-}
-
-.chat_list {
-    border-bottom: 1px solid $gray;
-    margin: 0;
-}
-
-.inbox_chat {
-    height: 550px;
-    overflow-y: auto;
-}
-
-.type_msg {
-    max-width: 100%;
-    width: 100%;
-    border-color: $gray;
-}
-
-.outgoing_msg {
-    border-color: $blue;
-    margin-left: auto;
-    margin-right: 0;
-}
-.incoming_msg {
-    margin-left: 0;
-    margin-right: auto;
-}
-
-.time_date {
-    color: $gray;
-    display: block;
-    font-size: 12px;
-    margin: 8px 0 0;
-}
-
-.messages {
-    float: left;
-    padding: 30px 15px 0 25px;
-    width: 70%;
-    height: 555px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .messaging {
-    padding: 2rem 0;
-    
-    .inbox_msg {
-        background-color: $white;
-        box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
-        clear: both;
-        overflow: hidden;
+    & {
+        padding: 2rem 0;
     }
 
-    .inbox_people {
-        float: left;
-        overflow: hidden;
-        width: 30%;
-        border-right: 1px solid $gray;
+    .messaging__body {
+        & {
+            display: flex;
+            background-color: $white;
+            box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+        }
+        
+        .inbox_people {
+            width: 30%;
+            border-right: 1px solid $gray;
+        }
+        
+        .messages {
+            padding-top: 30px;
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+    
+    .message_history {
+        width: 100%;
+        height: 555px;
+        overflow-y: auto;
+    }
+    
+    .type_msg {
+        padding: 1.5em;
+        background-color: #EBF2FC;
+        max-width: 100%;
+        width: 100%;
+        border-color: $gray;
+    }
+
+    .chat_list {
+        border-bottom: 1px solid $gray;
+        margin: 0;
+    }
+    
+    .inbox_chat {
+        height: 550px;
+        overflow-y: auto;
+    }
+    
+    
+    .outgoing_msg {
+        border-color: $blue;
+        margin-left: auto;
+        margin-right: 0;
+    }
+    .incoming_msg {
+        margin-left: 0;
+        margin-right: auto;
     }
     .form-message {
         display: flex;

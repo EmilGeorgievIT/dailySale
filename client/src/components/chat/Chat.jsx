@@ -20,7 +20,7 @@ export default class Chat extends Component {
                         <div className="row">
                             <div className="col-md-4 p-0">
                                 <div className="section__aside">
-                                    <ListMessages/>
+                                    {/* <ListMessages/> */}
                                 </div>
                             </div>
 

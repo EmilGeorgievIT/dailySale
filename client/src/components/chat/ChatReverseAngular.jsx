@@ -34,7 +34,24 @@ export default class ChatReverseAngular extends Component {
             fromUserId: ''
         }
     }
-    
+
+    componentWillMount() {
+        this.props.history.listen((location) => {
+            if(location.pathname) {
+                const id = location.pathname.replace('/chat/', '');
+                
+                this.setState({
+                    toUserId: id,
+                    history: []
+                });
+
+                setTimeout(() => {
+                    this.getChatHistory();
+                },500);
+            }
+        });
+    }
+
     componentDidMount() { 
         const toUserId = this.props.match.params.id;
 
@@ -172,7 +189,7 @@ export default class ChatReverseAngular extends Component {
     }
 
     getParticipants = () => {
-        const { fromUserId, participants } = this.state;
+        const { fromUserId } = this.state;
         ChatReverseAngular.chatService
             .getParticipants(fromUserId)
             .then((user) => {
@@ -190,7 +207,7 @@ export default class ChatReverseAngular extends Component {
                         }
 
                         this.setState({
-                            participants: [...participants, participantDetails]
+                            participants: this.state.participants.concat([participantDetails])
                         })
                     }).catch((error) => {
                         console.log(error);
@@ -239,8 +256,8 @@ export default class ChatReverseAngular extends Component {
         return (
             <Fragment>
                 <div className="container">
-                    <div className="messaging ">
-                        <div className="inbox_msg">
+                    <div className="messaging">
+                        <div className="messaging__body">
                             <div className="inbox_people">
                                 <div className="inbox_chat">
                                     <div className='chat_list'>
@@ -290,22 +307,22 @@ export default class ChatReverseAngular extends Component {
                                             return (
                                                 <div key={id} className={`${message.fromId === toUserId?  'message incoming_msg' : 'message outgoing_msg'}`}>
                                                     <div className="message__content">
-                                                            <div className="message__inner">
-                                                                <div className="message__entry">                                                                    
-                                                                    <div className="message__description">
-                                                                        { message.message}
-                                                                    </div>
-                                                                </div>
-                                                                
-                                                                <div className="message__time">
-                                                                    { (new Date(message.createdAt)).toLocaleDateString('en-US', 'short') }
+                                                        <div className="message__inner">
+                                                            <div className="message__entry">                                                                    
+                                                                <div className="message__description">
+                                                                    { message.message}
                                                                 </div>
                                                             </div>
-
-                                                            <div className="message__image">
-                                                                <img src={profileImage} alt=""/>
+                                                            
+                                                            <div className="message__time">
+                                                                { (new Date(message.createdAt || message.timestamp)).toLocaleDateString('en-US', 'short') }
                                                             </div>
                                                         </div>
+
+                                                        <div className="message__image">
+                                                            <img src={profileImage} alt=""/>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             ) 
                                         }) : ''
@@ -315,9 +332,9 @@ export default class ChatReverseAngular extends Component {
                                 <div className="type_msg">
                                     <form className="form-message form-chat">
                                         <div className="input-group input-group-sm">
-                                            <input type="text" className="form-control" onChange={this.getValue} value={ message || ''} name='message' id="message" placeholder="Type a message"  aria-describedby="send message"/>
+                                            <input type="text" className="form-control" onChange={this.getValue} value={ message || ''} name='message' id="message" placeholder="Write a message.."  aria-describedby="send message"/>
                                         
-                                            <button onClick={this.sendMessage} className="btn btn-primary btn-sm" type="submit">
+                                            <button onClick={this.sendMessage} className="btn btn-primary btn-md" type="submit">
                                                 Send
                                             </button>
                                         </div>

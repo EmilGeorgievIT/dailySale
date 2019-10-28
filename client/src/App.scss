@@ -102,6 +102,10 @@ table { width: 100%; border-collapse: collapse; border-spacing: 0; }
 nav ul,
 nav ol { list-style: none outside none; }
 
+.loader {
+	text-align: center;
+}
+
 .invalid-feedback {
 	display: inline-block;
 }

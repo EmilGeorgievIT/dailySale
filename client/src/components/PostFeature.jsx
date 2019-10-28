@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import Loading from './shared/Loading';
 import PostService from '../services/posts-service';
 import PostsFeatured from './PostsFeatured';
 import '../styles/Sections.scss';
 import '../styles/Posts.scss';
 import Slider from "react-slick";
 import { css } from '@emotion/core';
-import { PulseLoader } from 'react-spinners';
+import { ClipLoader } from 'react-spinners';
 
 const override = css`
     display: block;
@@ -82,13 +81,15 @@ class PostFeature extends Component {
         };
         if(isLoading) {
             return(
-                <PulseLoader
+                <div className="loader">
+                    <ClipLoader
                         css={override}
                         sizeUnit={"px"}
-                        size={60}
+                        size={150}
                         color={'#123abc'}
                         loading={this.state.loading}
                     />
+                </div>
                 )
         };
         return (

@@ -11,12 +11,12 @@
 		margin-left: auto;
 	}
 	&.incoming_msg {
+		.message__content {
+			justify-content: flex-start;
+		}
 		.message__inner {
 			order: 2;
 			
-			.message__content {
-				justify-content: flex-start;
-			}
 			.message__time { 
 				text-align: left;
 			}

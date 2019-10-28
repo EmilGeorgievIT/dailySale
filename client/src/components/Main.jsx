@@ -113,7 +113,7 @@ class Main extends Component {
                         </div> : ''
                     }
                     
-                    <Post />
+                    {/* <Post /> */}
                     
                     <PostFeature />
                 </main>

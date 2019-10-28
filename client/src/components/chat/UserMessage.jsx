@@ -2,10 +2,11 @@ import React from 'react';
 import '../../styles/Chat.scss';
 import profileImage from  '../../images/avatar.png';
 import '../../styles/List.scss';
+import { Link } from 'react-router-dom';
 
 
-const UserMessage = ({_id, userName, image}) => (
-    <div className="user-chat">
+const UserMessage = ({userId, userName, image}) => (
+    <Link to={`/chat/${userId}`} className="user-chat">
         <div className="user__body">
             <div className="user__aside">
                 <div className="user__image">
@@ -27,7 +28,7 @@ const UserMessage = ({_id, userName, image}) => (
                 </div>
             </div>
         </div>
-    </div>
+    </Link>
 );
 
 export default UserMessage;
