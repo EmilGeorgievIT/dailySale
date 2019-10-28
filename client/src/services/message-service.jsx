@@ -14,15 +14,15 @@ class MessageService {
     // New Chat Socket Io Chat
 
     getParticipants(loggedUser) {
-        return get(API_SERVER + '/chat/user/' + loggedUser);
+        return get(API_SERVER + '/chatApi/user/' + loggedUser);
     }
 
     sendMessage(message) {
-        return post(API_SERVER + '/chat/add', message);
+        return post(API_SERVER + '/chatApi/add', message);
     }
 
     getChatHistory(senderId, receiverId) {
-        return get(API_SERVER  + '/chat/user/' + senderId + '/' + receiverId);
+        return get(API_SERVER  + '/chatApi/user/' + senderId + '/' + receiverId);
     }
 }
 export default MessageService;

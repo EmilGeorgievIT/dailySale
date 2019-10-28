@@ -42,7 +42,7 @@ app.use('/profile', userRoutes);
 app.use('/comment', commentRoutes);
 app.use('/favorite', favoriteRoutes);
 app.use('/contact', mailRouter);
-app.use('/chat', chatHistoryRoutes);
+app.use('/chatApi', chatHistoryRoutes);
 
 
 // General error handling
