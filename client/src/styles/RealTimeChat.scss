@@ -4,7 +4,12 @@
     & {
         padding: 2rem 0;
     }
-
+    .message__actions {
+        display: none;
+    }
+    .message__description {
+        word-break: break-all;
+    }
     .messaging__body {
         & {
             display: flex;
@@ -64,5 +69,58 @@
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+}
+
+@media #{$tablet-portrait} {
+    .messaging {
+        .messaging__body {
+            .message__actions {
+                display: block;
+                text-align: left;
+
+                .btn-sm {
+                    line-height: .6;
+                }
+            }
+            .inbox_people {
+                width: 100%;
+                transition: width .4s;
+
+                &.inactive-list{
+                    width: 0;
+                }
+            }
+            .messages {
+                transition: width .4s;
+                width: 0;
+                padding-top: 10px;
+
+                .message__actions {
+                    display: none;
+                }
+
+                &.active-messages {
+                    width: 100%;
+
+                    .message__actions {
+                        display: block;
+                        width: 100%;
+                        text-align: left;
+                        padding: 0 20px 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media #{$mobile} {
+    .messaging {
+        .messaging__body {
+            .type_msg {
+                padding: 1rem .5rem;
+            }
+        }
     }
 }

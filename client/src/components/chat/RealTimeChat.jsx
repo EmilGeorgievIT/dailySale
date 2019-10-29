@@ -31,6 +31,7 @@ export default class RealTimeChat extends Component {
             message: '',
             toId: '',
             toUserId: '',
+            toggleMessages: false,
             userIdSocket: '',
             fromUserId: ''
         }
@@ -43,7 +44,8 @@ export default class RealTimeChat extends Component {
                 
                 this.setState({
                     toUserId: id,
-                    history: []
+                    history: [],
+                    toggleMessages: true
                 });
 
                 setTimeout(() => {
@@ -207,6 +209,14 @@ export default class RealTimeChat extends Component {
         });
 
     }
+    
+    triggerList = (event) => {
+        event.preventDefault();
+        
+        this.setState({
+            toggleMessages: false
+        });
+    }
 
     getParticipants = () => {
         const { fromUserId } = this.state;
@@ -267,6 +277,7 @@ export default class RealTimeChat extends Component {
         const {
             history,
             message,
+            toggleMessages,
             participants,
             fromUserImage,
             toUserId,
@@ -280,13 +291,13 @@ export default class RealTimeChat extends Component {
                 <div className="container">
                     <div className="messaging">
                         <div className="messaging__body">
-                            <div className="inbox_people">
+                            <div className={toggleMessages ? 'inactive-list inbox_people' : 'inbox_people'}>
                                 <div className="inbox_chat">
                                     <div className='chat_list'>
                                         <ul className='list-user-message'>
                                             {
                                                 participants? participants.map((participant) => (
-                                                    <li className={`${participant.userId === toUserId? 'active' : ''}`} onClick={this.changeUser} key={participant.userId}>
+                                                    <li className={`${participant.userId === toUserId? 'active' : ''}`} key={participant.userId}>
                                                         <UserMessage 
                                                             {...participant}
                                                         />
@@ -298,7 +309,15 @@ export default class RealTimeChat extends Component {
                                 </div>
                             </div>
                             
-                            <div className="messages">
+                            <div className={toggleMessages ? 'active-messages messages' : 'messages'}>
+                                <div className="message__actions">
+                                    <button onClick={this.triggerList} className='btn btn-primary btn-sm'>
+                                        <i class="material-icons">
+                                            keyboard_arrow_left
+                                        </i>
+                                    </button>
+                                </div>
+
                                 <div className="message_history">
                                     {
                                         history? history.map((message, id) => {

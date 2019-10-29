@@ -55,3 +55,27 @@
 		}
 	}
 }
+
+@media #{$mobile} {
+    .message {
+       & {
+		   margin-bottom: 0;
+	   }
+	   .message__entry {
+		   margin: 0 10px;
+	   }
+    }
+}
+
+@media #{$mobile-small} {
+    .message {
+       .message__inner {
+		   flex: 0 1 70%;
+		   max-width: 70%;
+	   }
+	   .message__image {
+		   flex: 0 1 30%;
+		   max-width: 30%;
+	   }
+    }
+}

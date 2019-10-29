@@ -107,3 +107,19 @@
         }
     }
 }
+
+@media #{$mobile} {
+    .form-chat{
+        .input-group {
+            .form-control {
+                padding: 1rem;
+                margin-right: 10px;
+            }
+            .btn {
+                padding: .2rem 1rem;
+                font-weight: 400;
+                font-size: 12px;
+            }
+        }
+    }
+}
