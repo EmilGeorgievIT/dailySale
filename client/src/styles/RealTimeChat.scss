@@ -92,8 +92,10 @@
                 }
             }
             .messages {
-                transition: width .4s;
+                transition: width .4s visibility .4s;
                 width: 0;
+                visibility: hidden;
+                opacity: 0;
                 padding-top: 10px;
 
                 .message__actions {
@@ -102,6 +104,8 @@
 
                 &.active-messages {
                     width: 100%;
+                    visibility: visible;
+                    opacity: 1;
 
                     .message__actions {
                         display: block;
