@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component, Fragment } from "react";
 import jwt_decode from 'jwt-decode';
 import openSocket from 'socket.io-client';
 import MessageService from '../../services/message-service';
@@ -16,6 +16,7 @@ const socket = openSocket(API_SERVER);
 export default class RealTimeChat extends Component {
     static chatService = new MessageService();
     static profileService = new ProfileService();
+    
     
     constructor(props) {
         super();
@@ -36,6 +37,10 @@ export default class RealTimeChat extends Component {
             fromUserId: ''
         }
     }
+    
+    scrollToBottom = () => {
+        this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+    }
 
     componentWillMount() {
         this.props.history.listen((location) => {
@@ -50,12 +55,17 @@ export default class RealTimeChat extends Component {
 
                 setTimeout(() => {
                     this.getChatHistory();
+                    this.getUserImage(this.state.toUserId, 'toUserImage');
                 },500);
             }
         });
     }
+    
+    componentDidUpdate() {
+        this.scrollToBottom();
+    }
 
-    componentDidMount() { 
+    componentDidMount() {        
         const toUserId = this.props.match.params.id;
 
         const token = jwt_decode(localStorage.getItem('token'));
@@ -85,7 +95,6 @@ export default class RealTimeChat extends Component {
         setTimeout( () => {
             console.log(this.state);    
         },3000);
-
     }
 
     getUserImage = (userId, type) => {
@@ -285,7 +294,6 @@ export default class RealTimeChat extends Component {
             fromUserId
         } = this.state;
         
-        
         return (
             <Fragment>
                 <div className="container">
@@ -312,7 +320,7 @@ export default class RealTimeChat extends Component {
                             <div className={toggleMessages ? 'active-messages messages' : 'messages'}>
                                 <div className="message__actions">
                                     <button onClick={this.triggerList} className='btn btn-primary btn-sm'>
-                                        <i class="material-icons">
+                                        <i className="material-icons">
                                             keyboard_arrow_left
                                         </i>
                                     </button>
@@ -324,6 +332,29 @@ export default class RealTimeChat extends Component {
                                             if (message.fromId === fromUserId) {
                                                 return (
                                                     <div key={id} className={`${message.fromId === toUserId?  'message incoming_msg' : 'message outgoing_msg'}`}>
+                                                            <div className="message__content">
+                                                                <div className="message__inner">
+                                                                    <div className="message__entry">                                                                    
+                                                                        <div className="message__description">
+                                                                            { message.message}
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    <div className="message__time">
+                                                                        { (new Date(message.createdAt || message.timestamp)).toLocaleDateString('en-US', 'short') }
+                                                                    </div>
+                                                                </div>
+
+                                                                <div className="message__image">
+                                                                    <img src={`${message.fromId === toUserId? toUserImage:  fromUserImage}`} alt=""/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                )
+                                            }
+
+                                            return (
+                                                <div key={id} className={`${message.fromId === toUserId?  'message incoming_msg' : 'message outgoing_msg'}`}>
                                                         <div className="message__content">
                                                             <div className="message__inner">
                                                                 <div className="message__entry">                                                                    
@@ -342,33 +373,15 @@ export default class RealTimeChat extends Component {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                )
-                                            }
-
-                                            return (
-                                                <div key={id} className={`${message.fromId === toUserId?  'message incoming_msg' : 'message outgoing_msg'}`}>
-                                                    <div className="message__content">
-                                                        <div className="message__inner">
-                                                            <div className="message__entry">                                                                    
-                                                                <div className="message__description">
-                                                                    { message.message}
-                                                                </div>
-                                                            </div>
-                                                            
-                                                            <div className="message__time">
-                                                                { (new Date(message.createdAt || message.timestamp)).toLocaleDateString('en-US', 'short') }
-                                                            </div>
-                                                        </div>
-
-                                                        <div className="message__image">
-                                                            <img src={`${message.fromId === toUserId? toUserImage:  fromUserImage}`} alt=""/>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             ) 
                                         }) : ''
                                     }
+
+                                     <div style={{ float:"left", clear: "both" }}
+                                        ref={(el) => { this.messagesEnd = el; }}>
+                                    </div>
                                 </div>
+
                                 
                                 <div className="type_msg">
                                     <form className="form-message form-chat">
