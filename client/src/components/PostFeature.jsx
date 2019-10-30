@@ -63,9 +63,11 @@ class PostFeature extends Component {
                 }
                 },
                 {
-                breakpoint: 600,
+                breakpoint: 800,
                 settings: {
                     slidesToShow: 2,
+                    centerPadding: '20px',
+                    centerMode: false,
                     slidesToScroll: 2
                 }
                 },
@@ -73,7 +75,8 @@ class PostFeature extends Component {
                 breakpoint: 480,
                 settings: {
                     slidesToShow: 1,
-                    centerMode: false,
+                    centerPadding: '10px',
+                    centerMode: true,
                     slidesToScroll: 1
                 }
                 }
