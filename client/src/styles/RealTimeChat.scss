@@ -122,6 +122,9 @@
 @media #{$mobile} {
     .messaging {
         .messaging__body {
+            .message__image {
+                min-width: 60px;
+            }
             .type_msg {
                 padding: 1rem .5rem;
             }

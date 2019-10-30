@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import ReactDOM from "react-dom";
 import jwt_decode from 'jwt-decode';
 import openSocket from 'socket.io-client';
 import MessageService from '../../services/message-service';
@@ -39,7 +40,8 @@ export default class RealTimeChat extends Component {
     }
     
     scrollToBottom = () => {
-        this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+        const messagesContainer = ReactDOM.findDOMNode(this.messagesContainer);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
     componentWillMount() {
@@ -63,7 +65,7 @@ export default class RealTimeChat extends Component {
     
     componentDidUpdate() {
         this.scrollToBottom();
-    }
+    } 
 
     componentDidMount() {        
         const toUserId = this.props.match.params.id;
@@ -95,6 +97,8 @@ export default class RealTimeChat extends Component {
         setTimeout( () => {
             console.log(this.state);    
         },3000);
+
+        this.scrollToBottom();
     }
 
     getUserImage = (userId, type) => {
@@ -326,7 +330,7 @@ export default class RealTimeChat extends Component {
                                     </button>
                                 </div>
 
-                                <div className="message_history">
+                                <div ref={(el) => { this.messagesContainer = el; }} className="message_history">
                                     {
                                         history? history.map((message, id) => {
                                             if (message.fromId === fromUserId) {
@@ -376,10 +380,6 @@ export default class RealTimeChat extends Component {
                                             ) 
                                         }) : ''
                                     }
-
-                                     <div style={{ float:"left", clear: "both" }}
-                                        ref={(el) => { this.messagesEnd = el; }}>
-                                    </div>
                                 </div>
 
                                 
