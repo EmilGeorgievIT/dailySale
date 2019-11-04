@@ -72,7 +72,7 @@ class PostFeature extends Component {
                 }
                 },
                 {
-                breakpoint: 480,
+                breakpoint: 620,
                 settings: {
                     slidesToShow: 1,
                     centerPadding: '10px',

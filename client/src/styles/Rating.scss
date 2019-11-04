@@ -38,3 +38,41 @@
         }
     }
 }
+
+@media #{$mobile} {
+    .rating {
+        .list-rating {
+            li {
+                p {
+                    flex: 0 1 10%;
+                    max-width: 10%;
+                }
+            }
+        }
+        .progress {
+            & {
+                flex: 0 1 90%;
+                max-width: 90%;
+            }
+        }
+    }
+}
+
+@media #{$mobile-small} {
+    .rating {
+        .list-rating {
+            li {
+                p {
+                    flex: 0 1 15%;
+                    max-width: 15%;
+                }
+            }
+        }
+        .progress {
+            & {
+                flex: 0 1 85%;
+                max-width: 85%;
+            }
+        }
+    }
+}
