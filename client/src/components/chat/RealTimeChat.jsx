@@ -237,8 +237,8 @@ export default class RealTimeChat extends Component {
             .getParticipants(fromUserId)
             .then((user) => {
                 console.log('User getParticipants = ', user);
-                
-                if(user.users.find((user) => user !== toUserId )) {
+
+                if(!user.users.filter((user) => user === toUserId).length) {
                     user.users.push(toUserId);
                 }
                 
