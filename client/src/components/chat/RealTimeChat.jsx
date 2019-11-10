@@ -232,11 +232,16 @@ export default class RealTimeChat extends Component {
     }
 
     getParticipants = () => {
-        const { fromUserId } = this.state;
+        const { fromUserId, toUserId } = this.state;
         RealTimeChat.chatService
             .getParticipants(fromUserId)
             .then((user) => {
                 console.log('User getParticipants = ', user);
+                
+                if(user.users.find((user) => user !== toUserId )) {
+                    user.users.push(toUserId);
+                }
+                
                 user.users.map((userId) => {
                     RealTimeChat.profileService.getUserDetails(userId)
                     .then((res) => {
