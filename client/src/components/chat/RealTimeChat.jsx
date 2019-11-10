@@ -142,11 +142,11 @@ export default class RealTimeChat extends Component {
                 }
                 socket.emit('sendMessage', toIdUserMessage);
             }
-            console.log({
-                from: fromUserId,
-                toId: toUserId,
-                message: message,
-            });
+            // console.log({
+            //     from: fromUserId,
+            //     toId: toUserId,
+            //     message: message,
+            // });
             RealTimeChat.chatService.sendMessage({
                 fromId: fromUserId,
                 toId: toUserId,
@@ -175,7 +175,7 @@ export default class RealTimeChat extends Component {
         })
 
         socket.on('messageReceived', (message) => {
-            console.log('message received = ', message);
+            // console.log('message received = ', message);
             
             if(message.message.toUserId === this.state.fromUserId){
                 const receivedMessage = {
@@ -189,7 +189,7 @@ export default class RealTimeChat extends Component {
                     history: this.state.history.concat([receivedMessage])
                 });
 
-                console.log(this.state.history);
+                // console.log(this.state.history);
             }
         });
 
@@ -204,11 +204,11 @@ export default class RealTimeChat extends Component {
                 usersCollection2: usersCollectionRes2
             });
             
-            console.log('usersCollectionRes2= ', usersCollectionRes2);
+            // console.log('usersCollectionRes2= ', usersCollectionRes2);
             
             if(Object.keys(usersCollectionRes2).length) {
                 for (const a of Object.keys(usersCollectionRes2)) {
-                    console.log('a = ', usersCollectionRes2[a]);
+                    // console.log('a = ', usersCollectionRes2[a]);
                     if (usersCollectionRes2[a].fromUserId && usersCollectionRes2[a].fromUserId === this.props.match.params.id) {
                         
                         this.setState({
@@ -236,7 +236,7 @@ export default class RealTimeChat extends Component {
         RealTimeChat.chatService
             .getParticipants(fromUserId)
             .then((user) => {
-                console.log('User getParticipants = ', user);
+                // console.log('User getParticipants = ', user);
 
                 if(!user.users.filter((user) => user === toUserId).length) {
                     user.users.push(toUserId);
@@ -245,7 +245,7 @@ export default class RealTimeChat extends Component {
                 user.users.map((userId) => {
                     RealTimeChat.profileService.getUserDetails(userId)
                     .then((res) => {
-                        console.log('User profile response = ', res);
+                        // console.log('User profile response = ', res);
 
                         const participantDetails = {
                             userName: res.name,
@@ -261,7 +261,7 @@ export default class RealTimeChat extends Component {
                         console.log(error);
                     });
                 });
-                console.log('User response = ', user);
+                // console.log('User response = ', user);
             }).catch((error) => {
                 console.log(error);
             })
@@ -285,7 +285,7 @@ export default class RealTimeChat extends Component {
                 history: this.state.history.concat(res.chatHistories)
             })
 
-            console.log('Chat History Response = ', res);
+            // console.log('Chat History Response = ', res);
         }).catch((error) => {
             console.log(error);
         })
