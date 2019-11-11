@@ -42,19 +42,7 @@ const userSchema = new Schema({
   created: {
     type: Number,
     default: Date.now()
-  },
-  receivedMessages: [
-    { 
-      type: Schema.Types.ObjectId,
-      ref: 'Message'
-    }
-  ],
-  sentMessages: [
-    { 
-      type: Schema.Types.ObjectId,
-      ref: 'Message'
-    }
-  ]
+  }
 });
 
 userSchema.method({

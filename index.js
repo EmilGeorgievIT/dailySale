@@ -5,7 +5,6 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const commentRoutes = require('./routes/comment');
 const favoriteRoutes = require('./routes/favorite');
-const messageRoutes = require('./routes/message');
 const chatHistoryRoutes = require('./routes/chathistory');
 const mailRouter = require('./routes/contacts');
 const cors =  require('cors');
@@ -37,7 +36,6 @@ app.use((req, res, next) => {
 
 app.use('/feed', feedRoutes);
 app.use('/auth', authRoutes);
-app.use('/mail', messageRoutes);
 app.use('/profile', userRoutes);
 app.use('/comment', commentRoutes);
 app.use('/favorite', favoriteRoutes);
