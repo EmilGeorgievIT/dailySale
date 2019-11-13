@@ -12,7 +12,8 @@ import facebookIcon from '../../images/facebook.svg';
 import twitterIcon from '../../images/twitter.svg';
 import linkedInIcon from '../../images/linkedin.svg';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
-const FACEBOOK_CLIENT_ID = `${process.env.FACEBOOK_CLIENT_ID}`;
+import dotenv from 'dotenv';
+dotenv.config();
 
 class RegisterForm extends Component {
        
@@ -37,7 +38,6 @@ class RegisterForm extends Component {
     responseFacebook = (response) => {
         console.log(response);
     }
-
     handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -140,14 +140,14 @@ class RegisterForm extends Component {
                                     <ul className="list-socials d-flex justify-content-center">
                                         <li>
                                             <FacebookLogin
-                                                appId={FACEBOOK_CLIENT_ID}
+                                                appId={process.env.REACT_APP_FACEBOOK_CLIENT}
                                                 autoLoad={true}
                                                 fields="name,email,picture"
                                                 callback={this.responseFacebook} 
                                                 render={renderProps => (
-                                                    <a className='btn-no-border' onClick={renderProps.onClick}>
+                                                    <button type='button' className='btn-no-border' onClick={renderProps.onClick}>
                                                         <img src={ facebookIcon } width='30' height='30' alt="facebook-login"/>
-                                                    </a>
+                                                    </button>
                                                 )}
                                             />
                                         </li>
