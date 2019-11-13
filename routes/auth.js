@@ -2,6 +2,9 @@ const router = require('express').Router();
 const { body } = require('express-validator/check');
 const authController = require('../controllers/auth');
 const User = require('../models/User');
+const routerPromise = require('express-promise-router')();
+const passport = require('passport');
+const passportConf = require('../passport');
 
 router.post('/signup', 
   [
@@ -28,5 +31,7 @@ router.post('/signup',
   ]
 , authController.signUp);
 router.post('/signin', authController.signIn);
+
+router.post('/facebook', passport.authenticate('facebookToken', { session: false }), authController.facebookOAuth);
 
 module.exports = router;

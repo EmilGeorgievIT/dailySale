@@ -21,12 +21,15 @@
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "express": "4.16.4",
+    "express-promise-router": "^3.0.3",
     "express-validator": "5.3.1",
     "helmet": "^3.18.0",
     "jsonwebtoken": "8.4.0",
     "mongoose": "5.4.7",
     "nodemailer": "^6.2.1",
     "nodemon": "^1.18.10",
+    "passport": "^0.4.0",
+    "passport-facebook-token": "^3.3.0",
     "react-notifications": "^1.4.3",
     "socket.io": "^2.2.0"
   }

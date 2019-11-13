@@ -28,3 +28,11 @@
         color: $white;
     }
 }
+.btn-no-border {
+    border: 0;
+    appearance: none;
+    background-color: transparent;
+}
+.btn-no-border:focus {
+    outline: none;
+}

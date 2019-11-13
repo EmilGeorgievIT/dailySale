@@ -4,12 +4,15 @@ import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
 import '../../styles/Account.scss';
 import '../../styles/Forms.scss';
+import '../../styles/Buttons.scss';
 import { Link } from 'react-router-dom';
 import { Intro } from '../shared/Intro';
 import bannerImage from '../../images/banner2.jpg'
 import facebookIcon from '../../images/facebook.svg';
 import twitterIcon from '../../images/twitter.svg';
 import linkedInIcon from '../../images/linkedin.svg';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
+const FACEBOOK_CLIENT_ID = `${process.env.FACEBOOK_CLIENT_ID}`;
 
 class RegisterForm extends Component {
        
@@ -30,7 +33,10 @@ class RegisterForm extends Component {
             [target.name] : target.value
         });
     }
-
+    
+    responseFacebook = (response) => {
+        console.log(response);
+    }
 
     handleSubmit = async (event) => {
         event.preventDefault();
@@ -133,9 +139,17 @@ class RegisterForm extends Component {
 
                                     <ul className="list-socials d-flex justify-content-center">
                                         <li>
-                                            <a href="www.facebook.com">
-                                                <img src={ facebookIcon } width='30' height='30' alt="facebook-login"/>
-                                            </a>
+                                            <FacebookLogin
+                                                appId={FACEBOOK_CLIENT_ID}
+                                                autoLoad={true}
+                                                fields="name,email,picture"
+                                                callback={this.responseFacebook} 
+                                                render={renderProps => (
+                                                    <a className='btn-no-border' onClick={renderProps.onClick}>
+                                                        <img src={ facebookIcon } width='30' height='30' alt="facebook-login"/>
+                                                    </a>
+                                                )}
+                                            />
                                         </li>
 
                                         <li>
