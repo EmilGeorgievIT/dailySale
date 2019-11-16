@@ -67,7 +67,7 @@ export default class ProfileDetails extends Component {
                     <div className="form-group col-md-6">
                         <label htmlFor="email">Email</label>
                         
-                        <input type="email" name='email' onChange={this.handleChanges} value={this.state.email || ''} className="form-control" id="email" placeholder='Email'/>
+                        <input type="email" name='email' onChange={this.handleChanges} value={this.state.email || ''} className="form-control" id="email" placeholder='Email' readOnly/>
                     </div>
                 
                     <div className="form-group col-md-6">

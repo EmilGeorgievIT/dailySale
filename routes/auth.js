@@ -22,7 +22,7 @@ router.post('/signup',
     body('password')
       .trim()
       .isLength({ min: 5 })
-      .withMessage('Please enter a valid password.'),
+      .withMessage('Please enter password greater than 5 characters.'),
     body('name')
       .trim()
       .not()

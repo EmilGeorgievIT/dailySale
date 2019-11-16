@@ -8,7 +8,8 @@ const userSchema = new Schema({
     required: true
   },
   hashedPassword: {
-    type: Schema.Types.String
+    type: Schema.Types.String,
+    required: false
   },
   website: {
     type: Schema.Types.String
@@ -30,7 +31,7 @@ const userSchema = new Schema({
   },
   salt: {
     type: Schema.Types.String,
-    required: true
+    required: false
   },
   posts: [
     { 
