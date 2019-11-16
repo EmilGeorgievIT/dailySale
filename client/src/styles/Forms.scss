@@ -42,6 +42,21 @@
         background: $white;
         box-shadow: 0 10px 40px 0 rgba(62,57,107,.1), 0 2px 9px 0 rgba(62,57,107,.1);
     }
+    .form__socials {
+        .button-twitter {
+            font-size: 0;
+            border: 0;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            background-color: #55ACEE;
+            svg {
+                fill: $white;
+                height: 20px;
+                width: 20px;
+            }
+        }
+    }
     .form__title {
         font-weight: 500;
         margin-bottom: 1rem;

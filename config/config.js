@@ -8,5 +8,7 @@ module.exports = {
   mail_pass: process.env.MAIL_PASS,
   jwt_secret: process.env.JWT_SECRET,
   facebook_id: process.env.FACEBOOK_CLIENT_ID,
-  facebook_secret: process.env.FACEBOOK_CLIENT_SECRET
+  facebook_secret: process.env.FACEBOOK_CLIENT_SECRET,
+  twitter_id: process.env.TWITTER_CLIENT_ID,
+  twitter_secret: process.env.TWITTER_CLIENT_SECRET,
 };

@@ -1,6 +1,12 @@
 const passport = require('passport');
 const FacebookTokenStrategy = require('passport-facebook-token');
-const { facebook_id, facebook_secret } = require('./config/config');
+const TwitterTokenStrategy = require('passport-twitter-token');
+const { 
+   facebook_id,
+   facebook_secret,
+   twitter_id,
+   twitter_secret
+} = require('./config/config');
 const User = require('./models/User');
 
 
@@ -32,3 +38,33 @@ passport.use('facebookToken', new FacebookTokenStrategy({
       done(error, false, error.message);
     }
   }));
+
+  passport.use('twitter-token', new TwitterTokenStrategy({
+    consumerKey: twitter_id,
+    consumerSecret: twitter_secret,
+    includeEmail: true
+  }, async (token, tokenSecret, profile, done) => {
+    try {
+      console.log('profile', profile);
+      console.log('token', token);
+      console.log('tokenSecret', tokenSecret);
+      console.log('======================== END ==================');
+        let existingUser = await User.findOne({ "email": profile.emails[0].value });
+        
+        if (existingUser) {
+          return done(null, existingUser);
+        }
+  
+        const newUser = new User({
+          email: profile.emails[0].value,
+          name: profile.displayName,
+          image: profile.photos[0].value
+        });
+  
+        await newUser.save();
+        done(null, newUser);
+    } catch(error) {
+      done(error, false, error.message);
+    }
+  }
+));

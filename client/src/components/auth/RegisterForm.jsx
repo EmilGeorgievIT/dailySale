@@ -1,6 +1,5 @@
 import React , { Component, Fragment } from 'react';
 import { withRouter } from  'react-router-dom';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginUserFacebook, registerUser } from '../../actions/authActions';
 import '../../styles/Account.scss';
@@ -10,12 +9,13 @@ import { Link } from 'react-router-dom';
 import { Intro } from '../shared/Intro';
 import bannerImage from '../../images/banner2.jpg'
 import facebookIcon from '../../images/facebook.svg';
-import twitterIcon from '../../images/twitter.svg';
 import linkedInIcon from '../../images/linkedin.svg';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import AuthenticationService from '../../services/authentication-service';
+import TwitterLogin from 'react-twitter-auth/lib/react-twitter-auth-component.js';
 import dotenv from 'dotenv';
-import LoginForm from './LoginForm';
+const API_SERVER = `${process.env.REACT_APP_API_SERVER}`;
+
 dotenv.config();
 
 class RegisterForm extends Component {
@@ -39,6 +39,16 @@ class RegisterForm extends Component {
         });
     }
     
+    onFailedTwitter = (error) => {
+        alert(error);
+    }
+
+    onSuccessTwitter = (response) => {
+        response.json().then(body => {
+          alert(JSON.stringify(body));
+        });
+    }
+
     responseFacebook = (response) => {
         this.props.loginUserFacebook({
             "access_token": response.accessToken
@@ -67,6 +77,7 @@ class RegisterForm extends Component {
 
         else return null;
     }
+
     render() {
         const { name, email, password } = this.state;
         
@@ -160,9 +171,13 @@ class RegisterForm extends Component {
                                         </li>
 
                                         <li>
-                                            <a href="www.twitter.com">
-                                                <img src={ twitterIcon } width='30' height='30' alt="twitter-login"/>
-                                            </a>
+                                             <TwitterLogin className='button-twitter' 
+                                                loginUrl={`${API_SERVER}/auth/twitter`}
+                                                onFailure={this.onFailedTwitter}
+                                                onSuccess={this.onSuccessTwitter}                                                
+                                                requestTokenUrl={`${API_SERVER}/auth/twitter/reverse`}
+                                                showIcon={true}
+                                                forceLogin={false}/>
                                         </li>
 
                                         <li>

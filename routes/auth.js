@@ -5,6 +5,8 @@ const User = require('../models/User');
 const routerPromise = require('express-promise-router')();
 const passport = require('passport');
 const passportConf = require('../passport');
+const generateToken = require('../util/generateTwitterToken');
+const sendToken = require('../util/sendTwitterToken');
 
 router.post('/signup', 
   [
@@ -33,5 +35,25 @@ router.post('/signup',
 router.post('/signin', authController.signIn);
 
 router.post('/facebook', passport.authenticate('facebookToken', { session: false }), authController.facebookOAuth);
+
+router.post('/twitter', 
+  authController.twitterLoginOAuth, 
+  passport.authenticate('twitter-token', 
+  {session: false}), 
+    function(req, res, next) {
+    if (!req.user) {
+      return res.send(401, 'User Not Authenticated');
+    }
+
+  // prepare token for API
+    req.auth = {
+      id: req.user.id
+    };
+    
+    console.log('req.user', req.user);
+  }, 
+generateToken, sendToken);
+
+router.post('/twitter/reverse', authController.twitterReverseOAuth);
 
 module.exports = router;
