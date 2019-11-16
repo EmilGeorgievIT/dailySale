@@ -41,18 +41,23 @@ module.exports = {
       });
     }
   },
-  facebookOAuth: async (req, res, next) => {
+  facebookOAuth: (req, res, next) => {
+    const { user } = req.user;
+    
     // Generate token
-    // const token = jwt.sign({ 
-    //   email: user.email,
-    //   userId: user._id.toString()
-    // }, jwt_secret, 
-    // { expiresIn: '1h' });
-    const token = signToken(req.user);
-    res.cookie('access_token', token, {
-      httpOnly: true
-    });
-    res.status(200).json({ success: true });
+    const token = jwt.sign({ 
+      email: req.user.email,
+      userId: req.user._id.toString()
+    }, jwt_secret, 
+    { expiresIn: '1h' });
+
+    res.status(200).json(
+      { 
+        message: 'logged', 
+        token,
+        image: req.user.image,
+        userId: req.user._id.toString() 
+      });
   },
   signIn: (req, res) => {
     const { email, password } = req.body;

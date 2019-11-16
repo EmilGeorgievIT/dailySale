@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import AuthenticationService from '../../services/authentication-service';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import { Redirect } from 'react-router-dom';
 import '../../styles/Account.scss';
 import '../../styles/Sections.scss';
 import '../../styles/List.scss';
 import '../../styles/Forms.scss';
 import { connect } from 'react-redux';
-import { loginUser } from '../../actions/authActions';
+import { loginUser, loginUserFacebook } from '../../actions/authActions';
 import { Intro } from '../shared/Intro';
 import bannerImage from '../../images/banner2.jpg'
 import { Link } from 'react-router-dom';
@@ -35,6 +36,12 @@ class LoginForm extends Component {
         else return null;
     }
     
+    responseFacebook = (response) => {
+        this.props.loginUserFacebook({
+            "access_token": response.accessToken
+        }, this.props.history);
+    }
+
     handleChange = ({target}) => {
         this.setState({
             [target.name] : target.value
@@ -127,9 +134,17 @@ class LoginForm extends Component {
 
                                     <ul className="list-socials d-flex justify-content-center">
                                         <li>
-                                            <a href="www.facebook.com">
-                                                <img src={ facebookIcon } width='30' height='30' alt="facebook-login"/>
-                                            </a>
+                                            <FacebookLogin
+                                                appId={process.env.REACT_APP_FACEBOOK_CLIENT}
+                                                autoLoad={false}
+                                                fields="name,email,picture"
+                                                callback={this.responseFacebook} 
+                                                render={renderProps => (
+                                                    <button type='button' className='btn-no-border' onClick={renderProps.onClick}>
+                                                        <img src={ facebookIcon } width='30' height='30' alt="facebook-login"/>
+                                                    </button>
+                                                )}
+                                            />
                                         </li>
 
                                         <li>
@@ -159,4 +174,4 @@ const mapStateToPops = (state) => ({
     error: state.error
 });
 
-export default connect(mapStateToPops, { loginUser })(LoginForm);
+export default connect(mapStateToPops, { loginUser, loginUserFacebook })(LoginForm);

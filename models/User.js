@@ -8,8 +8,7 @@ const userSchema = new Schema({
     required: true
   },
   hashedPassword: {
-    type: Schema.Types.String,
-    required: true
+    type: Schema.Types.String
   },
   website: {
     type: Schema.Types.String

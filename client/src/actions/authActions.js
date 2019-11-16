@@ -50,6 +50,31 @@ export const loginUser = userData => dispatch => {
     })
 };
 
+export const loginUserFacebook = userData => dispatch => {
+    const service = new AuthenticationService();
+
+    service.registerFacebook(userData)
+    .then((data) => {
+        if (data.token !== undefined) {
+            localStorage.setItem('ds_chk_temp', data.userId);
+            localStorage.setItem('token', data.token);
+            const decode = jwt_decode(data.token);
+            const image = data.image;
+            dispatch(setCurrentUser({decode, image}));
+        } else {
+            dispatch({
+                type: GET_ERRORS,
+                payload: data
+            })
+        }
+    }).catch(error => {
+        console.log(error);
+        dispatch({
+            type: GET_ERRORS,
+            payload: error
+        })
+    })
+};
 // Set logged user
 
 export const setCurrentUser = (decode) => {

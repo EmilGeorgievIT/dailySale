@@ -1,7 +1,8 @@
 import React , { Component, Fragment } from 'react';
 import { withRouter } from  'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { registerUser } from '../../actions/authActions';
+import { loginUserFacebook, registerUser } from '../../actions/authActions';
 import '../../styles/Account.scss';
 import '../../styles/Forms.scss';
 import '../../styles/Buttons.scss';
@@ -12,11 +13,14 @@ import facebookIcon from '../../images/facebook.svg';
 import twitterIcon from '../../images/twitter.svg';
 import linkedInIcon from '../../images/linkedin.svg';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
+import AuthenticationService from '../../services/authentication-service';
 import dotenv from 'dotenv';
+import LoginForm from './LoginForm';
 dotenv.config();
 
 class RegisterForm extends Component {
        
+    static registerFacebook = new AuthenticationService();
     constructor(props) {
         super(props);
 
@@ -36,8 +40,11 @@ class RegisterForm extends Component {
     }
     
     responseFacebook = (response) => {
-        console.log(response);
+        this.props.loginUserFacebook({
+            "access_token": response.accessToken
+        }, this.props.history);
     }
+
     handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -141,7 +148,7 @@ class RegisterForm extends Component {
                                         <li>
                                             <FacebookLogin
                                                 appId={process.env.REACT_APP_FACEBOOK_CLIENT}
-                                                autoLoad={true}
+                                                autoLoad={false}
                                                 fields="name,email,picture"
                                                 callback={this.responseFacebook} 
                                                 render={renderProps => (
@@ -175,9 +182,9 @@ class RegisterForm extends Component {
 }
 
 
-const mapToState = state => ({
+const mapStateToPops = state => ({
     auth: state.auth,
     error: state.error
 })
 
-export default connect(mapToState, { registerUser })(withRouter(RegisterForm));
+export default connect(mapStateToPops, { loginUserFacebook, registerUser })(withRouter(RegisterForm));

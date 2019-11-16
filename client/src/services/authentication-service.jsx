@@ -3,14 +3,16 @@ const API_SERVER = `${process.env.REACT_APP_API_SERVER}`;
 
 class AuthenticationService  {
     constructor() {
-        this.baseUrl = API_SERVER + '/auth/signin';
-        this.baseUrlRegister = API_SERVER + '/auth/signup';
+        this.baseUrl = API_SERVER;
     }
     login(credentials) {
-        return post(this.baseUrl, credentials);
+        return post(this.baseUrl + '/auth/signin', credentials);
     }
     register(credentials) {
-        return post(this.baseUrlRegister, credentials);
+        return post(this.baseUrl + '/auth/signup', credentials);
+    }
+    registerFacebook(credentials) {
+        return post(this.baseUrl + '/auth/facebook', credentials);
     }
 }
 export default AuthenticationService;
