@@ -14,5 +14,9 @@ class AuthenticationService  {
     registerFacebook(credentials) {
         return post(this.baseUrl + '/auth/facebook', credentials);
     }
+
+    registerGoogle(credentials) {
+        return post(this.baseUrl + '/auth/google', credentials);
+    }
 }
 export default AuthenticationService;

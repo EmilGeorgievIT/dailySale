@@ -1,7 +1,7 @@
 import React , { Component, Fragment } from 'react';
 import { withRouter } from  'react-router-dom';
 import { connect } from 'react-redux';
-import { loginUserFacebook, loginUserTwitter, registerUser } from '../../actions/authActions';
+import { loginUserFacebook, loginUserTwitter, registerUser, loginUserGoogle } from '../../actions/authActions';
 import '../../styles/Account.scss';
 import '../../styles/Forms.scss';
 import '../../styles/Buttons.scss';
@@ -61,10 +61,9 @@ class RegisterForm extends Component {
     }
 
     responseGoogle = (response) => {
-        // this.props.loginUserFacebook({
-        //     "access_token": response.accessToken
-        // }, this.props.history);
-        console.log(response);
+        this.props.loginUserGoogle({
+            "access_token": response.accessToken
+        }, this.props.history);
     }
 
     handleSubmit = async (event) => {
@@ -203,7 +202,7 @@ class RegisterForm extends Component {
                                                 )}
                                                 onSuccess={this.responseGoogle}
                                                 onFailure={this.onFailGoogle}
-                                            />,
+                                            />
                                         </li>
                                     </ul>
                                 </div>
@@ -222,4 +221,4 @@ const mapStateToPops = state => ({
     error: state.error
 })
 
-export default connect(mapStateToPops, { loginUserFacebook, registerUser, loginUserTwitter })(withRouter(RegisterForm));
+export default connect(mapStateToPops, { loginUserFacebook, registerUser, loginUserTwitter, loginUserGoogle })(withRouter(RegisterForm));

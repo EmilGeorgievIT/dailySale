@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import AuthenticationService from '../../services/authentication-service';
+import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import { Redirect } from 'react-router-dom';
 import '../../styles/Account.scss';
@@ -7,12 +8,12 @@ import '../../styles/Sections.scss';
 import '../../styles/List.scss';
 import '../../styles/Forms.scss';
 import { connect } from 'react-redux';
-import { loginUser, loginUserFacebook, loginUserTwitter } from '../../actions/authActions';
+import { loginUser, loginUserFacebook, loginUserTwitter, loginUserGoogle } from '../../actions/authActions';
 import { Intro } from '../shared/Intro';
-import bannerImage from '../../images/banner2.jpg'
 import { Link } from 'react-router-dom';
+import bannerImage from '../../images/banner2.jpg'
+import googleIcon from '../../images/google.svg';
 import facebookIcon from '../../images/facebook.svg';
-import linkedInIcon from '../../images/linkedin.svg';
 import TwitterLogin from 'react-twitter-auth/lib/react-twitter-auth-component.js';
 const API_SERVER = `${process.env.REACT_APP_API_SERVER}`;
 
@@ -37,6 +38,16 @@ class LoginForm extends Component {
         else return null;
     }
     
+    onFailGoogle = (error) => {
+        console.log(error);
+    }
+    
+    responseGoogle = (response) => {
+        this.props.loginUserGoogle({
+            "access_token": response.accessToken
+        }, this.props.history);
+    }
+
     onFailedTwitter = (error) => {
         console.log(error);
     }
@@ -63,7 +74,6 @@ class LoginForm extends Component {
     handleSubmit = async (event) => {
         event.preventDefault();
         const { email, password } = this.state;
-        const { user } = this.props;
         
         const userData = {
             email,
@@ -170,9 +180,17 @@ class LoginForm extends Component {
                                         </li>
 
                                         <li>
-                                            <a href="www.linkedin.com">
-                                                <img src={ linkedInIcon } width='30' height='30' alt="linkedin-login"/>
-                                            </a>
+                                            <GoogleLogin
+                                                clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+                                                autoLoad={false}
+                                                render={renderProps => (
+                                                    <button className='button-google' onClick={renderProps.onClick}>
+                                                       <img src={ googleIcon } width='26' height='26' alt="google-login"/>
+                                                    </button>
+                                                )}
+                                                onSuccess={this.responseGoogle}
+                                                onFailure={this.onFailGoogle}
+                                            />
                                         </li>
                                     </ul>
                                 </div>
@@ -190,4 +208,4 @@ const mapStateToPops = (state) => ({
     error: state.error
 });
 
-export default connect(mapStateToPops, { loginUser, loginUserFacebook, loginUserTwitter })(LoginForm);
+export default connect(mapStateToPops, { loginUser, loginUserFacebook, loginUserTwitter, loginUserGoogle })(LoginForm);

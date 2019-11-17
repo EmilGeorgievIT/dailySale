@@ -69,21 +69,20 @@ passport.use('google-plus-token', new GooglePlusTokenStrategy({
   clientID: google_id,
   clientSecret: google_secret,
   passReqToCallback: true
-}, async (req, accessToken, refreshToken, profile, next) => {
+}, async (req, accessToken, refreshToken, profile, done) => {
   try {
       console.log('profile = ', profile);
-      console.log('Req = ', req);
 
-      let existingUser = await User.findOne({ "email": profile._json.email });
+      let existingUser = await User.findOne({ "email": profile.emails[0].value });
       
       if (existingUser) {
         return done(null, existingUser);
       }
 
       const newUser = new User({
-        email: profile._json.email,
-        name: profile._json.name,
-        image: profile._json.profile_image_url
+        email: profile.emails[0].value,
+        name: profile.displayName,
+        image: profile.photos[0].value
       });
 
       await newUser.save();

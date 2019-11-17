@@ -16,7 +16,6 @@ class Navigation extends Component {
     }
 
     handleScroll = (event) => {
-        const el = document.getElementsByClassName('navigation');
         const isTop = window.scrollY >= 78;
         
         if (isTop !== this.state.isTop) {
