@@ -65,6 +65,23 @@ module.exports = {
         userId: req.user._id.toString() 
       });
   },
+
+  googleOAuth: (req, res, next) => {
+    // Generate token
+    const token = jwt.sign({ 
+      email: req.user.email,
+      userId: req.user._id.toString()
+    }, jwt_secret, 
+    { expiresIn: '1h' });
+
+    res.status(200).json(
+      { 
+        message: 'logged', 
+        token,
+        image: req.user.image,
+        userId: req.user._id.toString() 
+      });
+  },
   twitterLoginOAuth: (req, res, next) => {
     request.post({
       url: `https://api.twitter.com/oauth/access_token?oauth_verifier`,    

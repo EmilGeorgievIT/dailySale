@@ -11,4 +11,6 @@ module.exports = {
   facebook_secret: process.env.FACEBOOK_CLIENT_SECRET,
   twitter_id: process.env.TWITTER_CLIENT_ID,
   twitter_secret: process.env.TWITTER_CLIENT_SECRET,
+  google_id: process.env.GOOGLE_CLIENT_ID,
+  google_secret: process.env.GOOGLE_SECRET
 };

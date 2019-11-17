@@ -68,4 +68,6 @@ router.post('/twitter', authController.twitterLoginOAuth, passport.authenticate(
 
 router.post('/twitter/reverse', authController.twitterReverseOAuth);
 
+router.post('/google', passport.authenticate('google-plus-token', { session: false }), authController.googleOAuth);
+
 module.exports = router;

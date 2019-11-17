@@ -9,11 +9,12 @@ import { Link } from 'react-router-dom';
 import { Intro } from '../shared/Intro';
 import bannerImage from '../../images/banner2.jpg'
 import facebookIcon from '../../images/facebook.svg';
-import linkedInIcon from '../../images/linkedin.svg';
+import googleIcon from '../../images/google.svg';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import AuthenticationService from '../../services/authentication-service';
 import TwitterLogin from 'react-twitter-auth/lib/react-twitter-auth-component.js';
 import dotenv from 'dotenv';
+import { GoogleLogin } from 'react-google-login';
 const API_SERVER = `${process.env.REACT_APP_API_SERVER}`;
 
 dotenv.config();
@@ -49,11 +50,21 @@ class RegisterForm extends Component {
         })
 
     }
+    onFailGoogle = (error) => {
+        console.log(error);
+    }
 
     responseFacebook = (response) => {
         this.props.loginUserFacebook({
             "access_token": response.accessToken
         }, this.props.history);
+    }
+
+    responseGoogle = (response) => {
+        // this.props.loginUserFacebook({
+        //     "access_token": response.accessToken
+        // }, this.props.history);
+        console.log(response);
     }
 
     handleSubmit = async (event) => {
@@ -182,9 +193,17 @@ class RegisterForm extends Component {
                                         </li>
 
                                         <li>
-                                            <a href="www.linkedin.com">
-                                                <img src={ linkedInIcon } width='30' height='30' alt="linkedin-login"/>
-                                            </a>
+                                            <GoogleLogin
+                                                clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+                                                autoLoad={false}
+                                                render={renderProps => (
+                                                    <button className='button-google' onClick={renderProps.onClick}>
+                                                       <img src={ googleIcon } width='26' height='26' alt="google-login"/>
+                                                    </button>
+                                                )}
+                                                onSuccess={this.responseGoogle}
+                                                onFailure={this.onFailGoogle}
+                                            />,
                                         </li>
                                     </ul>
                                 </div>
