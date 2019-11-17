@@ -50,9 +50,7 @@ class App extends Component {
   }
 
 
-  render() {
-    const { user } = this.state
-    
+  render() {    
     return (
       <div className="App">
         <Provider store={store}>

@@ -11,11 +11,13 @@ import { connect } from 'react-redux';
 import { loginUser, loginUserFacebook, loginUserTwitter, loginUserGoogle } from '../../actions/authActions';
 import { Intro } from '../shared/Intro';
 import { Link } from 'react-router-dom';
+import dotenv from 'dotenv';
 import bannerImage from '../../images/banner2.jpg'
 import googleIcon from '../../images/google.svg';
 import facebookIcon from '../../images/facebook.svg';
 import TwitterLogin from 'react-twitter-auth/lib/react-twitter-auth-component.js';
 const API_SERVER = `${process.env.REACT_APP_API_SERVER}`;
+dotenv.config();
 
 class LoginForm extends Component {
     static service = new AuthenticationService();

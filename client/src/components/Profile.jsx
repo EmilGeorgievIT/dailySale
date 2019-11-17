@@ -64,7 +64,7 @@ class Profile extends Component {
        if(this._isMounted) {
            try {
                const userId = localStorage.getItem('ds_chk_temp');
-               const user = await Profile.service.getUserDetails(userId)
+               Profile.service.getUserDetails(userId)
                .then((user) => {
                    this.setState({user});
                    let postsRes = [];
@@ -72,7 +72,7 @@ class Profile extends Component {
                    const { posts } = user;
                    
                     posts.map(async (item)  => {
-                       const post = await Profile.getPost.getPostById(item)
+                       Profile.getPost.getPostById(item)
                            .then((res) => {
                                const postData = res;
                                if (postData !== null) {
@@ -87,12 +87,12 @@ class Profile extends Component {
    
                })
    
-               const favoritePosts = await Profile.favoritePosts.getFavorites(userId)
+               Profile.favoritePosts.getFavorites(userId)
                .then(async (favorite) => {
                    let postsFavoriteRes = [];
                    
                    favorite.map(async (item)  => {
-                       const post = await Profile.getPost.getPostById(item.postId)
+                       Profile.getPost.getPostById(item.postId)
                            .then((res) => {
                                const postData = res;
                                if (postData !== null) {

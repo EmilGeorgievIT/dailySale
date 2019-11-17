@@ -84,7 +84,7 @@ class UserProfile extends Component {
         try {
             setTimeout(async() => {
                 if(this._isMounted) {
-                    const user = await UserProfile.service.getUserDetails(this.state.creator)
+                    UserProfile.service.getUserDetails(this.state.creator)
                     .then((user) => {
                         this.setState({user, isLoading: false });  
                     })
