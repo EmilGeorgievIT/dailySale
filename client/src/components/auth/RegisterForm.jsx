@@ -1,7 +1,7 @@
 import React , { Component, Fragment } from 'react';
 import { withRouter } from  'react-router-dom';
 import { connect } from 'react-redux';
-import { loginUserFacebook, registerUser } from '../../actions/authActions';
+import { loginUserFacebook, loginUserTwitter, registerUser } from '../../actions/authActions';
 import '../../styles/Account.scss';
 import '../../styles/Forms.scss';
 import '../../styles/Buttons.scss';
@@ -40,13 +40,14 @@ class RegisterForm extends Component {
     }
     
     onFailedTwitter = (error) => {
-        alert(error);
+        console.log(error);
     }
 
     onSuccessTwitter = (response) => {
-        response.json().then(body => {
-          alert(JSON.stringify(body));
-        });
+        response.json().then(user => {
+            this.props.loginUserTwitter(user, this.props.history);
+        })
+
     }
 
     responseFacebook = (response) => {
@@ -202,4 +203,4 @@ const mapStateToPops = state => ({
     error: state.error
 })
 
-export default connect(mapStateToPops, { loginUserFacebook, registerUser })(withRouter(RegisterForm));
+export default connect(mapStateToPops, { loginUserFacebook, registerUser, loginUserTwitter })(withRouter(RegisterForm));

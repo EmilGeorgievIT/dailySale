@@ -64,8 +64,6 @@ router.post('/twitter', authController.twitterLoginOAuth, passport.authenticate(
       image: req.user.image,
       userId: req.user._id.toString() 
   });
-
-  console.log('req.user', req.user);
 });
 
 router.post('/twitter/reverse', authController.twitterReverseOAuth);

@@ -75,6 +75,21 @@ export const loginUserFacebook = userData => dispatch => {
         })
     })
 };
+
+export const loginUserTwitter = userData => dispatch => {
+    if (userData.token !== undefined) {
+        localStorage.setItem('ds_chk_temp', userData.userId);
+        localStorage.setItem('token', userData.token);
+        const decode = jwt_decode(userData.token);
+        const image = userData.image;
+        dispatch(setCurrentUser({decode, image}));
+    } else {
+        dispatch({
+            type: GET_ERRORS,
+            payload: userData
+        })
+    }
+}
 // Set logged user
 
 export const setCurrentUser = (decode) => {

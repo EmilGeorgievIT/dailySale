@@ -35,14 +35,12 @@ passport.use('facebookToken', new FacebookTokenStrategy({
     }
   }));
 
-  passport.use(new TwitterTokenStrategy({
+passport.use(new TwitterTokenStrategy({
     consumerKey: twitter_id,
     consumerSecret: twitter_secret,
     includeEmail: true
   }, async (token, tokenSecret, profile, done) => {
     try {
-      console.log('profile', profile);
-      console.log('======================== END ==================');
         let existingUser = await User.findOne({ "email": profile._json.email });
         
         if (existingUser) {
