@@ -1,12 +1,14 @@
 const router = require('express').Router();
 const { body } = require('express-validator/check');
 const authController = require('../controllers/auth');
+const jwt = require('jsonwebtoken');
 const User = require('../models/User');
-const routerPromise = require('express-promise-router')();
 const passport = require('passport');
 const passportConf = require('../passport');
-const generateToken = require('../util/generateTwitterToken');
-const sendToken = require('../util/sendTwitterToken');
+
+const { 
+  jwt_secret,
+} = require('../config/config');
 
 router.post('/signup', 
   [
@@ -36,23 +38,35 @@ router.post('/signin', authController.signIn);
 
 router.post('/facebook', passport.authenticate('facebookToken', { session: false }), authController.facebookOAuth);
 
-router.post('/twitter', 
-  authController.twitterLoginOAuth, 
-  passport.authenticate('twitter-token', 
-  {session: false}), 
-    function(req, res, next) {
-    if (!req.user) {
-      return res.send(401, 'User Not Authenticated');
-    }
+router.post('/twitter', authController.twitterLoginOAuth, passport.authenticate('twitter-token', 
+{session: false}), 
+  function(req, res, next) {
+  if (!req.user) {
+    return res.status(404).send('User Not Authenticated');
+  }
 
-  // prepare token for API
-    req.auth = {
-      id: req.user.id
-    };
-    
-    console.log('req.user', req.user);
-  }, 
-generateToken, sendToken);
+// prepare token for API
+  req.auth = {
+    id: req.user.id
+  };
+
+  // // Generate token
+  const token = jwt.sign({ 
+    email: req.user.email,
+    userId: req.user._id.toString()
+  }, jwt_secret, 
+  { expiresIn: '1h' });
+
+  res.status(200).json(
+    { 
+      message: 'logged', 
+      token,
+      image: req.user.image,
+      userId: req.user._id.toString() 
+  });
+
+  console.log('req.user', req.user);
+});
 
 router.post('/twitter/reverse', authController.twitterReverseOAuth);
 

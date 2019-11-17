@@ -3,15 +3,12 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const encryption = require('../util/encryption');
 const request = require('request');
-
-
 const { 
   jwt_secret,
   twitter_id,
   twitter_secret
 } = require('../config/config');
-const passport = require('passport');
-const passportConf = require('../passport');
+
 
 function validateUser(req, res) {
   const errors = validationResult(req);
@@ -81,32 +78,13 @@ module.exports = {
           if (err) {
             return res.send(500, { message: err.message });
           }
-
-          console.log(body);
           const bodyString = '{ "' + body.replace(/&/g, '", "').replace(/=/g, '": "') + '"}';
           const parsedBody = JSON.parse(bodyString);
 
           req.body['oauth_token'] = parsedBody.oauth_token;
           req.body['oauth_token_secret'] = parsedBody.oauth_token_secret;
           req.body['user_id'] = parsedBody.user_id;
-
-              // const { user } = req.user;
-    
-              // // Generate token
-              // const token = jwt.sign({ 
-              //   email: req.user.email,
-              //   userId: req.user._id.toString()
-              // }, jwt_secret, 
-              // { expiresIn: '1h' });
-
-              // res.status(200).json(
-              //   { 
-              //     message: 'logged', 
-              //     token,
-              //     image: req.user.image,
-              //     userId: req.user._id.toString() 
-                // });
-          res.status(200).json(parsedBody);
+          next();
       });
   },
   twitterReverseOAuth: (req, res, next) => {

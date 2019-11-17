@@ -16,10 +16,6 @@ passport.use('facebookToken', new FacebookTokenStrategy({
     passReqToCallback: true
   }, async (req, accessToken, refreshToken, profile, done) => {
     try {
-      console.log('profile', profile);
-      console.log('accessToken', accessToken);
-      console.log('refreshToken', refreshToken);
-
         let existingUser = await User.findOne({ "email": profile.emails[0].value });
         
         if (existingUser) {
@@ -39,26 +35,24 @@ passport.use('facebookToken', new FacebookTokenStrategy({
     }
   }));
 
-  passport.use('twitter-token', new TwitterTokenStrategy({
+  passport.use(new TwitterTokenStrategy({
     consumerKey: twitter_id,
     consumerSecret: twitter_secret,
     includeEmail: true
   }, async (token, tokenSecret, profile, done) => {
     try {
       console.log('profile', profile);
-      console.log('token', token);
-      console.log('tokenSecret', tokenSecret);
       console.log('======================== END ==================');
-        let existingUser = await User.findOne({ "email": profile.emails[0].value });
+        let existingUser = await User.findOne({ "email": profile._json.email });
         
         if (existingUser) {
           return done(null, existingUser);
         }
   
         const newUser = new User({
-          email: profile.emails[0].value,
-          name: profile.displayName,
-          image: profile.photos[0].value
+          email: profile._json.email,
+          name: profile._json.name,
+          image: profile._json.profile_image_url
         });
   
         await newUser.save();
