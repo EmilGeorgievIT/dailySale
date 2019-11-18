@@ -19,7 +19,7 @@ function validatePost(req, res) {
 module.exports = {
   getPosts: (req, res, next) => {
     // Retrieve all posts in JSON format
-    Post.find()
+    Post.find().limit(5)
       .then((posts) => {
         res
           .status(200)
