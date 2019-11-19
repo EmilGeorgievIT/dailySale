@@ -19,7 +19,13 @@ function validatePost(req, res) {
 module.exports = {
   getPosts: (req, res, next) => {
     // Retrieve all posts in JSON format
-    Post.find().limit(5)
+    const pagination = req.query.pagination? parseInt(req.query.pagination) : 10;
+    const page = req.query.page? req.query.page: 1;
+
+    Post
+      .find()
+      .skip((page - 1) * pagination)
+      .limit(pagination)
       .then((posts) => {
         res
           .status(200)
