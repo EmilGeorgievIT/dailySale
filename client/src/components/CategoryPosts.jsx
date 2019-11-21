@@ -15,22 +15,23 @@ export default class CategoryPosts extends Component {
 
         this.state = {
             posts: [],
+            currentTitle: '',
             items: [
-                { name: 'House & DIY' , icon: 'home' },
-                { name: 'Animals', icon: 'pets' },
-                { name: 'Electronics', icon: 'phonelink' } ,
-                { name: 'Sports & Hobbies', icon: 'accessibility_new' },
-                { name: 'Clothes & Lifestyle', icon: 'face'},
-                { name: 'Farming', icon: 'spa'},
-                { name: 'Baby & Kinds', icon: 'child_care'},
-                { name: 'Cars & Motor', icon: 'drive_eta'},
-                { name: 'Business', icon: 'business'},
-                { name: 'Holidays & Tickets', icon: 'beach_access'},
-                { name: 'Lost & Found', icon: 'sentiment_dissatisfied'},
-                { name: 'Music & Education', icon: 'music_note'},
-                { name: 'Other', icon: 'more'},
-                { name: 'Property', icon: 'store'},
-                { name: 'Work', icon: 'work'},
+                { name: 'House & DIY' , categoryName: 'houseanddiy', icon: 'home' },
+                { name: 'Animals', categoryName: 'animals', icon: 'pets' },
+                { name: 'Electronics', categoryName: 'electronics',  icon: 'phonelink' } ,
+                { name: 'Sports & Hobbies', categoryName: 'sportsandhobbies', icon: 'accessibility_new' },
+                { name: 'Clothes & Lifestyle', categoryName: 'clothesandlifestyle', icon: 'face'},
+                { name: 'Farming', categoryName: 'farming', icon: 'spa'},
+                { name: 'Baby & Kinds', categoryName: 'babyandkinds', icon: 'child_care'},
+                { name: 'Cars & Motor', categoryName: 'carsandmotor', icon: 'drive_eta'},
+                { name: 'Business', categoryName: 'business', icon: 'business'},
+                { name: 'Holidays & Tickets', categoryName: 'holidaysandtickets', icon: 'beach_access'},
+                { name: 'Lost & Found', categoryName: 'lostandfound',  icon: 'sentiment_dissatisfied'},
+                { name: 'Music & Education', categoryName: 'musicandeducation', icon: 'music_note'},
+                { name: 'Other', categoryName: 'other', icon: 'more'},
+                { name: 'Property', categoryName: 'property', icon: 'store'},
+                { name: 'Work', categoryName: 'work', icon: 'work'},
             ]
         }
     }
@@ -41,6 +42,11 @@ export default class CategoryPosts extends Component {
         if(this._isMounted) {
             try {
                 let categoryName = this.props.match.params.categoryName;
+                const currentTitle = this.state.items.find(item => item.categoryName === categoryName);
+                
+                this.setState({
+                    currentTitle
+                });
                 
                 const posts = await CategoryPosts.service.getCategories(categoryName)
                 .then((data) => {
@@ -90,7 +96,7 @@ export default class CategoryPosts extends Component {
     return (
         <Fragment>
             <Intro 
-                title={this.props.match.params.categoryName}>
+                title={this.state.currentTitle.name}>
                 <SearchForm items={this.state.items} results={this.getResults}/>
             </Intro>
 
