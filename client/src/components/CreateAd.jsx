@@ -35,7 +35,7 @@ const addPostSchema = Yup.object().shape({
       .integer('Invalid price')
       .required('Required'),
     phoneNumber: Yup.number()
-      .integer('Invalid phone number')
+      .integer('Phone number format 085XXXXXXX')
       .required('Required')
 });
 
@@ -119,14 +119,14 @@ class CreateAd extends Component {
                                     <Formik
                                         initialValues={{
                                             title: '',
-                                            category: '',
+                                            category: 'homeanddiy',
                                             price: '',
-                                            condition: '',
+                                            condition: 'New',
                                             description: '',
                                             location: '',
                                             phoneNumber: '',
                                             email: '',
-                                            image: ''
+                                            image: this.state.image
                                         }}
 
                                     validationSchema={addPostSchema}
@@ -143,12 +143,17 @@ class CreateAd extends Component {
                                             condition 
                                         } = values;
                                         
-                                
+                                        const categoryFormated = category.replace(' & ', 'and').toLowerCase();
+                                        
+                                        if(!this.state.image) {
+                                            return;
+                                        }
+
                                         try {
                                             let res = CreateAd.service.createPost(
                                                 {
                                                     title,
-                                                    category,
+                                                    category: categoryFormated,
                                                     image: this.state.image,
                                                     price,
                                                     phoneNumber,
@@ -204,6 +209,10 @@ class CreateAd extends Component {
                                                                     </option>
                                                                 )
                                                             }
+
+                                                            {errors.category && touched.category ? (
+                                                                <div className="invalid-feedback">{errors.category}</div>
+                                                            ) : null}
                                                         </Field>
                                                     </div>
                                                 </div>
@@ -271,17 +280,21 @@ class CreateAd extends Component {
                                                 </div>
                                                 
                                                 <div className="form-row">
-                                                    <div className="custom-file">}
-                                                        <Field onChange={this.handleImage} type="file" className="custom-file-input" name='image' id="validatedCustomFile"/>
+                                                    <div className="custom-file">
+                                                        <Field onChange={this.handleImage} type="file" className="custom-file-input" name='image' id="image"/>
 
                                                         <label className="custom-file-label" htmlFor="validatedCustomFile">Choose file...</label>
+                                                        
+                                                        { !this.state.image && touched.image? (
+                                                            <div className='invalid-feedback'>Required</div>
+                                                        ) : null }
                                                     </div>
                                                 </div>
                                                 
                                             </div>
                                             
                                             <div className="form-actions card-footer">
-                                                <button type="submit" disabled={Object.keys(errors).length} className="btn btn-primary">
+                                                <button type="submit" className="btn btn-primary">
                                                     Submit now
                                                 </button>
                                             </div>
