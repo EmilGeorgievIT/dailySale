@@ -62,6 +62,20 @@ export default class CategoryPosts extends Component {
             }
         }
     }
+    
+    showResults = (data) => {
+        if(data.length > 0 ) {
+            this.setState({
+                posts: [...data],
+                noResults: false,
+            })
+        } else {
+            this.setState({
+                noResults: true,
+                posts: []
+            })
+        }
+    }
 
     componentWillUnmount() {
         this._isMounted = false;
