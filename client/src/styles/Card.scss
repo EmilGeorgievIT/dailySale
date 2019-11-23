@@ -21,6 +21,13 @@
             font-weight: 500;
         }
     }
+    .card-description {
+        font-family: 'Roboto';
+        font-size: 14px;
+        color: inherit;
+        white-space: pre-line;
+        word-break: break-all;
+    }
     .card-footer {
         background-color: $white;
     }

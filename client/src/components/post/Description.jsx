@@ -12,7 +12,9 @@ const Description = ({description}) => (
             </div>
 
             <div className="card-body">
-                { description }
+                <pre className='card-description'>
+                    { description }
+                </pre>
             </div>
             
             <div className="card-footer">

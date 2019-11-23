@@ -94,10 +94,6 @@ export default class RealTimeChat extends Component {
             userSocketId: userIdSocket
         });
 
-        setTimeout( () => {
-            console.log(this.state);    
-        },3000);
-
         this.scrollToBottom();
     }
 
