@@ -1,0 +1,59 @@
+@import '../styles/variables.scss';
+
+/* ------------------------------------------------------------ *\
+	Filter Bar
+\* ------------------------------------------------------------ */
+.filter-bar {
+    & {
+        display: flex;
+        align-items: center;
+        padding: 1.7rem;
+        margin-bottom: 2rem;
+    }
+    .filter__aside {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex: 0 1 50%;
+        max-width: 50%;
+
+        .filter__actions {
+            & {
+                padding: 0 1rem;
+             }
+            .btn-toggle {
+                background-color: transparent;
+                border: 0;
+                padding: 0 .5rem;
+                appearance: none;
+            }
+
+            .btn-toggle:focus {
+                outline: none;
+            }
+
+            .material-icons {
+                color: $base-color;
+            }
+        }
+
+        .filter__sort{ 
+            display: flex;
+            align-items: center;
+            flex: 0 1 50%;
+            max-width: 50%;
+        }
+        .filter__sort-text{ 
+            flex: 0 1 20%;
+            max-width: 20%;
+        }
+        .filter-select {
+            flex: 0 1 80%;
+            max-width: 80%;
+        }
+    }
+    .filter__content {
+        flex: 0 1 50%;
+        max-width: 50%;
+    }
+}

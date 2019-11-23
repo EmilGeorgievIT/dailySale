@@ -109,7 +109,10 @@
         padding: 1rem 0; 
     }    
     .section__body {
-        padding: 2rem 0;
+        padding: 2rem 0 0;
+    }
+    .section__foot {
+        padding: 0 0 2rem
     }
 }
 

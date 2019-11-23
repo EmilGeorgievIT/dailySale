@@ -5,6 +5,7 @@ import PostsList from './PostsList';
 import { Intro } from './shared/Intro';
 import CategoryService from '../services/category-service';
 import { Link } from 'react-router-dom';
+import SearchBar from './post/SearchBar';
 
 export default class CategoryPosts extends Component {
     static service = new CategoryService();
@@ -120,17 +121,41 @@ export default class CategoryPosts extends Component {
                     </div>
                     
                     <div className="section__body">
-                        <h3 className='mb-4 h3'>
-                            {
-                                `Found ${posts.length} ads`
-                            }
-                        </h3>
+                        <div className="section__bar">
+                            <SearchBar results= {posts.length}/>
+                        </div>
                         
                         {
                             posts.map((post) => 
                                 <PostsList className='ads' key={post._id} {...post} />
                             )
                         }
+                    </div>
+                    
+                    <div className="section__foot">
+                        <nav aria-label="Page navigation example">
+                            <ul className="pagination">
+                                <li className="page-item">
+                                    <a className="page-link" href="#">Previous</a>
+                                </li>
+                                
+                                <li className="page-item">
+                                    <a className="page-link" href="#">1</a>
+                                </li>
+                                
+                                <li className="page-item">
+                                    <a className="page-link" href="#">2</a>
+                                </li>
+                                
+                                <li className="page-item">
+                                    <a className="page-link" href="#">3</a>
+                                </li>
+                                
+                                <li className="page-item">
+                                    <a className="page-link" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </section>

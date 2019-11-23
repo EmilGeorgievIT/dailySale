@@ -117,7 +117,13 @@ module.exports = {
   },
   findPostByCategory: (req, res, next) => {
     const postName = req.params.categoryName;
-    Post.find({category: postName})
+    const pagination = req.query.pagination? parseInt(req.query.pagination) : 9;
+    const page = req.query.page? req.query.page: 1;
+
+    Post
+    .find({category: postName})
+    .skip((page - 1) * pagination)
+    .limit(pagination)
     .then((post) => {
       res
       .status(200)
