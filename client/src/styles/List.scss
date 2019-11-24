@@ -49,30 +49,89 @@
 
 .post-list {
     & {
+        padding: 0 15px;
+        width: 100%;
+    }
+    .post__inner {
+        display: flex;
         margin-bottom: 2rem;
         background: #fff;
         box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
     }
+    
+    .post__meta {
+        display: none;
+    }
+
     .post__head {
         position: relative;
-        min-height: 100px;
-        flex: 1;
+        min-height: 200px;
+        flex: 0 1 280px;
+        max-width: 280px;
     }
+
     .post__body {
         flex: 2;
-        padding: 10px;
+
+        .post__title {
+            margin-bottom: .4rem;
+            color: #504e70;
+            font-weight: 600;
+        }
+
+        .post__content {
+            padding: 2rem;
+            
+        }
+        
+        .post__foot {
+            padding: 1rem 2rem;
+            border-top: 1px solid #e8ebf3;
+            
+            .post__price {
+                font-size: 18px;
+                font-weight: 600;
+            }
+        }
     }
-    .post__price {
-        font-size: 20px;
-        font-weight: 500;
-    }
-    .post__meta {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-    }
-    .post__inner {
-        display: flex;
+
+    &--grid {
+        flex: 0 1 33.33%;
+        max-width: 33.33%;
+
+        .post__head {
+            flex: 1;
+            max-width: 100%;
+        }
+        .post__description {
+            margin-bottom: 1rem;
+        }
+        .post__meta {
+            display: flex;
+            
+            p {
+                margin-bottom: 0;
+            }
+            
+            .post__date,
+            .post__location {
+                display: flex;
+                align-items: center;
+            }
+           
+            .post__location {
+                margin-right: 10px
+            }
+
+            .material-icons {
+                font-size: 13px;
+                margin-right: 5px;
+            }
+        }
+
+        .post__inner {
+            display: block;
+        }    
     }
 }
 

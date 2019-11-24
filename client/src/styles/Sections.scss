@@ -39,7 +39,7 @@
         position: relative;
     }
     .section__content {
-        max-width: calc(65% - 50px);
+        max-width: calc(70% - 50px);
     }
     .section__aside {
         position: absolute;
@@ -110,6 +110,10 @@
     }    
     .section__body {
         padding: 2rem 0 0;
+    }
+    .section__posts {
+        display: flex;
+        flex-wrap: wrap;
     }
     .section__foot {
         padding: 0 0 2rem

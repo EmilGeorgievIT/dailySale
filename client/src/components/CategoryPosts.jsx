@@ -6,6 +6,7 @@ import { Intro } from './shared/Intro';
 import CategoryService from '../services/category-service';
 import { Link } from 'react-router-dom';
 import SearchBar from './post/SearchBar';
+import { throws } from 'assert';
 
 export default class CategoryPosts extends Component {
     static service = new CategoryService();
@@ -16,6 +17,8 @@ export default class CategoryPosts extends Component {
 
         this.state = {
             posts: [],
+            sort: '',
+            listView: 'list',
             currentTitle: '',
             items: [
                 { name: 'House & DIY' , categoryName: 'houseanddiy', icon: 'home' },
@@ -77,7 +80,41 @@ export default class CategoryPosts extends Component {
             })
         }
     }
+    
+    sortBy = (sort) => {
+        if(sort === 'Latest') {
+            const latest = this.state.posts.sort((a,b) => (b.date - a.date));
+            this.setState({
+                posts: latest
+            });
+        } else if(sort === 'Oldest') {
+            const oldest = this.state.posts.sort((a,b) => (a.date - b.date))
+            
+            this.setState({
+                posts: oldest
+            });
+        } else if(sort === 'Low-to-High') {
+            const lowPrice = this.state.posts.sort((a,b) => (parseInt(a.price) - parseInt(b.price)))
+            
+            this.setState({
+                posts: lowPrice
+            });
+        } else if(sort === 'High-to-Low') {
+            const highPrice = this.state.posts.sort((a,b) => (parseInt(b.price) - parseInt(a.price)))
+            
+            this.setState({
+                posts: highPrice
+            });
+        } 
+    }
 
+    postView = (view) => {
+        console.log(view);
+
+        this.setState({
+            listView: view
+        })
+    }
     componentWillUnmount() {
         this._isMounted = false;
     }
@@ -122,14 +159,22 @@ export default class CategoryPosts extends Component {
                     
                     <div className="section__body">
                         <div className="section__bar">
-                            <SearchBar results= {posts.length}/>
+                            <SearchBar 
+                                toggleList={this.postView} 
+                                toggleGrid={this.postView}
+                                changeSort={this.sortBy}
+                                results= {posts.length}
+                            />
                         </div>
-                        
-                        {
-                            posts.map((post) => 
-                                <PostsList className='ads' key={post._id} {...post} />
-                            )
-                        }
+
+                        <div className="section__posts">
+                            {
+                                posts
+                                    .map((post) => 
+                                    <PostsList className='ads' key={post._id} {...post} view={this.state.listView} />
+                                )
+                            }
+                        </div>
                     </div>
                     
                     <div className="section__foot">
