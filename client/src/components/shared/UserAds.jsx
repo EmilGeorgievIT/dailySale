@@ -101,6 +101,15 @@ export default class UserAds extends Component {
                 <section className="section-post-details">
                 <div className="container">
                     <div className="section__inner">
+                        <div className='section__aside'>
+                            <UserProfile
+                                creator={_id} 
+                                joined='1555536805497'
+                                phone={phone ? phone: '23235'} 
+                                website='www.test.com'
+                            />
+                        </div>
+
                         <div className="section__content">
                         {   
                             this.state.posts ? 
@@ -109,15 +118,6 @@ export default class UserAds extends Component {
                                     )
                                 ) : 'No ads'
                         }
-                        </div>
-
-                        <div className='section__aside'>
-                            <UserProfile
-                                creator={_id} 
-                                joined='1555536805497'
-                                phone={phone ? phone: '23235'} 
-                                website='www.test.com'
-                            />
                         </div>
                     </div>
                 </div>

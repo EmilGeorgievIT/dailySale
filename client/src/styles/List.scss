@@ -135,6 +135,42 @@
     }
 }
 
+
+@media #{$tablet-portrait} {
+    .post-list {
+        &--grid {
+            flex: 0 1 50%;
+            max-width: 50%; 
+        }
+    }
+}
+
+
+@media #{$mobile} {
+    .post-list {
+        &--grid {
+            flex: 1;
+            max-width: 100%;
+        }
+        .post__inner {
+            display: block;
+        }
+        .post__body {
+            .post__content{
+                padding: 1rem;
+            }
+            .post__foot {
+                padding: 1rem;
+            }
+        }
+        .post__head {
+            max-width: 100%;
+            flex: 0 1 100%;
+        }
+    }
+}
+
+
 @media #{$mobile-small} {
     .post-list {
         .post__inner {

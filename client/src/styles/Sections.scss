@@ -58,6 +58,18 @@
         left: 63%;
     }
 }
+@media #{$tablet-portrait} {
+    .section-post-details {
+        .section__content {
+            max-width: 100%;
+        }
+        .section__aside, .section__aside.fixed {
+            position: static;
+            max-width: 100%;
+            height: auto;
+        }
+    }
+}
 
 /* ------------------------------------------------------------ *\
 	Section Post Details Mobile
@@ -66,7 +78,7 @@
 @media #{$mobile} {
     .section-post-details {
         .section__content {
-            max-width: 100%;
+           
             .post__head-mobile {
                 display: flex;
                 align-items: center;
@@ -76,11 +88,7 @@
         .section__aside {
             padding: 0;
         }
-        .section__aside, .section__aside.fixed {
-            position: static;
-            max-width: 100%;
-            height: auto;
-        }
+
         .section__aside .price {
             display: none;
         }
@@ -119,6 +127,38 @@
         padding: 0 0 2rem
     }
 }
+
+@media #{$mobile} {
+    .section-category {
+        .section__posts {
+            display: block;
+        }
+
+        .filter-bar{
+            & { 
+                display: block;
+            }
+            .filter__aside,
+            .filter__content {
+                max-width: 100%;
+                flex: 0 1 100%;
+            }
+            .filter__content {
+                margin-bottom: 1rem;
+            }
+            .filter__aside {
+                .filter__sort{
+                    flex: 1;
+                    max-width: 100%;
+                 }
+            }
+            .filter__actions {
+                display: none;
+            }
+        }
+    }
+}
+
 
 /* ------------------------------------------------------------ *\
 	Section Results
@@ -294,6 +334,21 @@
     }
 }
 
+@media #{$mobile} {
+    .section-post-view {
+        & {            
+            .col-xl-4 {
+                order: 1;
+            }
+            .col-xl-8 {
+                order: 2;
+            }
+            .product-latest {
+                display: none;
+            }
+        }
+    }
+}
 
 /* ------------------------------------------------------------ *\
 	Section Message
