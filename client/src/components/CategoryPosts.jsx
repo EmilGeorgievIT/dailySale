@@ -178,29 +178,20 @@ export default class CategoryPosts extends Component {
                     </div>
                     
                     <div className="section__foot">
-                        <nav aria-label="Page navigation example">
-                            <ul className="pagination">
-                                <li className="page-item">
-                                    <a className="page-link" href="#">Previous</a>
-                                </li>
-                                
-                                <li className="page-item">
-                                    <a className="page-link" href="#">1</a>
-                                </li>
-                                
-                                <li className="page-item">
-                                    <a className="page-link" href="#">2</a>
-                                </li>
-                                
-                                <li className="page-item">
-                                    <a className="page-link" href="#">3</a>
-                                </li>
-                                
-                                <li className="page-item">
-                                    <a className="page-link" href="#">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
+                        {
+                            this.state.posts.length > 9? 
+                                <nav aria-label="navigation">
+                                    <ul className="pagination">
+                                        <li className="page-item">
+                                            <a className="page-link" href="#">Previous</a>
+                                        </li>
+                                        
+                                        <li className="page-item">
+                                            <a className="page-link" href="#">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav> : ''
+                        }
                     </div>
                 </div>
             </section>

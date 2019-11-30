@@ -21,6 +21,7 @@ module.exports = {
     // Retrieve all posts in JSON format
     const pagination = req.query.pagination? parseInt(req.query.pagination) : 10;
     const page = req.query.page? req.query.page: 1;
+    const numberResults = Post.find().count();
 
     Post
       .find()
