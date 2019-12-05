@@ -41,8 +41,10 @@ module.exports = {
       });
   },
   createPost: (req, res, next) => {
+    
     // Validate post using express-validator
     // Return 422 with errors array if something went wrong
+    
     if (validatePost(req, res)) {
       const { title, category, email, condition, phoneNumber, location, description, image, price } = req.body;
 
@@ -120,7 +122,15 @@ module.exports = {
     const postName = req.params.categoryName;
     const pagination = req.query.pagination? parseInt(req.query.pagination) : 9;
     const page = req.query.page? req.query.page: 1;
+    let numberResults;
 
+    Post
+      .find({category: postName})
+      .countDocuments()
+      .then((data) => {
+        numberResults = data;
+    })
+    
     Post
     .find({category: postName})
     .skip((page - 1) * pagination)
@@ -128,7 +138,7 @@ module.exports = {
     .then((post) => {
       res
       .status(200)
-      .json(post)
+      .json({'posts': post, 'counter': numberResults})
     })
     .catch(error => {
       console.log(error);

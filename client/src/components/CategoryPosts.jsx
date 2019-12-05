@@ -20,6 +20,7 @@ export default class CategoryPosts extends Component {
             sort: '',
             listView: 'list',
             currentTitle: '',
+            counterPosts: 0,
             items: [
                 { name: 'House & DIY' , categoryName: 'houseanddiy', icon: 'home' },
                 { name: 'Animals', categoryName: 'animals', icon: 'pets' },
@@ -39,10 +40,25 @@ export default class CategoryPosts extends Component {
             ]
         }
     }
+    
+    getPosts(page) {
+        let categoryName = this.props.match.params.categoryName;
+
+        CategoryPosts.service.getCategoriesByPage(categoryName, page + 1)
+        .then((data) => {
+            this.setState({
+                posts: [...data.posts],
+                counterPosts: data.counter
+            })                
+        }).catch((error) => {
+            console.log(error);   
+        })
+    }
 
     async componentDidMount() {
         this._isMounted = true;
-        
+        let page = this.props.location.search? parseInt(this.props.location.search.replace('?page=', '')) : 1;
+
         if(this._isMounted) {
             try {
                 let categoryName = this.props.match.params.categoryName;
@@ -52,10 +68,11 @@ export default class CategoryPosts extends Component {
                     currentTitle
                 });
                 
-                const posts = await CategoryPosts.service.getCategories(categoryName)
+                const posts = await CategoryPosts.service.getCategoriesByPage(categoryName, page)
                 .then((data) => {
                     this.setState({
-                        posts: [...data]
+                        posts: [...data.posts],
+                        counterPosts: data.counter
                     })                
                 }).catch((error) => {
                     console.log(error);   
@@ -109,7 +126,6 @@ export default class CategoryPosts extends Component {
     }
 
     postView = (view) => {
-        console.log(view);
 
         this.setState({
             listView: view
@@ -163,7 +179,7 @@ export default class CategoryPosts extends Component {
                                 toggleList={this.postView} 
                                 toggleGrid={this.postView}
                                 changeSort={this.sortBy}
-                                results= {posts.length}
+                                results= {this.state.counterPosts}
                             />
                         </div>
 
@@ -179,16 +195,18 @@ export default class CategoryPosts extends Component {
                     
                     <div className="section__foot">
                         {
-                            this.state.posts.length > 9? 
+                            this.state.counterPosts > 9? 
                                 <nav aria-label="navigation">
                                     <ul className="pagination">
-                                        <li className="page-item">
-                                            <a className="page-link" href="#">Previous</a>
-                                        </li>
-                                        
-                                        <li className="page-item">
-                                            <a className="page-link" href="#">Next</a>
-                                        </li>
+                                        {
+                                            this.state.posts.slice(0, Math.ceil(this.state.counterPosts / 9)).map((post, index) =>  (
+                                                <li key={index} className="page-item">
+                                                    <Link to={`/category/${this.props.match.params.categoryName}?page=${index + 1}`} onClick={this.getPosts.bind(this, index)} className="page-link" href="#">
+                                                        { index + 1 }
+                                                    </Link>
+                                                </li>
+                                            ))
+                                        }
                                     </ul>
                                 </nav> : ''
                         }

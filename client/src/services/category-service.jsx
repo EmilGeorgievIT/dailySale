@@ -9,4 +9,8 @@ export default class CategoryService {
     getCategories(categoryName) {  
         return get(this.baseUrl + categoryName);
     }
+
+    getCategoriesByPage(categoryName, page) {  
+        return get(this.baseUrl + categoryName + '?page=' + page);
+    }
 }
