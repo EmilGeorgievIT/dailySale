@@ -1,5 +1,6 @@
 import React, { Component, Fragment} from 'react';
 import SearchService from '../services/search-service';
+import { ClipLoader } from 'react-spinners';
 
 export default class SearchForm extends Component {
     static service = new SearchService();
@@ -10,7 +11,8 @@ export default class SearchForm extends Component {
         this.state = {
             title: '',
             location: '',
-            category: ''
+            category: '',
+            isLoading: false
         }
     }
     getValue = ({target}) => {
@@ -30,15 +32,22 @@ export default class SearchForm extends Component {
     onSubmit = async (event) => {
         event.preventDefault();
 
+        this.setState({
+            isLoading: true
+        })
+
         try {
             const posts = await SearchForm.service.findPosts(this.state);
             this.props.results(posts);
+            this.setState({
+                isLoading: false
+            })
         } catch(error) {
             console.log(error);        
         }
     }
     render() {
-        const { title, location } = this.state;
+        const { title, location, isLoading } = this.state;
     
         return(
             <Fragment>
@@ -71,6 +80,13 @@ export default class SearchForm extends Component {
                                 <span>
                                     Search
                                 </span>
+
+                                <ClipLoader
+                                    sizeUnit={"px"}
+                                    size={20}
+                                    color={'#fff'}
+                                    loading={isLoading}
+                                />
                             </button>
                         </div>
                  </form>

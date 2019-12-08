@@ -7,6 +7,14 @@ import CategoryService from '../services/category-service';
 import { Link } from 'react-router-dom';
 import SearchBar from './post/SearchBar';
 import { throws } from 'assert';
+import { css } from '@emotion/core';
+import { ClipLoader } from 'react-spinners';
+
+const override = css`
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+`;
 
 export default class CategoryPosts extends Component {
     static service = new CategoryService();
@@ -20,6 +28,7 @@ export default class CategoryPosts extends Component {
             sort: '',
             listView: 'list',
             currentTitle: '',
+            isLoading: true,
             counterPosts: 0,
             items: [
                 { name: 'House & DIY' , categoryName: 'houseanddiy', icon: 'home' },
@@ -44,10 +53,15 @@ export default class CategoryPosts extends Component {
     getPosts(page) {
         let categoryName = this.props.match.params.categoryName;
 
+        this.setState({
+            isLoading: true
+        })
+
         CategoryPosts.service.getCategoriesByPage(categoryName, page + 1)
         .then((data) => {
             this.setState({
                 posts: [...data.posts],
+                isLoading: false,
                 counterPosts: data.counter
             })                
         }).catch((error) => {
@@ -72,6 +86,7 @@ export default class CategoryPosts extends Component {
                 .then((data) => {
                     this.setState({
                         posts: [...data.posts],
+                        isLoading: false,
                         counterPosts: data.counter
                     })                
                 }).catch((error) => {
@@ -144,8 +159,22 @@ export default class CategoryPosts extends Component {
     }
 
   render() {
-    const { posts } = this.state;
+    const { posts, isLoading } = this.state;
     
+    if(isLoading) {
+        return(
+            <div className="loader">
+                <ClipLoader
+                    css={override}
+                    sizeUnit={"px"}
+                    size={250}
+                    color={'#123abc'}
+                    loading={this.state.loading}
+                />
+            </div>
+            )
+    };
+
     if (!posts.length) {
         return (
             <div className="jumbotron jumbotron-fluid warning-message">
