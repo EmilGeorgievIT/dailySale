@@ -25,6 +25,7 @@ import store from './store';
 import jwt_decode from 'jwt-decode';
 import { setCurrentUser, logOutUser } from './actions/authActions';
 import RealTimeChat from './components/chat/RealTimeChat';
+import PrivacyPolicy from './components/shared/PrivacyPolicy';
 
 if(localStorage.token !== undefined) {
   const decode = jwt_decode(localStorage.token);
@@ -62,6 +63,7 @@ class App extends Component {
                       <Route exact path='/' component = { Main }/>
                       <Route exact path='/register' component = { RegisterForm }/>
                       <Route exact path='/post/:id' component = { PostDetailsMain }/>
+                      <Route exact path='/privacy-policy' component={ PrivacyPolicy } />
                       <Route exact path='/login' component = { LoginForm }/>
                       <Route exact path='/messages' component = { Chat }/>
                       <Route exact path='/about' component = { About }/>

@@ -360,3 +360,20 @@
         border-left: 2px solid #F4F6F8;
     }
 }
+
+/* ------------------------------------------------------------ *\
+	Section Privacy
+\* ------------------------------------------------------------ */
+
+
+.section-privacy {
+    & {
+        padding: 2rem 0;
+    }
+    .container--small {
+        max-width: 960px;
+    }
+    .section__entry {
+        margin-bottom: 2rem;
+    }
+}

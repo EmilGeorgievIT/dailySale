@@ -60,8 +60,8 @@ class Footer extends Component {
                                     </li>
 
                                     <li>
-                                        <Link to='team'>
-                                            Terms and Condition
+                                        <Link to='/privacy-policy'>
+                                            Privacy Policy
                                         </Link>
                                     </li>
                                 </ul>
