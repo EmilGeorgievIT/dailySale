@@ -58,7 +58,21 @@ class Profile extends Component {
         }
     }
 
-   async componentDidMount() {
+    deletePost = (postId) => {
+        debugger;
+        let posts = [...this.state.posts];
+        let index = posts.indexOf(postId);
+        
+        if(index !== -1) {
+            posts.splice(index, 1);
+
+            this.setState({
+                posts 
+            })
+        }
+    }
+    
+    async componentDidMount() {
        this._isMounted = true;
         
        if(this._isMounted) {
@@ -91,7 +105,7 @@ class Profile extends Component {
                .then(async (favorite) => {
                    let postsFavoriteRes = [];
                    
-                   favorite.map(async (item)  => {
+                   const favoritePosts = await favorite.map(async (item)  => {
                        Profile.getPost.getPostById(item.postId)
                            .then((res) => {
                                const postData = res;
@@ -241,7 +255,7 @@ class Profile extends Component {
                                                 {   
                                                     this.state.posts !== null && this.state.posts !== undefined  ? 
                                                         this.state.posts.map((post) => (
-                                                            <PostsEdit className='ads' key={post._id} {...post} />
+                                                            <PostsEdit removePost={this.deletePost} className='ads' key={post._id} {...post} />
                                                             )
                                                         ) : 'No ads'
                                                 }

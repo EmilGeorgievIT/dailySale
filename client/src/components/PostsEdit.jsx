@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Modal from './shared/Modal';
 
 class PostsEdit extends Component {
     constructor(props) {
@@ -24,10 +25,10 @@ class PostsEdit extends Component {
         });
     }
     
-    removePost = (index) => {
-        console.log(index);
+    removePost = (postId) => {
+        this.props.removePost(postId);
     }
-    
+
     render() {
         const { _id, image, price, title, location, description, category } = this.props;
         
@@ -78,12 +79,20 @@ class PostsEdit extends Component {
                     </div>
                 </div>          
                 
+                <Modal 
+                    title='Remove ad'
+                    description='Do you want to remove this ad?'
+                    submitButton='Remove'
+                    idPost={_id}
+                    removedPostId={this.removePost}
+                />
+
                 <div className="post__actions">
                     <button data-toggle="tooltip" data-placement="top" title="Remove Post" className="btn btn-sm">
                         Edit <i className="material-icons">edit</i>
                     </button>
                     
-                    <button data-toggle="tooltip" onClick={this.removePost.bind(this, _id)} data-placement="top" title="Remove Post" className="btn btn-sm">
+                    <button data-toggle="modal" data-target="#removeModal" data-placement="top" title="Remove Post" className="btn btn-sm">
                         Remove <i className="material-icons">remove_circle</i>
                     </button>
                 </div>

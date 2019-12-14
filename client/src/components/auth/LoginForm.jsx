@@ -40,9 +40,7 @@ class LoginForm extends Component {
         else return null;
     }
     
-    onFailGoogle = (error) => {
-        console.log(error);
-    }
+    onFailGoogle = (error) => {}
     
     responseGoogle = (response) => {
         this.props.loginUserGoogle({

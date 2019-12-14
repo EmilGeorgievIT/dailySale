@@ -1,4 +1,4 @@
-import { get, post } from '../rest/rest';
+import { get, post, remove } from '../rest/rest';
 const API_SERVER = `${process.env.REACT_APP_API_SERVER}`;
 
 class PostService {
@@ -13,6 +13,11 @@ class PostService {
     createPost(data){
         return post(this.baseUrlCreate, data);
     }
+
+    deletePost(postId){
+        return remove(this.baseUrlPost + 'delete/' + postId);
+    }
+
     getPostById(id) {
         return get(this.baseUrlPost + id);
     }
