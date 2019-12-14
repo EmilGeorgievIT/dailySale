@@ -174,13 +174,22 @@
 .tab-pane-ads {
     justify-content: flex-start;
     .post {
-        flex: 0 1 30%;
-        margin: 0 10px 20px;
+        flex: 0 1 33.33%;
     }
 }
 
 .tab-pane-edit {
     justify-content: flex-start;
+}
+
+@media(max-width: 1000px) {
+    .tab-pane-ads {
+        .post {
+            max-width: 50%;
+            flex: 0 1 50%;
+            margin: 0;
+        }
+    }
 }
 
 @media #{$mobile} {
@@ -190,7 +199,7 @@
         }
         .post {
             flex: 0 1 100%;
-            margin: 0 10px 20px;
+            max-width: 100%;
         }
     }
 }

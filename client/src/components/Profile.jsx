@@ -136,7 +136,7 @@ class Profile extends Component {
                 <div className="profile">
                     <div className='container'>
                         <div className="row">
-                            <div className="col-12 col-sm-3">
+                            <div className="col-12 col-md-3 col-sm-12">
                                 <div className="profile__aside">
                                     <div className="card">
                                         <div className="card-header">
@@ -197,7 +197,7 @@ class Profile extends Component {
                                 </div>
                             </div>
 
-                            <div className="col-12 col-sm-9">
+                            <div className="col-12 col-md-9 col-sm-12">
                                 <div className="profile__content ">
                                     <div className="tab-content card" id="v-pills-tabContent">
                                         <div className="card-header">
