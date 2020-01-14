@@ -59,9 +59,8 @@ class Profile extends Component {
     }
 
     deletePost = (postId) => {
-        debugger;
         let posts = [...this.state.posts];
-        let index = posts.indexOf(postId);
+        let index = posts.map(post => post._id).indexOf(postId);
         
         if(index !== -1) {
             posts.splice(index, 1);
