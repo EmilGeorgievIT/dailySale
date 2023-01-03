@@ -18,7 +18,7 @@
     "react-notifications": "^1.4.3",
     "react-redux": "^7.0.3",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "2.1.8",
+    "react-scripts": "5.0.1",
     "react-slick": "^0.24.0",
     "react-spinners": "^0.5.4",
     "react-twitter-auth": "0.0.13",
